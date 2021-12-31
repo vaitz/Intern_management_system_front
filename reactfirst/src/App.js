@@ -1,5 +1,6 @@
 
 import React, {useState} from "react";
+import Register from "./components/register";
 import SidePanel from "./components/side_panel";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <div>
             <SidePanel user={userType} setPage={setPage}/>
             {page === ""}
+            <Register/>
         </div>
     )
 
