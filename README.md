@@ -1,2 +1,2 @@
 # Internship Management System- Frontend
-Final project in Bengurion University
+Final project in Ben Gurion University
