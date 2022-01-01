@@ -2,6 +2,11 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {userOptions} from "../config";
 
+const Container = styled.div`
+  background: #363740;
+  padding-left: 250px;
+`
+
 const SidePanel = ({user, setPage}) => {
 
     const [options, setOptions] = useState([]);
@@ -11,10 +16,9 @@ const SidePanel = ({user, setPage}) => {
     }, [])
 
     return (
-        <div>
+        <Container>
             {options && options.map(option => <div>{option}</div>)}
-            {user}
-        </div>
+        </Container>
     );
 };
 
