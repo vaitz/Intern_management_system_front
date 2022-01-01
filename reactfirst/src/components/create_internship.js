@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Select from 'react-select';
+import axios from "axios";
+import MockAdapter from 'axios-mock-adapter';
 
 const Label =  styled.text`
   font-size: 18px;
@@ -39,26 +41,54 @@ const customStyles = {
 
 const CreateInternship = () => {
     const [options, setOptions] = useState([{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }]);
-    const [chosenManager, setChosenManager] = useState();
+    const [programManager, setProgramManager] = useState();
     const [internshipName, setInternshipName] = useState("");
-    const [internshipDemands, setInternshipDemands] = useState("");
-    const [division, setDivision] = useState("");
+    const [department, setDepartment] = useState("");
+    const [year, setYear] = useState("");
+    const [semester, setSemester] = useState("");
+    const [hoursRequired, setHoursRequired] = useState("");
 
-    // const onSubmit => {
-    //
-    // }
+    useEffect( () => {
+         axios.get('http://localhost:3000/programManagers')
+            .then((response) => {
+                setOptions(response.data);
+                console.log("get")
+            });
+    }, [])
+
+    const mock = new MockAdapter(axios);
+    const data = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
+    mock.onGet('http://localhost:3000/programManagers').reply(200, data);
+
+
+    const onSubmit = () => {
+        axios.post('http://localhost:3000/admin/openProgram',
+            {
+                "program name": internshipName,
+                "year": year, "semester": semester,
+                "program manager": programManager,
+                "hours required": hoursRequired,
+                "department": department
+            }).then(response => console.log("post",response))
+     }
+
+    mock.onPost('http://localhost:3000/admin/openProgram').reply(200, true);
 
     return (
         <Container>
             <Label>שם התמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>מחלקה</Label>
-            <Input type="text" value={division} onChange={e => setDivision(e.target.value)}/>
-            <Label>דרישות התמחות</Label>
-            <Input type="text" value={internshipDemands} onChange={e => setInternshipDemands(e.target.value)}/>
+            <Input type="text" value={department} onChange={e => setDepartment(e.target.value)}/>
+            <Label>שנה</Label>
+            <Input type="text" value={year} onChange={(year) => setYear(year.target.value)}/>
+            <Label>סמסטר</Label>
+            <Input type="text" value={semester} onChange={e => setSemester(e.target.value)}/>
+            <Label>שעות התמחות</Label>
+            <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
             <Label>מנהל התמחות</Label>
-            <Dropdown styles={customStyles} onChange={setChosenManager} options={options} placeholder={"בחר מנהל"}/>
-            <Button>צור התמחות</Button>
+            <Dropdown styles={customStyles} onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
+            <Button onClick={() => onSubmit()}>צור התמחות</Button>
         </Container>
 )
 }
