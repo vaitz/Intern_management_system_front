@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
+import PopUp from '../popup';
 
 const userTypes= ["סטודנט", "נציג חברה", "מנטור", "מנהל תוכנית התמחות", "רכז תוכנית התמחות"]
 
 const Register = () => {
-    // // States for registration
-    // const [name, setName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
+    // States for managing the registration form
+    const [isChecked, setIsChecked] = useState(false);
+    const [openPopUp, setOpenPopUp] = useState(false);
 
+    // State for registration
     const [state , setState] = useState({
         userType: "סטודנט",
         username: "",
@@ -15,9 +16,9 @@ const Register = () => {
         lastname: "",
         email : "",
         password : "",
-        confirmPassword : "",
-        isChecked: false
+        confirmPassword : ""
     })
+
 
     const handleChange = (e) => {
         const {id , value} = e.target   
@@ -40,11 +41,11 @@ const Register = () => {
     }
 
     const checked = (e) => {
-        const checkedVal = e.target.checked;
-        setState(prevState => ({
-            ...prevState,
-            isChecked : checkedVal
-        }))
+        setIsChecked(e.target.checked);
+    }
+
+    const clicked = (e) => {
+        setOpenPopUp(!openPopUp);
     }
 
     return (
@@ -113,14 +114,20 @@ const Register = () => {
             
             {state.userType === "סטודנט" && 
             <div>
+                <PopUp trigger={openPopUp} setTrigger={clicked}>
+                    <h3>הצהרת רצינות</h3>
+                    <p>בלה בלה בלה....</p>
+                </PopUp>
+                <button onClick={clicked}>כניסה להצהרת רצינות</button>
                 <div>
                     <input id="isChecked" type="checkbox" onChange={checked}/>
+                    {/* link to the statement */}
                     <label>קראתי את הצהרת הרצינות ואני מסכים\מה עם הנאמר</label>
                 </div>
                 <button 
                         type="submit" 
                         onClick={handleSubmitClick}
-                        disabled={!state.isChecked}
+                        disabled={!isChecked}
                 >
                     הרשמה
                 </button>
@@ -132,8 +139,6 @@ const Register = () => {
                     <input type="text" 
                             id="company" 
                             placeholder="הכנס\י את שם החברה" 
-                            // value={state.lastname}
-                            // onChange={handleChange}
                     />
                 </div>
             }
