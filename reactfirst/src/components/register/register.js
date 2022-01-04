@@ -1,5 +1,50 @@
 import React, {useState} from 'react';
+import styled from "styled-components";
 import PopUp from '../popup';
+import {validatePassword, validateUsername} from './validations'
+import {sendDetailsToServer} from './requests';
+
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+`
+const Label =  styled.text`
+  font-size: 18px;
+  color: #666666;
+  margin-top: 20px;
+`
+
+const Input = styled.input`
+  width:  500px;
+  height: 20px;
+`
+
+const Select = styled.select`
+  width:  500px;
+  height: 20px;
+`
+
+const Button = styled.button`
+  width: 100px;
+  height: 30px;
+  margin: 50px 300px 200px;
+  background: #7A5CFA;
+  color:
+`
+
+const TextLink = styled.a`
+      color: blue;
+      border: none;
+      background: transparent;
+      outline: none;
+      cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
+      text-decoration: none;
+      &:hover {
+        text-decoration: ${({ disabled }) => (disabled ? "none" : "underline")};
+      }
+`;
 
 const userTypes= ["סטודנט", "נציג חברה", "מנטור", "מנהל תוכנית התמחות", "רכז תוכנית התמחות"]
 
@@ -7,6 +52,7 @@ const Register = () => {
     // States for managing the registration form
     const [isChecked, setIsChecked] = useState(false);
     const [openPopUp, setOpenPopUp] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState('');
 
     // State for registration
     const [state , setState] = useState({
@@ -21,7 +67,7 @@ const Register = () => {
 
 
     const handleChange = (e) => {
-        const {id , value} = e.target   
+        const {id , value} = e.target;
         setState(prevState => ({
             ...prevState,
             [id] : value
@@ -31,12 +77,24 @@ const Register = () => {
     const handleSubmitClick = (e) => {
         e.preventDefault(); //?
         if(state.password === state.confirmPassword) {
-            // sendDetailsToServer() - send hashed password to the server
-            // check the validation of the password 
-            // check the validation of the username 
+            if(validatePassword(state.password)){
+                if(validateUsername(state.username)){
+                    const success = sendDetailsToServer(state);
+                    console.log(success);
+                    if(success){
+                        // show massage that the register succeed and redirect to login page? 
+                    } else {
+                        console.log('שם המשתמש קיים במערכת, אנא בחר\י שם משתמש אחר');
+                    }
+                } else {
+                    console.log('שם משתמש לא תקין, הקפד\י על...');
+                }
+            } else {
+                console.log('סיסמא לא תקינה, הקפד\י על ההנחיות לסיסמא');
+            }
         } else {
             // props.showError('Passwords do not match');
-            console.log('Passwords do not match');
+            console.log('הסיסמאות שהוקלדו לא תאומות');
         }
     }
 
@@ -49,108 +107,113 @@ const Register = () => {
     }
 
     return (
-        <div>
-            <div>
-                <label>סוג משתמש</label>
-                <select id="userType" value={state.userType} onChange={handleChange}>
-                    {userTypes && userTypes.map(option => <option value={option}>{option}</option>)}
-                </select>
-            </div>
-            <div>
-                <label>שם משתמש:</label>
-                <input type="text" 
-                        id="username" 
-                        placeholder="הכנס\י שם משתמש" 
-                        value={state.username}
-                        onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>סיסמא:</label>
-                <input type="password" 
-                        id="password" 
-                        placeholder="הכנס\י סיסמא" 
-                        value={state.password}
-                        onChange={handleChange}
-                />
-                <label>6 תווים לפחות המשלבת אותיות באנגלית ומספרים</label>
-            </div>
-            <div>
-                <label>אימות סיסמא:</label>
-                <input type="password" 
-                        id="confirmPassword" 
-                        placeholder="הכנס\י סיסמא בשנית" 
-                        value={state.confirmPassword}
-                        onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>שם פרטי:</label>
-                <input type="text" 
-                        id="firstname" 
-                        placeholder="הכנס\י שם פרטי" 
-                        value={state.firstname}
-                        onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>שם משפחה:</label>
-                <input type="text" 
-                        id="lastname" 
-                        placeholder="הכנס\י שם משפחה" 
-                        value={state.lastname}
-                        onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>דוא"ל:</label>
-                <input type="email" 
-                        id="email" 
-                        placeholder="הכנס\י כתובת מייל" 
-                        value={state.email}
-                        onChange={handleChange}
-                />
-            </div>
+        <Container>
+            <Label>סוג משתמש</Label>
+            <Select id="userType" value={state.userType} onChange={handleChange}>
+                {userTypes && userTypes.map(option => <option value={option}>{option}</option>)}
+            </Select>
+            <Label>שם משתמש:</Label>
+            <Input type="text" 
+                    id="username" 
+                    placeholder="הכנס\י שם משתמש" 
+                    value={state.username}
+                    onChange={handleChange}
+                    required 
+            />
+
+            <Label>סיסמא:</Label>
+            <Input type="password" 
+                    id="password" 
+                    placeholder="הכנס\י סיסמא" 
+                    value={state.password}
+                    onChange={handleChange}
+                    required 
+            />
+            <label>(צריכה להכיל לפחות 6 תווים ולשלב בתוכה אותיות גדולות וקטנות באנגלית ומספרים)</label>
             
+
+            <Label>אימות סיסמא:</Label>
+            <Input type="password" 
+                    id="confirmPassword" 
+                    placeholder="הכנס\י סיסמא בשנית" 
+                    value={state.confirmPassword}
+                    onChange={handleChange}
+                    required 
+            />
+
+
+            <Label>שם פרטי:</Label>
+            <Input type="text" 
+                    id="firstname" 
+                    placeholder="הכנס\י שם פרטי" 
+                    value={state.firstname}
+                    onChange={handleChange}
+                    required 
+            />
+
+
+            <Label>שם משפחה:</Label>
+            <Input type="text" 
+                    id="lastname" 
+                    placeholder="הכנס\י שם משפחה" 
+                    value={state.lastname}
+                    onChange={handleChange}
+                    required 
+            />
+
+            <Label>דוא"ל:</Label>
+            <Input type="email" 
+                    id="email" 
+                    placeholder="הכנס\י כתובת מייל" 
+                    value={state.email}
+                    onChange={handleChange}
+                    required 
+            />
+            {/* {errorMessage && <span style={{
+                fontWeight: 'bold',
+                color: 'red',
+                }}>{errorMessage}</span>
+            } */}
+
             {state.userType === "סטודנט" && 
             <div>
                 <PopUp trigger={openPopUp} setTrigger={clicked}>
                     <h3>הצהרת רצינות</h3>
                     <p>בלה בלה בלה....</p>
                 </PopUp>
-                <button onClick={clicked}>כניסה להצהרת רצינות</button>
-                <div>
-                    <input id="isChecked" type="checkbox" onChange={checked}/>
-                    {/* link to the statement */}
-                    <label>קראתי את הצהרת הרצינות ואני מסכים\מה עם הנאמר</label>
-                </div>
-                <button 
-                        type="submit" 
+                
+
+                <input id="isChecked" type="checkbox" onChange={checked}/>
+                {/* link to the statement */}
+                <label>קראתי את <TextLink onClick={clicked}> הצהרת הרצינות</TextLink> ואני מסכים\מה עם הנאמר  </label>
+                <Button 
+                        type="submit"
                         onClick={handleSubmitClick}
                         disabled={!isChecked}
                 >
                     הרשמה
-                </button>
+                </Button>
             </div>
             }
             {(state.userType === "נציג חברה" || state.userType === "מנטור") && 
-                <div>
-                    <label>שם חברה:</label>
-                    <input type="text" 
-                            id="company" 
-                            placeholder="הכנס\י את שם החברה" 
-                    />
-                </div>
+            <Container>
+                <Label>שם חברה:</Label>
+                <Input type="text" 
+                        id="company" 
+                        placeholder="הכנס\י את שם החברה" 
+                        required 
+                />
+            </Container>
             }
             {!(state.userType === "סטודנט") && 
-            <button 
-                    type="submit" 
+            <Button 
                     onClick={handleSubmitClick}
             >
                 הרשמה
-            </button>
+            </Button>
             }
-        </div>
+            
+        </Container>
     );
 };
 
