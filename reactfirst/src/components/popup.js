@@ -29,6 +29,7 @@ const Button = styled.button`
 `
 
 const PopUp = (props) => {
+    console.log(props)
     return (props.trigger) ? (
         <Container>
             <ContentWrapper>
