@@ -23,14 +23,20 @@ export const SidebarData = [
         cName: 'nav-text'
     },
     {
-        title: 'פתיחת התמחות',
-        path: '/createInternship',
+        title: 'יצירת תוכנית התמחות',
+        path: '/createProgram',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     },
     {
-        title: 'הגדרות',
-        path: '/support',
+        title: 'יצירת התמחות',
+        path: '/createInternship',
+        icon: <IoIcons.IoMdHelpCircle />,
+        cName: 'nav-text'
+    },
+    {
+        title: 'דיווח שעות',
+        path: '/reportHours',
         icon: <IoIcons.IoMdHelpCircle />,
         cName: 'nav-text'
     }

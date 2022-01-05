@@ -1,16 +1,18 @@
 
 import React, {useEffect, useState} from "react";
 import SidePanel from "./components/side_panel/side_panel";
-import CreateInternship from "./components/create_internship/create_internship";
+import CreateProgram from "./components/create_program/create_program";
 import styled from "styled-components";
-import {Route, HashRouter, Switch} from "react-router-dom";
+import {Route, HashRouter, Switch, useHistory, BrowserRouter} from "react-router-dom";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
 import PublicRoute from "./components/utils/public_route";
 import Home from "./components/home/home";
 import {getToken, removeUserSession, setUserSession} from "./components/utils/common";
 import axios from "axios";
-
+import CreateInternship from "./components/create_intership/create_internship";
+import MockAdapter from "axios-mock-adapter";
+import ReportHours from "./components/report_hours";
 
 const Container = styled.div`
   background: #F7F8FC;
@@ -27,36 +29,40 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-    const [authLoading, setAuthLoading] = useState(true);
-    useEffect(() => {
-        const token = getToken();
-        if (!token) {
-            return;
-        }
-
-    axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
-        setUserSession(response.data.token, response.data.user);
-        setAuthLoading(false);
-    }).catch(error => {
-        removeUserSession();
-        setAuthLoading(false);
-    });
-}, []);
+//     useEffect(() => {
+//         const token = getToken();
+//         if (!token) {
+//             return;
+//         }
+//     axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
+//         setUserSession(response.data.token, response.data.user);
+//         console.log("all good")
+//     }).catch(error => {
+//         removeUserSession();
+//         console.log("all bad")
+//     });
+// }, []);
+//
+//     const mock = new MockAdapter(axios);
+//     const data =  { token: 2, user: "user" } ;
+//     mock.onPost('http://localhost:3000/verifyToken?token').reply(200, data);
 
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Container>
                 <SidePanel />
                 <ContentWrapper>
                     <Switch>
-                        <Route path="/register" component={Register}/>
+                        <Route path="/createProgram" component={CreateProgram}/>
+                        <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>
+                        <Route path="/register" component={Register}/>
                         <PublicRoute path="/login" component={Login} />
                         <Route path="/" component={Home}/>
                     </Switch>
                 </ContentWrapper>
             </Container>
-        </HashRouter>
+        </BrowserRouter>
     )
 
 }
