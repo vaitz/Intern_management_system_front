@@ -7,7 +7,7 @@ export const getProgramManagers = (setOptions) => axios.get('http://localhost:30
     });
 
 export const createProgram = (internshipName, year, semester, programManager, hoursRequired, department) => {
-    axios.post('http://localhost:3000/admin/openProgram',
+    const response = axios.post('http://localhost:3000/admin/openProgram',
         {
             "program name": internshipName,
             "year": year, "semester": semester,
