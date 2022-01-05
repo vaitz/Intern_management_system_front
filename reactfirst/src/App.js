@@ -1,14 +1,21 @@
 
 import React, {useState} from "react";
-import Register from "./components/register";
-import SidePanel from "./components/side_panel";
-import CreateInternship from "./components/create_internship";
+import SidePanel from "./components/side_panel/side_panel";
+import CreateInternship from "./components/create_internship/create_internship";
 import styled from "styled-components";
+import {Route, HashRouter, Switch} from "react-router-dom";
+import Register from "./components/register/register";
+import Login from "./components/login/login";
+import PublicRoute from "./components/utils/public_route";
+import Home from "./components/home/home";
+
 
 const Container = styled.div`
   background: #F7F8FC;
   display: flex;
   flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 1160px;
 `
 
 const ContentWrapper = styled.div`
@@ -18,16 +25,20 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-    const  [page,setPage] = useState("home");
-    const  [userType,setUserType] = useState("guest");
-
     return (
-        <Container>
-            <SidePanel user={userType} setPage={setPage}/>
-            <ContentWrapper>
-                <CreateInternship/>
-            </ContentWrapper>
-        </Container>
+        <HashRouter>
+            <Container>
+                <SidePanel />
+                <ContentWrapper>
+                    <Switch>
+                        <Route path="/register" component={Register}/>
+                        <Route path="/createInternship" component={CreateInternship}/>
+                        <PublicRoute path="/login" component={Login} />
+                        <Route path="/" component={Home}/>
+                    </Switch>
+                </ContentWrapper>
+            </Container>
+        </HashRouter>
     )
 
 }

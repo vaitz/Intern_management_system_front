@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Select from 'react-select';
-import axios from "axios";
-import MockAdapter from 'axios-mock-adapter';
+import {createProgram, getProgramManagers} from "./requests";
+import PopUp from "../popup";
+import { useHistory } from "react-router-dom";
+
 
 const Label =  styled.text`
   font-size: 18px;
@@ -13,7 +15,6 @@ const Label =  styled.text`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
 `
 
 const Input = styled.input`
@@ -47,35 +48,25 @@ const CreateInternship = () => {
     const [year, setYear] = useState("");
     const [semester, setSemester] = useState("");
     const [hoursRequired, setHoursRequired] = useState("");
+    const [popup, setPopup] = useState(false);
+
+    const history = useHistory();
 
     useEffect( () => {
-         axios.get('http://localhost:3000/programManagers')
-            .then((response) => {
-                setOptions(response.data);
-                console.log("get")
-            });
+         getProgramManagers(setOptions).then(r => r);
     }, [])
 
-    const mock = new MockAdapter(axios);
-    const data = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
-    mock.onGet('http://localhost:3000/programManagers').reply(200, data);
-
-
     const onSubmit = () => {
-        axios.post('http://localhost:3000/admin/openProgram',
-            {
-                "program name": internshipName,
-                "year": year, "semester": semester,
-                "program manager": programManager,
-                "hours required": hoursRequired,
-                "department": department
-            }).then(response => console.log("post",response))
+        createProgram(internshipName,year,semester,programManager,hoursRequired,department)
+        setPopup(true);
+        history.push("/register");
      }
-
-    mock.onPost('http://localhost:3000/admin/openProgram').reply(200, true);
 
     return (
         <Container>
+            { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
+                {`נוצרה ההתמחות:  "${internshipName}"  `}
+            </PopUp>}
             <Label>שם התמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>מחלקה</Label>
@@ -88,7 +79,7 @@ const CreateInternship = () => {
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
             <Label>מנהל התמחות</Label>
             <Dropdown styles={customStyles} onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
-            <Button onClick={() => onSubmit()}>צור התמחות</Button>
+            <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור התמחות</Button>
         </Container>
 )
 }

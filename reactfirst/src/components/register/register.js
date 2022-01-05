@@ -8,7 +8,6 @@ import {sendDetailsToServer} from './requests';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
 `
 const Label =  styled.text`
   font-size: 18px;
@@ -29,9 +28,13 @@ const Select = styled.select`
 const Button = styled.button`
   width: 100px;
   height: 30px;
-  margin: 50px 300px 200px;
+  margin: 20px 300px;
   background: #7A5CFA;
-  color:
+  color: white;
+`
+
+const Div = styled.div`
+  margin-top: 50px;
 `
 
 const TextLink = styled.a`
@@ -182,11 +185,12 @@ const Register = () => {
                     <p>בלה בלה בלה....</p>
                 </PopUp>
                 
-
+                <Div/>
                 <input id="isChecked" type="checkbox" onChange={checked}/>
                 {/* link to the statement */}
                 <label>קראתי את <TextLink onClick={clicked}> הצהרת הרצינות</TextLink> ואני מסכים\מה עם הנאמר  </label>
-                <Button 
+                <Div/>
+                <Button
                         type="submit"
                         onClick={handleSubmitClick}
                         disabled={!isChecked}
