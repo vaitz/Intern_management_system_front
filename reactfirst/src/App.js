@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import SidePanel from "./components/side_panel/side_panel";
 import CreateInternship from "./components/create_internship/create_internship";
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import Register from "./components/register/register";
 import Login from "./components/login/login";
 import PublicRoute from "./components/utils/public_route";
 import Home from "./components/home/home";
+import {getToken, removeUserSession, setUserSession} from "./components/utils/common";
+import axios from "axios";
 
 
 const Container = styled.div`
@@ -24,6 +26,22 @@ const ContentWrapper = styled.div`
 `
 
 const App = () => {
+
+    const [authLoading, setAuthLoading] = useState(true);
+    useEffect(() => {
+        const token = getToken();
+        if (!token) {
+            return;
+        }
+
+    axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
+        setUserSession(response.data.token, response.data.user);
+        setAuthLoading(false);
+    }).catch(error => {
+        removeUserSession();
+        setAuthLoading(false);
+    });
+}, []);
 
     return (
         <HashRouter>
