@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Select from 'react-select';
 import {createProgram, getProgramManagers} from "./requests";
 import PopUp from "../popup";
-import {NavLink} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 
@@ -16,7 +15,6 @@ const Label =  styled.text`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
 `
 
 const Input = styled.input`
@@ -82,7 +80,6 @@ const CreateInternship = () => {
             <Label>מנהל התמחות</Label>
             <Dropdown styles={customStyles} onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
             <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור התמחות</Button>
-            <li><NavLink to="/register">Contact</NavLink></li>
         </Container>
 )
 }

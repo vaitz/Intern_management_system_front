@@ -1,0 +1,37 @@
+
+.nav-menu {
+    background-color: #363740;
+    width: 250px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    left: -100%;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 40px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #A4A6B3;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.nav-text a:hover {
+    background-color: rgba(230,255,255,0.18) ;
+}
+
+.nav-menu-items {
+    width: 100%;
+}
