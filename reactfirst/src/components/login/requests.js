@@ -4,9 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 
 export const loginRequest = (setLoading, setError, username, password) => {axios.post('http://localhost:3000/users/login', { username: username.value, password: password.value }).then(response => {
     setLoading(false);
-    console.log(response)
     setUserSession(response.data.token, response.data.user);
-    console.log(response)
 }).catch(error => {
     setLoading(false);
     if (error.response.status === 401) setError(error.response.data.message);

@@ -12,19 +12,18 @@ import {getToken, removeUserSession, setUserSession} from "./components/utils/co
 import axios from "axios";
 import CreateInternship from "./components/create_intership/create_internship";
 import MockAdapter from "axios-mock-adapter";
-import ReportHours from "./components/report_hours";
+import ReportHours from "./components/report_hours/report_hours";
 
 const Container = styled.div`
   background: #F7F8FC;
   display: flex;
-  flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 1160px;
 `
 
 const ContentWrapper = styled.div`
-  align-items: center;
   padding: 30px 50px;
+  width: auto;
 `
 
 const App = () => {
