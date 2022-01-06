@@ -8,10 +8,7 @@ import Register from "./components/register/register";
 import Login from "./components/login/login";
 import PublicRoute from "./components/utils/public_route";
 import Home from "./components/home/home";
-import {getToken, removeUserSession, setUserSession} from "./components/utils/common";
-import axios from "axios";
 import CreateInternship from "./components/create_intership/create_internship";
-import MockAdapter from "axios-mock-adapter";
 import ReportHours from "./components/report_hours/report_hours";
 
 const Container = styled.div`
@@ -46,10 +43,12 @@ const App = () => {
 //     const data =  { token: 2, user: "user" } ;
 //     mock.onPost('http://localhost:3000/verifyToken?token').reply(200, data);
 
+    const [userType, setUserType] = useState("intern");
+
     return (
         <BrowserRouter>
             <Container>
-                <SidePanel />
+                <SidePanel userType={userType}/>
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
