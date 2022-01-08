@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Select from 'react-select';
 import {createProgram, getProgramManagers} from "./requests";
 import PopUp from "../popup";
-import { useHistory } from "react-router-dom";
-
 
 const Label =  styled.text`
   font-size: 18px;
@@ -27,7 +25,7 @@ const Dropdown = styled(Select)`
 `
 
 const Button = styled.button`
-  width: 100px;
+  width: auto;
   height: 30px;
   margin: 150px 300px 200px;
   background: #7A5CFA;
@@ -40,7 +38,7 @@ const customStyles = {
     })
 }
 
-const CreateInternship = () => {
+const CreateProgram = () => {
     const [options, setOptions] = useState([{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }]);
     const [programManager, setProgramManager] = useState();
     const [internshipName, setInternshipName] = useState("");
@@ -50,8 +48,6 @@ const CreateInternship = () => {
     const [hoursRequired, setHoursRequired] = useState("");
     const [popup, setPopup] = useState(false);
 
-    const history = useHistory();
-
     useEffect( () => {
          getProgramManagers(setOptions).then(r => r);
     }, [])
@@ -59,13 +55,12 @@ const CreateInternship = () => {
     const onSubmit = () => {
         createProgram(internshipName,year,semester,programManager,hoursRequired,department)
         setPopup(true);
-        history.push("/register");
      }
 
     return (
         <Container>
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
-                {`נוצרה ההתמחות:  "${internshipName}"  `}
+                {`נוצרה תוכנית התמחות חדשה:  "${internshipName}"  `}
             </PopUp>}
             <Label>שם התמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
@@ -79,8 +74,8 @@ const CreateInternship = () => {
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
             <Label>מנהל התמחות</Label>
             <Dropdown styles={customStyles} onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
-            <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור התמחות</Button>
+            <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור תוכנית התמחות</Button>
         </Container>
 )
 }
-export default CreateInternship;
+export default CreateProgram;
