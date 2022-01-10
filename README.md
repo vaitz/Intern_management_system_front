@@ -1,5 +1,5 @@
 # Internship Management System- Frontend
-A final project in Ben Gurion University,
+A final academin project in Ben Gurion University.
 By Yuval Mor Yosef, Hay Matityaho, Lee Joe Barak and May Vaitz
 
 ## About the internship program:
