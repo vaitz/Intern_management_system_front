@@ -43,7 +43,7 @@ const App = () => {
 //     const data =  { token: 2, user: "user" } ;
 //     mock.onPost('http://localhost:3000/verifyToken?token').reply(200, data);
 
-    const [userType, setUserType] = useState("intern");
+    const [userType, setUserType] = useState("guest");
 
     return (
         <BrowserRouter>
