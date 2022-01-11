@@ -11,6 +11,7 @@ import Home from "./components/home/home";
 import CreateInternship from "./components/create_intership/create_internship";
 import ReportHours from "./components/report_hours/report_hours";
 
+
 const Container = styled.div`
   background: #F7F8FC;
   display: flex;
@@ -65,4 +66,5 @@ const App = () => {
 
 }
     export default App;
+
 

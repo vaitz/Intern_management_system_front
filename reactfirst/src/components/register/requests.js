@@ -1,5 +1,5 @@
 import axios from "axios";
-import MockAdapter from 'axios-mock-adapter';
+// import MockAdapter from 'axios-mock-adapter';
 import {SERVER_ADDRESS} from '../../config'
 
 
@@ -49,3 +49,25 @@ export function sendDetailsToServer(userType, username, firstname, lastname, ema
         })
     }
 };
+
+// export async function sendDetailsToServer({userType, username, firstname, lastname, email, password}){
+//     // need to hash the password in the server, suppose to return error if username exists (or other)
+//     if(userType === "סטודנט"){
+//         console.log(SERVER_ADDRESS+'/users/register/student');
+//         await axios
+//         ({
+//             method: 'post',
+//             url: SERVER_ADDRESS + '/users/register/student',
+//             data: {
+//                     "username": username,
+//                     "firstName": firstname,
+//                     "lastName": lastname,
+//                     "password": password,
+//                     "email": email
+//                 }}).then(response => {
+//             console.log("post",response);
+//             console.log(response.status);
+//             return (response.status === 201);
+//         })
+//     }
+// };

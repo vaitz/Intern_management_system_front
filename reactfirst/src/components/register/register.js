@@ -77,12 +77,12 @@ const Register = () => {
         }))
     }
 
-    const handleSubmitClick = (e) => {
+    const handleSubmitClick = async (e) => {
         e.preventDefault(); //?
         if(state.password === state.confirmPassword) {
             if(validatePassword(state.password)){
                 if(validateUsername(state.username)){
-                    const success = sendDetailsToServer(state);
+                    const success = await sendDetailsToServer(state);
                     console.log(success);
                     if(success){
                         // show massage that the register succeed and redirect to login page? 

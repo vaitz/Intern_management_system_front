@@ -37,6 +37,7 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://rps.ise.bgu.ac.il/njsw36/",
   "eslintConfig": {
     "extends": [
       "react-app",
