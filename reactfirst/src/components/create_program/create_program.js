@@ -49,7 +49,7 @@ const CreateProgram = () => {
     const [popup, setPopup] = useState(false);
 
     useEffect( () => {
-         getProgramManagers(setOptions).then(r => r);
+         getProgramManagers(setOptions).then(r => console.log(r));
     }, [])
 
     const onSubmit = () => {

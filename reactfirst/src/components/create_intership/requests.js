@@ -1,17 +1,20 @@
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
+import fetchMock from "fetch-mock";
 
 export const createInternship = (companyName,internshipName,internshipDescription,demands,mentor,notes) => {
-    const response = axios.post('http://localhost:3000/createInternship',
+    const data = {
+        "company name": companyName,
+        "internship name": internshipName,
+        "internship description": internshipDescription,
+        "demands": demands,
+        "mentor": mentor,
+        "notes": notes ? notes : ""
+    }
+    const response = fetch('http://localhost:3000/createInternship',
         {
-            "company name": companyName,
-            "internship name": internshipName,
-            "internship description": internshipDescription,
-            "demands": demands,
-            "mentor": mentor,
-            "notes": notes ? notes : ""
-        }).then(response => console.log("post",response))
+            method: 'POST',
+            mode: "cors",
+            body: JSON.stringify(data)
+        }).then(response => response.json().then(data => console.log(data)));
 }
 
-const mock = new MockAdapter(axios);
-mock.onPost('http://localhost:3000/admin/createInternship').reply(200, true);
+fetchMock.mock('http://localhost:3000/createInternship', "success");
