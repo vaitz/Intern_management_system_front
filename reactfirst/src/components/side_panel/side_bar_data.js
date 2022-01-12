@@ -4,7 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 
 export const SidebarData = {
-    ["student"]: [
+    "student": [
     {
         title: 'בית',
         path: '/',
@@ -18,7 +18,7 @@ export const SidebarData = {
         cName: 'nav-text'
     }
 ],
-    ["advancedCandidate"]: [
+    "advancedCandidate": [
         {
             title: 'בית',
             path: '/',
@@ -38,7 +38,7 @@ export const SidebarData = {
             cName: 'nav-text'
         }
     ],
-    ["intern"]: [
+    "intern": [
         {
             title: 'בית',
             path: '/',
@@ -64,7 +64,7 @@ export const SidebarData = {
             cName: 'nav-text'
         }
     ],
-    ["mentor"]: [
+    "mentor": [
         {
             title: 'בית',
             path: '/',
@@ -91,7 +91,7 @@ export const SidebarData = {
         }
     ],
 
-    ["internshipManager"]: [
+    "internshipManager": [
     {
         title: 'בית',
         path: '/',
@@ -124,7 +124,7 @@ export const SidebarData = {
     }
 ],
 
-    ["highTechRepresentative"]: [
+    "highTechRepresentative": [
     {
         title: 'בית',
         path: '/',
@@ -151,7 +151,7 @@ export const SidebarData = {
     }
     ],
 
-["guest"]: [
+"guest": [
     {
         title: 'בית',
         path: '/',
@@ -171,7 +171,7 @@ export const SidebarData = {
         cName: 'nav-text'
     }
 ],
-    ["systemManager"]: [
+    "systemManager": [
         {
             title: 'בית',
             path: '/',
