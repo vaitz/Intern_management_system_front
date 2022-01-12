@@ -1,21 +1,22 @@
 
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import SidePanel from "./components/side_panel/side_panel";
 import CreateProgram from "./components/create_program/create_program";
 import styled from "styled-components";
-import {Route, HashRouter, Switch, useHistory, BrowserRouter} from "react-router-dom";
+import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Register from "./components/register/register";
 import Login from "./components/login/login";
 import PublicRoute from "./components/utils/public_route";
 import Home from "./components/home/home";
 import CreateInternship from "./components/create_intership/create_internship";
 import ReportHours from "./components/report_hours/report_hours";
+import {Table} from "./components/assign_internships/assign_internships";
 
 
 const Container = styled.div`
   background: #F7F8FC;
   display: flex;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: rubik;
   min-height: 1160px;
 `
 
@@ -26,25 +27,7 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-//     useEffect(() => {
-//         const token = getToken();
-//         if (!token) {
-//             return;
-//         }
-//     axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
-//         setUserSession(response.data.token, response.data.user);
-//         console.log("all good")
-//     }).catch(error => {
-//         removeUserSession();
-//         console.log("all bad")
-//     });
-// }, []);
-//
-//     const mock = new MockAdapter(axios);
-//     const data =  { token: 2, user: "user" } ;
-//     mock.onPost('http://localhost:3000/verifyToken?token').reply(200, data);
-
-    const [userType, setUserType] = useState("guest");
+    const [userType, setUserType] = useState("internshipManager");
 
     return (
         <BrowserRouter>
@@ -53,6 +36,7 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
+                        <Route path="/assignInternships" component={Table}/>
                         <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>
                         <Route path="/register" component={Register}/>

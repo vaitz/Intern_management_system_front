@@ -112,7 +112,7 @@ export const SidebarData = {
     },
     {
         title: 'שיבוץ התמחות',
-        path: '/createProgram',
+        path: '/assignInternships',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     },

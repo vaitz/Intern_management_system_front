@@ -32,11 +32,11 @@ const Button = styled.button`
   color: #FFFFFF
 `
 
-const customStyles = {
-    option: (provided, state) => ({
-        color: "black"
-    })
-}
+// const customStyles = {
+//     option: (provided, state) => ({
+//         color: "black"
+//     })
+// }
 
 const CreateProgram = () => {
     const [options, setOptions] = useState([{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }]);
@@ -73,7 +73,7 @@ const CreateProgram = () => {
             <Label>שעות התמחות</Label>
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
             <Label>מנהל התמחות</Label>
-            <Dropdown styles={customStyles} onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
+            <Dropdown onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
             <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור תוכנית התמחות</Button>
         </Container>
 )
