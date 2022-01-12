@@ -1,4 +1,4 @@
-import fetchMock from "fetch-mock";
+// import fetchMock from "fetch-mock";
 
 export const createInternship = (companyName,internshipName,internshipDescription,demands,mentor,notes) => {
     const data = {
@@ -17,4 +17,4 @@ export const createInternship = (companyName,internshipName,internshipDescriptio
         }).then(response => response.json().then(data => console.log(data)));
 }
 
-fetchMock.mock('http://localhost:3000/createInternship', "success");
+// fetchMock.mock('http://localhost:3000/createInternship', "success");

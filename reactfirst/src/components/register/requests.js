@@ -1,7 +1,7 @@
-import fetchMock from 'fetch-mock';
+// import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../config'
 
-fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
+// fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
 
 export async function sendDetailsToServer({userType, username, firstname, lastname, email, password}){
     // need to hash the password in the server, suppose to return error if username exists (or other)

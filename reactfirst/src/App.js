@@ -26,24 +26,6 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-//     useEffect(() => {
-//         const token = getToken();
-//         if (!token) {
-//             return;
-//         }
-//     axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
-//         setUserSession(response.data.token, response.data.user);
-//         console.log("all good")
-//     }).catch(error => {
-//         removeUserSession();
-//         console.log("all bad")
-//     });
-// }, []);
-//
-//     const mock = new MockAdapter(axios);
-//     const data =  { token: 2, user: "user" } ;
-//     mock.onPost('http://localhost:3000/verifyToken?token').reply(200, data);
-
     const [userType, setUserType] = useState("guest");
 
     return (

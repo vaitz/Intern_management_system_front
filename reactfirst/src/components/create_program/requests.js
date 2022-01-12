@@ -1,4 +1,4 @@
-import fetchMock from 'fetch-mock';
+// import fetchMock from 'fetch-mock';
 
 const data = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
 
@@ -7,7 +7,7 @@ export const getProgramManagers = (setOptions) => fetch('http://localhost:3000/p
         response.json().then(data => setOptions(data));
     })
 
-fetchMock.mock('http://localhost:3000/programManagers', data);
+// fetchMock.mock('http://localhost:3000/programManagers', data);
 
 export const createProgram = (internshipName, year, semester, programManager, hoursRequired, department) => {
     const data = {
@@ -26,4 +26,4 @@ export const createProgram = (internshipName, year, semester, programManager, ho
         }).then(response => response.json().then(data => console.log(data)));
 }
 
-fetchMock.mock('http://localhost:3000/admin/openProgram', "success");
+// fetchMock.mock('http://localhost:3000/admin/openProgram', "success");

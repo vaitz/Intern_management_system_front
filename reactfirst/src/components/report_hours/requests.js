@@ -1,5 +1,5 @@
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
+// import axios from "axios";
+// import MockAdapter from "axios-mock-adapter";
 
 export const getWorkingHours = (userName, setHours) => fetch(`http://localhost:3000/internHours`,
     {

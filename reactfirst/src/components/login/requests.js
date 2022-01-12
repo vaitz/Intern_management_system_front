@@ -1,7 +1,8 @@
-import axios from "axios";
+// import axios from "axios";
 import {setUserSession} from "../utils/common";
-import MockAdapter from "axios-mock-adapter";
-import fetchMock from "fetch-mock";
+import {SERVER_ADDRESS} from '../../config'
+// import MockAdapter from "axios-mock-adapter";
+// import fetchMock from "fetch-mock";
 
 // export const loginRequest = (setLoading, setError, username, password) => {axios.post('http://localhost:3000/users/login', { username: username.value, password: password.value }).then(response => {
 //     setLoading(false);
@@ -23,7 +24,7 @@ export const loginRequest = (setLoading, setError, username, password) => {
         username: username.value,
         password: password.value
     }
-    fetch('http://localhost:3000/users/login',
+    fetch(SERVER_ADDRESS+'/users/login',
     {
         method: 'POST',
         mode: "cors",
@@ -40,5 +41,5 @@ export const loginRequest = (setLoading, setError, username, password) => {
 }));
 }
 
-const data =  { token: 2, user: "user" } ;
-fetchMock.mock('http://localhost:3000/users/login', data);
+// const data =  { token: 2, user: "user" } ;
+// fetchMock.mock('http://localhost:3000/users/login', data);
