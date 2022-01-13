@@ -27,7 +27,7 @@ function SidePanel({userType}) {
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSidebar}>
                         <Name>
-                            שלום חי (התנתק)
+                            שלום אורח
                         </Name>
                         {SidebarData[userType].map((item, index) => {
                             return (
