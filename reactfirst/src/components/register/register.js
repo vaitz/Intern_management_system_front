@@ -69,7 +69,8 @@ const Register = () => {
         lastname: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        companyName: ""
     })
 
 
@@ -85,6 +86,7 @@ const Register = () => {
     }, [error, submitted]);
 
     const handleSubmitClick = async (e) => {
+        console.log(state);
         if(!validateEmptyFields(state)){
             setError(`אסור להשאיר שדות ריקים`);
         }else{
@@ -242,14 +244,17 @@ const Register = () => {
             <Container>
                 <Label>שם חברה:</Label>
                 <Input type="text" 
-                        id="company" 
+                        id="companyName" 
                         placeholder="הכנס\י את שם החברה" 
+                        value={state.companyName}
+                        onChange={handleChange}
                         required 
                 />
             </Container>
             }
             {!(state.userType === "סטודנט") && 
             <Button 
+                    type="submit"
                     onClick={handleSubmitClick}
             >
                 הרשמה
