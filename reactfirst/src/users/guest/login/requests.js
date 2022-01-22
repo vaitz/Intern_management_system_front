@@ -1,6 +1,6 @@
-import {setUserSession} from "../utils/common";
+import {setUserSession} from "../../../utils/common";
 
-export const loginRequest = (setLoading, setError, username, password) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType) => {
     const data = {
         username: username.value,
         password: password.value
@@ -14,8 +14,8 @@ export const loginRequest = (setLoading, setError, username, password) => {
         mode: "cors",
         body: JSON.stringify(data)
     }).then(response => response.json().then(data => {
-        console.log(data);
         setLoading(false);
+        setUserType(data.userType);
         setUserSession(data.token, data.user);
     }
 ).catch(error => {

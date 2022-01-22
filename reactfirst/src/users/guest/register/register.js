@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import PopUp from '../popup';
+import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername} from './validations'
 import {sendDetailsToServer} from './requests';
 
