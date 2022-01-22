@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import {SERVER_ADDRESS} from '../../config'
+import {SERVER_ADDRESS} from '../../../config'
 
 fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
 fetchMock.mock(SERVER_ADDRESS+'/users/register/company', 201);
