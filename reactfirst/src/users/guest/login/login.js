@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {loginRequest} from "./requests";
 
-function Login() {
+function Login(setUserType) {
     const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
@@ -19,7 +19,7 @@ function Login() {
                 <input type="password" {...password} autoComplete="new-password" />
             </div>
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-            <input type="button" value={loading ? 'טוען...' : 'התחבר'} onClick={() => loginRequest(setLoading, setError, username, password)} disabled={loading} /><br />
+            <input type="button" value={loading ? 'טוען...' : 'התחבר'} onClick={() => loginRequest(setLoading, setError, username, password, setUserType)} disabled={loading} /><br />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {createInternship} from "./requests";
-import PopUp from "../popup";
+import PopUp from "../../../components/popup";
 
 
 const Label =  styled.text`
