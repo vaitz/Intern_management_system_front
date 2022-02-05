@@ -2,6 +2,7 @@
 import React, { useState} from "react";
 import SidePanel from "./components/side_panel/side_panel";
 import CreateProgram from "./components/create_program/create_program";
+import InternshipsPriorities from "./components/internships_priorities/internships_priorities";
 import styled from "styled-components";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Register from "./components/register/register";
@@ -39,6 +40,7 @@ const App = () => {
                         <Route path="/assignInternships" component={Table}/>
                         <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>
+                        <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
                         <Route path="/register" component={Register}/>
                         <PublicRoute path="/login" component={Login} />
                         <Route path="/" component={Home}/>
