@@ -1,25 +1,26 @@
 import React, {Fragment, useEffect, useState} from "react";
 import styled from "styled-components";
-import Select from "react-select";
+import Dropdown from "../../../components/dropdown";
 import MaterialTable from "material-table";
 import {getCompanies, getCompanyData} from "./requests";
 import tableIcons from "./MaterialTableIcons";
-
-const Dropdown = styled(Select)`
-  width: 300px;
-  margin-bottom: 100px;
-`
+import Button from "../../../components/button";
 
 const Div = styled.div`
   width: 1000px;
   height: auto;
+  margin-top: 50px;
 `
-const Button = styled.button`
-  width: auto;
-  height: 50px;
+// const Button = styled.button`
+//   width: auto;
+//   background: #7A5CFA;
+//   height: 50px;
+//   margin: 150px 400px 200px;
+//   color: #FFFFFF
+//
+
+const ButtonWrapper = styled.div`
   margin: 150px 400px 200px;
-  background: #7A5CFA;
-  color: #FFFFFF
 `
 
 export const Table = () => {
@@ -63,10 +64,9 @@ export const Table = () => {
         }
     ];
 
-
     return (
         <Fragment>
-            <Dropdown options={companies} placeholder={"בחר חברה"}/>
+            <Dropdown options={companies} placeholder={"בחר חברה"} width='200px' height="100px"/>
             <Div>
                 <MaterialTable pageSize={30} title="מועמדים" data={companyData} columns={columns} icons={tableIcons}
                                options={
@@ -88,7 +88,9 @@ export const Table = () => {
                                ]}
                 />
             </Div>
-            <Button>שבץ להתמחות</Button>
+            <ButtonWrapper>
+                <Button value={"שבץ להתמחות"}/>
+            </ButtonWrapper>
         </Fragment>
     );
 };

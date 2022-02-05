@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import {SERVER_ADDRESS} from '../../config'
+import {SERVER_ADDRESS} from '../../../config'
 
 fetchMock.mock(SERVER_ADDRESS+'/internships/program1', [
     {'companyName': 'companyA','internshipName':'internshipA', 'about':'bla', 'requirments':'askdnaskn'},

@@ -2,9 +2,17 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
+import {
+    ADVANCED_CANDIDATE,
+    COMPANY_REPRESENTATIVE, GUEST,
+    INTERN,
+    INTERNSHIP_MANAGER,
+    MENTOR,
+    STUDENT, SYSTEM_MANAGER
+} from "../../../constants";
 
 export const SidebarData = {
-    "student": [
+    [STUDENT]: [
     {
         title: 'בית',
         path: '/',
@@ -18,7 +26,7 @@ export const SidebarData = {
         cName: 'nav-text'
     }
 ],
-    "advancedCandidate": [
+    [ADVANCED_CANDIDATE]: [
         {
             title: 'בית',
             path: '/',
@@ -38,7 +46,7 @@ export const SidebarData = {
             cName: 'nav-text'
         }
     ],
-    "intern": [
+    [INTERN]: [
         {
             title: 'בית',
             path: '/',
@@ -64,7 +72,7 @@ export const SidebarData = {
             cName: 'nav-text'
         }
     ],
-    "mentor": [
+    [MENTOR]: [
         {
             title: 'בית',
             path: '/',
@@ -91,7 +99,7 @@ export const SidebarData = {
         }
     ],
 
-    "internshipManager": [
+    [INTERNSHIP_MANAGER]: [
     {
         title: 'בית',
         path: '/',
@@ -124,7 +132,7 @@ export const SidebarData = {
     }
 ],
 
-    "highTechRepresentative": [
+    [COMPANY_REPRESENTATIVE]: [
     {
         title: 'בית',
         path: '/',
@@ -151,7 +159,7 @@ export const SidebarData = {
     }
     ],
 
-"guest": [
+[GUEST]: [
     {
         title: 'בית',
         path: '/',
@@ -171,7 +179,7 @@ export const SidebarData = {
         cName: 'nav-text'
     }
 ],
-    "systemManager": [
+    [SYSTEM_MANAGER]: [
         {
             title: 'בית',
             path: '/',

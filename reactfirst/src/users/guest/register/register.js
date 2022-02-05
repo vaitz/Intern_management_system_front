@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
-import PopUp from '../popup';
+import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername, validateEmptyFields, validateEmail} from './validations'
 import {sendDetailsToServer} from './requests';
 import { useHistory } from "react-router-dom";
