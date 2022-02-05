@@ -4,6 +4,7 @@ import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername, validateEmptyFields, validateEmail} from './validations'
 import {sendDetailsToServer} from './requests';
 import { useHistory } from "react-router-dom";
+import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "./constants"
 
 
 const Container = styled.div`
@@ -50,7 +51,7 @@ const TextLink = styled.a`
       }
 `;
 
-const userTypes= ["סטודנט", "נציג חברה", "מנטור", "מנהל תוכנית התמחות", "רכז תוכנית התמחות"]
+const userTypes= [STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW]
 
 const Register = () => {
     let history = useHistory();
@@ -63,7 +64,7 @@ const Register = () => {
 
     // State for registration
     const [state , setState] = useState({
-        userType: "סטודנט",
+        userType: STUDENT_HEBREW,
         username: "",
         firstname: "",
         lastname: "",
@@ -220,7 +221,7 @@ const Register = () => {
                     onChange={handleChange}
                     required 
             />
-            {state.userType === "סטודנט" && 
+            {state.userType === STUDENT_HEBREW && 
             <div>
                 <PopUp trigger={openPopUpStatement} setTrigger={clicked}>
                     <h3>הצהרת רצינות</h3>
@@ -240,7 +241,7 @@ const Register = () => {
                 </Button>
             </div>
             }
-            {(state.userType === "נציג חברה" || state.userType === "מנטור") && 
+            {(state.userType === COMPANY_REPRESENTATIVE_HEBREW || state.userType === MENTOR_HEBREW) && 
             <Container>
                 <Label>שם חברה:</Label>
                 <Input type="text" 
@@ -252,7 +253,7 @@ const Register = () => {
                 />
             </Container>
             }
-            {!(state.userType === "סטודנט") && 
+            {!(state.userType === STUDENT_HEBREW) && 
             <Button 
                     type="submit"
                     onClick={handleSubmitClick}

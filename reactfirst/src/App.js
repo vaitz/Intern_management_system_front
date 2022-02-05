@@ -1,5 +1,6 @@
 
 import React, { useState} from "react";
+import InternshipsPriorities from "./users/candidate/internships_priorities/internships_priorities";
 import SidePanel from "./users/common/side_panel/side_panel";
 import CreateProgram from "./users/system_manager/create_program/create_program";
 import styled from "styled-components";
@@ -40,6 +41,7 @@ const App = () => {
                         <Route path="/assignInternships" component={Table}/>
                         <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>
+                        <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
                         <Route path="/register" component={Register}/>
                         <PublicRoute path="/login" component={<Login setUserType={setUserType}/>} />
                         <Route path="/" component={Home}/>
