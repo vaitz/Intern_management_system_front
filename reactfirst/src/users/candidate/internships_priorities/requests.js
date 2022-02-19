@@ -30,11 +30,10 @@ export const getInternships = (program, setOptions) => {
             mode: "cors",
         }).then((response) => {
             response.json().then(data => {
-                console.log(data);
-                setOptions(data.map((obj, index)=>{
-                    return {value: index, label: obj.companyName + " " + obj.internshipName}
-                }))
+                var tempData = data.map((obj)=>{return obj.companyName + " " + obj.internshipName});
+                tempData.push("");
                 // todo: add empty label
+                setOptions(tempData);
             });
         }).catch(error => {
             console.log("error");

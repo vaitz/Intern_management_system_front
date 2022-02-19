@@ -41,7 +41,7 @@ const InternshipsPriorities = () => {
 
     const handleMenuOpen = (oldValue) => {
                 
-        console.log(oldValue);
+        // console.log(oldValue);
         // todo: remove the last value from selected
 
         // todo: add to options
