@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
-import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "./constants"
+import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
 
 
 fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
