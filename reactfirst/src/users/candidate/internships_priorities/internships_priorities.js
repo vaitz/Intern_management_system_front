@@ -5,7 +5,9 @@ import Button from "../../../components/button";
 import styled from "styled-components";
 
 const ButtonWrapper = styled.div`
-  margin: 150px 400px 200px;
+  display: flex;
+  justify-content: center;
+  margin: 200px;
 `
 const program = "program1"
 const username = "may"

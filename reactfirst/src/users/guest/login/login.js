@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 import {loginRequest} from "./requests";
+import {useHistory} from "react-router-dom";
 
-function Login(setUserType) {
+function Login({setUserType, setFirstName}) {
     const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
     const [error, setError] = useState(null);
+
+    let history = useHistory();
+
+    const onClick = () => {
+        const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName);
+        if(response){
+            history.push("/");
+        }
+        else {
+
+        }
+    }
 
     return (
         <div>
@@ -19,7 +32,7 @@ function Login(setUserType) {
                 <input type="password" {...password} autoComplete="new-password" />
             </div>
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-            <input type="button" value={loading ? 'טוען...' : 'התחבר'} onClick={() => loginRequest(setLoading, setError, username, password, setUserType)} disabled={loading} /><br />
+            <input type="button" value={loading ? 'טוען...' : 'התחבר'} onClick={() => onClick()} disabled={loading} /><br />
         </div>
     );
 }

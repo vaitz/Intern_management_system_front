@@ -16,7 +16,7 @@ const Name = styled.div`
   margin-bottom: 20px;
 `
 
-function SidePanel({userType, name}) {
+function SidePanel({userType, firstName }) {
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
@@ -27,7 +27,7 @@ function SidePanel({userType, name}) {
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSidebar}>
                         <Name>
-                            {userType === "guest" ? "שלום אורח" : `${name} שלום ` }
+                            { "שלום " + firstName }
                         </Name>
                         {SidebarData[userType].map((item, index) => {
                             return (

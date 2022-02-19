@@ -12,7 +12,8 @@ import Home from "./users/common/home/home";
 import CreateInternship from "./users/common/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
 import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
-import {INTERNSHIP_MANAGER} from "./constants";
+import { GUEST } from "./constants";
+import PrivateRoute from "./utils/private_route";
 
 
 const Container = styled.div`
@@ -28,12 +29,13 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-    const [userType, setUserType] = useState(INTERNSHIP_MANAGER);
+    const [userType, setUserType] = useState(GUEST);
+    const [firstName, setFirstName] = useState("אורח");
 
     return (
         <BrowserRouter>
             <Container>
-                <SidePanel userType={userType}/>
+                <SidePanel userType={userType} firstName={firstName}/>
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
@@ -42,7 +44,9 @@ const App = () => {
                         <Route path="/createInternship" component={CreateInternship}/>
                         <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
                         <Route path="/register" component={Register}/>
-                        <PublicRoute path="/login" component={<Login setUserType={setUserType}/>} />
+                        <Route path="/login">
+                            <Login setUserType={setUserType} setFirstName={setFirstName}/>
+                        </Route>
                         <Route path="/" component={Home}/>
                     </Switch>
                 </ContentWrapper>

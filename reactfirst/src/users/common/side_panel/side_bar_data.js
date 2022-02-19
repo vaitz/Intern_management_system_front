@@ -35,13 +35,13 @@ export const SidebarData = {
         },
         {
             title: 'דף אישי',
-            path: '/reportHours',
+            path: '/',
             icon: <IoIcons.IoMdHelpCircle />,
             cName: 'nav-text'
         },
         {
-            title: 'הגש מועמדות',
-            path: '/reportHours',
+            title: 'בחירת עדיפויות',
+            path: '/internshipsPriorities',
             icon: <IoIcons.IoMdHelpCircle />,
             cName: 'nav-text'
         }
@@ -55,7 +55,7 @@ export const SidebarData = {
         },
         {
             title: 'דף אישי',
-            path: '/reportHours',
+            path: '/',
             icon: <IoIcons.IoMdHelpCircle />,
             cName: 'nav-text'
         },
@@ -67,7 +67,7 @@ export const SidebarData = {
         },
         {
             title: 'הגש דוח',
-            path: '/reportHours',
+            path: '/',
             icon: <IoIcons.IoMdHelpCircle />,
             cName: 'nav-text'
         }
@@ -81,19 +81,19 @@ export const SidebarData = {
         },
         {
             title: 'סטודנטים',
-            path: '/register',
+            path: '/',
             icon: <IoIcons.IoIosPaper />,
             cName: 'nav-text'
         },
         {
             title: 'אישור דיווח שעות',
-            path: '/login',
+            path: '/',
             icon: <IoIcons.IoIosPaper />,
             cName: 'nav-text'
         },
         {
             title: 'הגשת משובים',
-            path: '/createProgram',
+            path: '/',
             icon: <FaIcons.FaEnvelopeOpenText />,
             cName: 'nav-text'
         }
@@ -108,13 +108,13 @@ export const SidebarData = {
     },
     {
         title: 'חברות',
-        path: '/createProgram',
+        path: '/',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     },
     {
         title: 'סטודנטים',
-        path: '/createProgram',
+        path: '/',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     },
@@ -126,7 +126,7 @@ export const SidebarData = {
     },
     {
         title: 'סטטיסטיקות',
-        path: '/createProgram',
+        path: '/',
         icon: <FaIcons.FaEnvelopeOpenText />,
         cName: 'nav-text'
     }
@@ -188,7 +188,7 @@ export const SidebarData = {
         },
         {
             title: 'תוכניות קיימות',
-            path: '/register',
+            path: '/',
             icon: <IoIcons.IoIosPaper />,
             cName: 'nav-text'
         },

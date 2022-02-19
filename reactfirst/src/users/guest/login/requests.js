@@ -1,7 +1,9 @@
 import {setUserSession} from "../../../utils/common";
 import {SERVER_ADDRESS} from '../../../config'
+import fetchMock from "fetch-mock";
+import {ADVANCED_CANDIDATE, STUDENT} from "../../../constants";
 
-export const loginRequest = (setLoading, setError, username, password, setUserType) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName) => {
     const data = {
         username: username.value,
         password: password.value
@@ -17,14 +19,17 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
     }).then(response => response.json().then(data => {
         setLoading(false);
         setUserType(data.userType);
-        setUserSession(data.token, data.user);
+        setUserSession(data.session, data.username);
+        setFirstName(data.firstName)
+        return response;
     }
 ).catch(error => {
     setLoading(false);
     if (error.response.status === 401) setError(error.response.data.message);
     else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
 }));
+    return "dd";
 }
 
-const data =  { token: 2, user: "user" } ;
-// fetchMock.mock(SERVER_ADDRESS+'/users/login', data);
+const data =  { session: 2, username: "user", userType: ADVANCED_CANDIDATE, firstName: "חי" } ;
+fetchMock.mock(SERVER_ADDRESS+'/users/login', data);
