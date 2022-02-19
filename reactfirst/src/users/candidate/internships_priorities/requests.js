@@ -34,6 +34,7 @@ export const getInternships = (program, setOptions) => {
                 setOptions(data.map((obj, index)=>{
                     return {value: index, label: obj.companyName + " " + obj.internshipName}
                 }))
+                // todo: add empty label
             });
         }).catch(error => {
             console.log("error");
