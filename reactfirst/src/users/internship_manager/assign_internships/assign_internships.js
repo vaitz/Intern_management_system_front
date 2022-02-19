@@ -7,9 +7,10 @@ import tableIcons from "./MaterialTableIcons";
 import Button from "../../../components/button";
 
 const Div = styled.div`
-  width: 1000px;
+  width: 400px;
   height: auto;
-  margin-top: 50px;
+  margin-top: 100px;
+  display: flex;
 `
 // const Button = styled.button`
 //   width: auto;
@@ -23,19 +24,25 @@ const ButtonWrapper = styled.div`
   margin: 150px 400px 200px;
 `
 
-export const Table = () => {
-    const [companies, setCompanies] = useState();
+export const AssignInternships = () => {
+    const [companies, setCompanies] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState();
     const [companyData, setCompanyData] = useState();
     const [selectedRow, setSelectedRow] = useState(null);
+
+    console.log("assign" ,companies);
 
     useEffect(() => {
         getCompanies(setCompanies);
     }, [])
 
     useEffect(() => {
-        getCompanyData(setCompanyData);
+        setSelectedCompany(companies[0])
     }, [companies])
+
+    useEffect(() => {
+        getCompanyData(setCompanyData);
+    }, [selectedCompany])
 
     // const options = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
 
@@ -43,15 +50,9 @@ export const Table = () => {
         {
             title: "שם",
             field: "name",
-        },
-        {
-            title: "סטטוס",
-            field: "status",
-        },
-        {
-            title: "עבר/לא עבר",
-            field: "pass",
-            cellStyle:{ position: 'center' }
+            cellStyle: {
+               width: "150px"
+            }
         },
         {
             title: "שבץ להתמחות",
@@ -60,7 +61,11 @@ export const Table = () => {
                 <>
                     <input type="checkbox"/>
                 </>
-            )
+            ),
+            cellStyle: {
+                justifyContent: "center",
+                width: "150px"
+            }
         }
     ];
 
@@ -69,23 +74,16 @@ export const Table = () => {
             <Dropdown options={companies} placeholder={"בחר חברה"} width='200px' height="100px"/>
             <Div>
                 <MaterialTable pageSize={30} title="מועמדים" data={companyData} columns={columns} icons={tableIcons}
-                               options={
-                                   {
-                                       search: false,
-                                       paging: false,
-                                       pageSize: 10,
-                                       rowStyle: rowData => ({
-                                           backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
-                                       })
-                                   }}
-                               onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
-                               actions={[
-                                   {
-                                       icon: tableIcons.Check,
-                                       tooltip: "בחר מועמד",
-                                       onClick: (rowData) => setSelectedRow(rowData),
-                                   }
-                               ]}
+                   options={
+                       {
+                           search: false,
+                           paging: false,
+                           pageSize: 10,
+                           rowStyle: rowData => ({
+                               backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
+                           })
+                       }}
+                   onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                 />
             </Div>
             <ButtonWrapper>
