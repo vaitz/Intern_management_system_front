@@ -14,7 +14,9 @@ export const getCompanies = (setCompanies) => {
         console.log("error");
     }));
 }
-const companies = [{value: 1, label: "פייסבוק"}, { value: 2, label: "גוגל" },{ value: 2, label: "אפל" } ]
+
+// const companies = [{value: 1, label: "פייסבוק"}, { value: 2, label: "גוגל" },{ value: 2, label: "אפל" } ]
+const companies = ["פייסבוק", "גוגל" ,"אפל"]
 fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
 
 export const getCompanyData = (setCompanyData) => {
@@ -31,12 +33,12 @@ export const getCompanyData = (setCompanyData) => {
 }
 
 const students = [
-    { name: "חי מתתיהו", status: "אחרי ראיון", pass: "לא עבר"},
-    { name: "מאי וייץ", status: "לפני ראיון", pass: ""},
-    { name: "יובל מור", status: "לפני ראיון", pass: "" },
-    { name: "ליל ג'ו", status: "אחרי ראיון", pass: "עבר" },
-    { name: "ארנון סטורם", status: "אחרי ראיון", pass: "עבר" },
-    { name: "טל בשן", status: "לפני ראיון", pass: "" },
+    { name: "חי מתתיהו"},
+    { name: "מאי וייץ"},
+    { name: "יובל מור"},
+    { name: "ליל ג'ו" },
+    { name: "ארנון סטורם"},
+    { name: "טל בשן" },
 ];
 // fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
 fetchMock.mock(SERVER_ADDRESS+'/company', students);

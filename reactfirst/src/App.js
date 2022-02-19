@@ -11,14 +11,13 @@ import PublicRoute from "./utils/public_route";
 import Home from "./users/common/home/home";
 import CreateInternship from "./users/common/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
-import {Table} from "./users/internship_manager/assign_internships/assign_internships";
+import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
 import {INTERNSHIP_MANAGER} from "./constants";
 
 
 const Container = styled.div`
   background: #F7F8FC;
   display: flex;
-  font-family: rubik;
   min-height: 1160px;
 `
 
@@ -38,7 +37,7 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
-                        <Route path="/assignInternships" component={Table}/>
+                        <Route path="/assignInternships" component={AssignInternships}/>
                         <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>
                         <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
