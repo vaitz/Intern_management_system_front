@@ -4,7 +4,7 @@ import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername, validateEmptyFields, validateEmail} from './validations'
 import {sendDetailsToServer} from './requests';
 import { useHistory } from "react-router-dom";
-import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "./constants"
+import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
 
 
 const Container = styled.div`

@@ -1,4 +1,5 @@
 import fetchMock from "fetch-mock";
+import {SERVER_ADDRESS} from '../../../config'
 
 export const createInternship = (companyName,internshipName,internshipDescription,demands,mentor,notes) => {
     const data = {
@@ -9,7 +10,7 @@ export const createInternship = (companyName,internshipName,internshipDescriptio
         "mentor": mentor,
         "notes": notes ? notes : ""
     }
-    const response = fetch('http://localhost:3000/createInternship',
+    const response = fetch(SERVER_ADDRESS+'/createInternship',
         {
             method: 'POST',
             mode: "cors",
@@ -17,4 +18,4 @@ export const createInternship = (companyName,internshipName,internshipDescriptio
         }).then(response => response.json().then(data => console.log(data)));
 }
 
-fetchMock.mock('http://localhost:3000/createInternship', "success");
+fetchMock.mock(SERVER_ADDRESS+'/createInternship', "success");

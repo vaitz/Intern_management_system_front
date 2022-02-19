@@ -1,11 +1,12 @@
 import {setUserSession} from "../../../utils/common";
+import {SERVER_ADDRESS} from '../../../config'
 
 export const loginRequest = (setLoading, setError, username, password, setUserType) => {
     const data = {
         username: username.value,
         password: password.value
     }
-    fetch('http://localhost:3000/users/login',
+    fetch(SERVER_ADDRESS+'/users/login',
     {
         method: 'POST',
         headers: {
@@ -26,4 +27,4 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
 }
 
 const data =  { token: 2, user: "user" } ;
-// fetchMock.mock('http://localhost:3000/users/login', data);
+// fetchMock.mock(SERVER_ADDRESS+'/users/login', data);

@@ -1,7 +1,8 @@
 import fetchMock from "fetch-mock";
+import {SERVER_ADDRESS} from '../../../config'
 
 
-export const getProgramManagers = (setOptions) => fetch('http://localhost:3000/programManagers')
+export const getProgramManagers = (setOptions) => fetch(SERVER_ADDRESS+'/programManagers')
     .then((response) => {
         response.json().then(data => setOptions(data));
     })
@@ -16,7 +17,7 @@ export const createProgram = (internshipName, year, semester, programManager, ho
         "hours required": hoursRequired,
         "department": department
     }
-    const response = fetch('http://localhost:3000/admin/openProgram',
+    const response = fetch(SERVER_ADDRESS+'/admin/openProgram',
         {
             method: 'POST',
             mode: "cors",
@@ -26,5 +27,5 @@ export const createProgram = (internshipName, year, semester, programManager, ho
 
 //create program
 const data = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
-fetchMock.mock('http://localhost:3000/programManagers', data);
-fetchMock.mock('http://localhost:3000/admin/openProgram', "success");
+fetchMock.mock(SERVER_ADDRESS+'/programManagers', data);
+fetchMock.mock(SERVER_ADDRESS+'/admin/openProgram', "success");

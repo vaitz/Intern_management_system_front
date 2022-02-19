@@ -1,7 +1,8 @@
 import fetchMock from "fetch-mock";
+import {SERVER_ADDRESS} from '../../../config'
 
 export const getCompanies = (setCompanies) => {
-    fetch('http://localhost:3000/getCompanies',
+    fetch(SERVER_ADDRESS+'/getCompanies',
         {
             method: 'Get',
             mode: "cors",
@@ -13,12 +14,13 @@ export const getCompanies = (setCompanies) => {
         console.log("error");
     }));
 }
+
 // const companies = [{value: 1, label: "פייסבוק"}, { value: 2, label: "גוגל" },{ value: 2, label: "אפל" } ]
 const companies = ["פייסבוק", "גוגל" ,"אפל"]
-fetchMock.mock('http://localhost:3000/getCompanies', companies);
+fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
 
 export const getCompanyData = (setCompanyData) => {
-    fetch(`http://localhost:3000/company`,
+    fetch(SERVER_ADDRESS+`/company`,
         {
             method: 'Get',
             mode: "cors",
@@ -38,7 +40,7 @@ const students = [
     { name: "ארנון סטורם"},
     { name: "טל בשן" },
 ];
-// fetchMock.mock('http://localhost:3000/getCompanies', companies);
-fetchMock.mock('http://localhost:3000/company', students);
+// fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
+fetchMock.mock(SERVER_ADDRESS+'/company', students);
 
 

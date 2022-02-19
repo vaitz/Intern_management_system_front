@@ -15,34 +15,41 @@ const InternshipsPriorities = () => {
     const [options, setOptions] = useState([]);
     const [prioritiesAmount, setPrioritiesAmount] = useState(1);
     const [selected, setSelected] = useState([]);
-    const drops = []
+    const [drops, setDrops] = useState([]);
 
     useEffect(() => {
         getPrioritiesAmount(program, setPrioritiesAmount);
         getInternships(program, setOptions);
     }, [])
 
-    const createDropDown = () => {
+    useEffect(()=>{
+        var tempDrops = [];
         for (var i=1; i <= prioritiesAmount; i++) {
-            drops.push(<p key={i}> עדיפות {i}-</p>);
-            drops.push(<Dropdown options={options} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
+            tempDrops.push(<p key={i}> עדיפות {i}-</p>);
+            tempDrops.push(<Dropdown options={options} onMenuOpen={handleMenuOpen} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
         }
-        return drops;
-    }
+        setDrops(tempDrops);
+    }, [options])
+
 
     const handleChange = (chosenOption) => {
+        console.log(chosenOption);
         // pop from options
         setOptions(options.filter((option)=> {return option !== chosenOption}));
-        // add to selected
-        setSelected([...selected, chosenOption]);
 
+    }
+
+    const handleMenuOpen = (oldValue) => {
+                
+        // console.log(oldValue);
         // todo: remove the last value from selected
 
         // todo: add to options
 
         // todo: make sure the selected in order of priorities
-
     }
+
+    console.log(selected);
 
     const handleClick = () => {
         sendInternshipsToServer(username, selected);
@@ -53,7 +60,7 @@ const InternshipsPriorities = () => {
     return (
         <div>
             <p>נא לבחור את ההתמחויות לפי סדר עדיפות</p>
-            {createDropDown()}
+            {drops}
             <ButtonWrapper>
                 <Button value={"שלח עדיפויות"} onClick={handleClick}/>
             </ButtonWrapper>
