@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './side_bar_data';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
-
+import { GUEST } from "../../../constants";
 import styled from "styled-components";
+import {useHistory} from "react-router-dom";
 
 const Div = styled.div`
     margin-right: 20px;
@@ -16,10 +17,17 @@ const Name = styled.div`
   margin-bottom: 20px;
 `
 
-function SidePanel({userType, firstName }) {
+function SidePanel({userType, firstName, setUserType, setFirstName}) {
     const [sidebar, setSidebar] = useState(false);
+    let history = useHistory();
 
     const showSidebar = () => setSidebar(!sidebar);
+
+    const handleClick = () => {
+        setUserType(GUEST);
+        setFirstName("אורח");
+        // todo: delete cookie/session
+    }
 
     return (
         <>
@@ -40,8 +48,17 @@ function SidePanel({userType, firstName }) {
                                 </li>
                             );
                         })}
+                        {userType !== GUEST && 
+                            <li key="disconnect" className='nav-text'>
+                                <Link to="/" onClick={handleClick}>
+                                    (התנתקות)
+                                </Link>
+                            </li>
+                        }
                     </ul>
+                    
                 </nav>
+                
             </IconContext.Provider>
         </>
     );

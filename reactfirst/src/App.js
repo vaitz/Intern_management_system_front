@@ -35,7 +35,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Container>
-                <SidePanel userType={userType} firstName={firstName}/>
+                <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
@@ -55,6 +55,6 @@ const App = () => {
     )
 
 }
-    export default App;
+export default App;
 
 
