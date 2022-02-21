@@ -1,7 +1,9 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import {FaEnvelopeOpenText, FaRegAddressCard, FaBriefcase, FaCalendarCheck, FaCalendarDay, FaCog, 
+    FaFileUpload, FaCreditCard, FaRegEdit, FaPaste, FaSignInAlt, FaClipboard, FaPeopleArrows, 
+    FaUserFriends, FaUserCheck, FaChartBar} from 'react-icons/fa';
+import {AiFillHome} from 'react-icons/ai';
+import {IoIosPaper, IoMdHelpCircle} from 'react-icons/io';
 import {
     ADVANCED_CANDIDATE,
     COMPANY_REPRESENTATIVE, GUEST,
@@ -12,24 +14,26 @@ import {
     STUDENT, SYSTEM_MANAGER
 } from "../../../constants";
 
+
+// for setting tab or changing password icon: FaCog
 export const SidebarData = {
     [GUEST]: [
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'הרשמה',
             path: '/register',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <FaPaste />,
             cName: 'nav-text'
         },
         {
-            title: 'התחבר',
+            title: 'התחברות',
             path: '/login',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <FaSignInAlt />,
             cName: 'nav-text'
         }
     ],
@@ -38,19 +42,19 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
             path: '/',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'תשלום דמי רצינות',
             path: '/',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaCreditCard />,
             cName: 'nav-text'
         }
     ],
@@ -59,19 +63,19 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
             path: '/',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'בחירת התמחויות',
             path: '/internshipsPriorities',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaRegEdit />,
             cName: 'nav-text'
         }
     ],
@@ -80,25 +84,25 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
             path: '/',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'דיווח שעות',
             path: '/reportHours',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaCalendarDay />,
             cName: 'nav-text'
         },
         {
             title: 'הגש דוח',
             path: '/',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaFileUpload />,
             cName: 'nav-text'
         }
     ],
@@ -107,25 +111,25 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
             path: '/',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
             title: 'אישור דיווח שעות',
             path: '/',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <FaCalendarCheck />,
             cName: 'nav-text'
         },
         {
             title: 'הגשת משובים',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaFileUpload />,
             cName: 'nav-text'
         }
     ],
@@ -134,25 +138,25 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף החברה',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'יצירת התמחות',
             path: '/createInternship',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'צפה במועמדים',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <FaPeopleArrows />,
             cName: 'nav-text'
         }
     ],
@@ -161,37 +165,37 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'חברות',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'יצירת התמחות',
             path: '/createInternship',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
             title: 'שיבוץ התמחויות',
             path: '/assignInternships',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaUserCheck />,
             cName: 'nav-text'
         },
         {
             title: 'סטטיסטיקות',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaChartBar />,
             cName: 'nav-text'
         }
     ],
@@ -200,37 +204,37 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'חברות',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
-            cName: 'nav-text'
-        },
-        {
-            title: 'יצירת התמחויות',
-            path: '/createInternship',
-            icon: <IoIcons.IoMdHelpCircle />,
+            icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
-            title: 'שיבוץ התמחות',
+            title: 'יצירת התמחות',
+            path: '/createInternship',
+            icon: <FaClipboard />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'שיבוץ התמחויות',
             path: '/assignInternships',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaUserCheck />,
             cName: 'nav-text'
         },
         {
             title: 'סטטיסטיקות',
             path: '/',
-            icon: <FaIcons.FaEnvelopeOpenText />,
+            icon: <FaChartBar />,
             cName: 'nav-text'
         }
     ],
@@ -239,19 +243,25 @@ export const SidebarData = {
         {
             title: 'בית',
             path: '/',
-            icon: <AiIcons.AiFillHome />,
+            icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'תוכניות קיימות',
             path: '/',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <IoIosPaper />,
             cName: 'nav-text'
         },
         {
-            title: 'הוספת תוכנית',
+            title: 'הוספת תוכנית התמחות',
             path: '/createProgram',
-            icon: <IoIcons.IoIosPaper />,
+            icon: <FaClipboard />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'סטטיסטיקות',
+            path: '/',
+            icon: <FaChartBar />,
             cName: 'nav-text'
         }
     ]

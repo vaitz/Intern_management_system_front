@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import { GUEST } from "../../../constants";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
+import {FaSignOutAlt} from 'react-icons/fa';
 
 const Div = styled.div`
     margin-right: 20px;
@@ -51,6 +52,8 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
                         {userType !== GUEST && 
                             <li key="disconnect" className='nav-text'>
                                 <Link to="/" onClick={handleClick}>
+                                    <FaSignOutAlt/>
+                                    <Div/>
                                     (התנתקות)
                                 </Link>
                             </li>
