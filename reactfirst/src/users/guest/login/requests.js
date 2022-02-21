@@ -1,7 +1,7 @@
 import {setUserSession} from "../../../utils/common";
 import {SERVER_ADDRESS} from '../../../config'
 import fetchMock from "fetch-mock";
-import {ADVANCED_CANDIDATE, STUDENT} from "../../../constants";
+import {ADVANCED_CANDIDATE, STUDENT, INTERN, COMPANY_REPRESENTATIVE, MENTOR, PROGRAM_MANAGER, PROGRAM_COORDINATOR, SYSTEM_MANAGER} from "../../../constants";
 
 export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName) => {
     const data = {
@@ -31,5 +31,5 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
     return "dd";
 }
 
-const data =  { session: 2, username: "user", userType: ADVANCED_CANDIDATE, firstName: "חי" } ;
+const data =  { userType: INTERN, session: 2, username: "user", firstName: "חי" } ;
 fetchMock.mock(SERVER_ADDRESS+'/users/login', data);

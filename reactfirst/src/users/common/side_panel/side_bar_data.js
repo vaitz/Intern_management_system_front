@@ -6,26 +6,55 @@ import {
     ADVANCED_CANDIDATE,
     COMPANY_REPRESENTATIVE, GUEST,
     INTERN,
-    INTERNSHIP_MANAGER,
+    PROGRAM_MANAGER,
+    PROGRAM_COORDINATOR,
     MENTOR,
     STUDENT, SYSTEM_MANAGER
 } from "../../../constants";
 
 export const SidebarData = {
+    [GUEST]: [
+        {
+            title: 'בית',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'הרשמה',
+            path: '/register',
+            icon: <IoIcons.IoIosPaper />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'התחבר',
+            path: '/login',
+            icon: <IoIcons.IoIosPaper />,
+            cName: 'nav-text'
+        }
+    ],
+
     [STUDENT]: [
-    {
-        title: 'בית',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'דף אישי',
-        path: '/',
-        icon: <IoIcons.IoMdHelpCircle />,
-        cName: 'nav-text'
-    }
-],
+        {
+            title: 'בית',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'דף אישי',
+            path: '/',
+            icon: <IoIcons.IoMdHelpCircle />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'תשלום דמי רצינות',
+            path: '/',
+            icon: <IoIcons.IoMdHelpCircle />,
+            cName: 'nav-text'
+        }
+    ],
+
     [ADVANCED_CANDIDATE]: [
         {
             title: 'בית',
@@ -40,12 +69,13 @@ export const SidebarData = {
             cName: 'nav-text'
         },
         {
-            title: 'בחירת עדיפויות',
+            title: 'בחירת התמחויות',
             path: '/internshipsPriorities',
             icon: <IoIcons.IoMdHelpCircle />,
             cName: 'nav-text'
         }
     ],
+
     [INTERN]: [
         {
             title: 'בית',
@@ -72,6 +102,7 @@ export const SidebarData = {
             cName: 'nav-text'
         }
     ],
+
     [MENTOR]: [
         {
             title: 'בית',
@@ -99,86 +130,111 @@ export const SidebarData = {
         }
     ],
 
-    [INTERNSHIP_MANAGER]: [
-    {
-        title: 'בית',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'חברות',
-        path: '/',
-        icon: <FaIcons.FaEnvelopeOpenText />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'סטודנטים',
-        path: '/',
-        icon: <FaIcons.FaEnvelopeOpenText />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'שיבוץ התמחות',
-        path: '/assignInternships',
-        icon: <FaIcons.FaEnvelopeOpenText />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'סטטיסטיקות',
-        path: '/',
-        icon: <FaIcons.FaEnvelopeOpenText />,
-        cName: 'nav-text'
-    }
-],
-
     [COMPANY_REPRESENTATIVE]: [
-    {
-        title: 'בית',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'דף החברה',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'יצירת התמחות',
-        path: '/createInternship',
-        icon: <IoIcons.IoMdHelpCircle />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'צפה במועמדים',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    }
+        {
+            title: 'בית',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'דף החברה',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'יצירת התמחות',
+            path: '/createInternship',
+            icon: <IoIcons.IoMdHelpCircle />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'צפה במועמדים',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        }
     ],
 
-[GUEST]: [
-    {
-        title: 'בית',
-        path: '/',
-        icon: <AiIcons.AiFillHome />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'הרשמה',
-        path: '/register',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'nav-text'
-    },
-    {
-        title: 'התחבר',
-        path: '/login',
-        icon: <IoIcons.IoIosPaper />,
-        cName: 'nav-text'
-    }
-],
+    [PROGRAM_COORDINATOR]: [
+        {
+            title: 'בית',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'חברות',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'יצירת התמחות',
+            path: '/createInternship',
+            icon: <IoIcons.IoMdHelpCircle />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'סטודנטים',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'שיבוץ התמחויות',
+            path: '/assignInternships',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'סטטיסטיקות',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        }
+    ],
+
+    [PROGRAM_MANAGER]: [
+        {
+            title: 'בית',
+            path: '/',
+            icon: <AiIcons.AiFillHome />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'חברות',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'יצירת התמחויות',
+            path: '/createInternship',
+            icon: <IoIcons.IoMdHelpCircle />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'סטודנטים',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'שיבוץ התמחות',
+            path: '/assignInternships',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'סטטיסטיקות',
+            path: '/',
+            icon: <FaIcons.FaEnvelopeOpenText />,
+            cName: 'nav-text'
+        }
+    ],
+
     [SYSTEM_MANAGER]: [
         {
             title: 'בית',
