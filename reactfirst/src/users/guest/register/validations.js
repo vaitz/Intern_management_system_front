@@ -16,7 +16,7 @@ export function validateEmail(email){
 
 export function validateEmptyFields(fields){
     for(const field in fields){
-        if(field === "companyName" && fields.userType === STUDENT_HEBREW){
+        if(field === "companyName" && (fields.userType !== COMPANY_REPRESENTATIVE_HEBREW || fields.userType !== MENTOR_HEBREW)){
             continue;
         }
         if(validator.isEmpty(fields[field])){
