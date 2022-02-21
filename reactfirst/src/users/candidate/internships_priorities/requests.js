@@ -2,9 +2,9 @@ import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
 
 fetchMock.mock(SERVER_ADDRESS+'/internships/program1', [
-    {'companyName': 'companyA','internshipName':'internshipA', 'about':'bla', 'requirments':'askdnaskn'},
-    {'companyName': 'companyB','internshipName':'internshipB', 'about':'bla', 'requirments':'askdnaskn'},
-    {'companyName': 'companyC','internshipName':'internshipC', 'about':'bla', 'requirments':'askdnaskn'},
+    {'companyName': 'אלביט','internshipName':'מפתח/ת צד לקוח', 'about':'bla', 'requirments':'askdnaskn'},
+    {'companyName': 'דל','internshipName':'מפתח/ת פול סטאק', 'about':'bla', 'requirments':'askdnaskn'},
+    {'companyName': 'מיקרוסופט','internshipName':'מפתח/ת צד שרת', 'about':'bla', 'requirments':'askdnaskn'},
 ]);
 fetchMock.mock(SERVER_ADDRESS+'/prioritiesAmount/program1', JSON.stringify(3));
 fetchMock.mock(SERVER_ADDRESS+'/candidate/internshipsPriorities', 200);
@@ -30,7 +30,7 @@ export const getInternships = (program, setOptions) => {
             mode: "cors",
         }).then((response) => {
             response.json().then(data => {
-                var tempData = data.map((obj)=>{return obj.companyName + " " + obj.internshipName});
+                var tempData = data.map((obj)=>{return obj.companyName + "- " + obj.internshipName});
                 tempData.push("");
                 // todo: add empty label
                 setOptions(tempData);
