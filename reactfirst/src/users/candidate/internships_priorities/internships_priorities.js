@@ -7,7 +7,7 @@ import styled from "styled-components";
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 200px;
+  margin: 100px;
 `
 const program = "program1"
 const username = "may"
@@ -15,23 +15,42 @@ const username = "may"
 
 const InternshipsPriorities = () => {
     const [options, setOptions] = useState([]);
+    const [internships, setInternships] = useState([]);
     const [prioritiesAmount, setPrioritiesAmount] = useState(1);
     const [selected, setSelected] = useState([]);
+    const [showInternships, setShowInternships] = useState([]);
     const [drops, setDrops] = useState([]);
 
     useEffect(() => {
         getPrioritiesAmount(program, setPrioritiesAmount);
-        getInternships(program, setOptions);
+        getInternships(program, setOptions, setInternships);
     }, [])
 
     useEffect(()=>{
         var tempDrops = [];
         for (var i=1; i <= prioritiesAmount; i++) {
-            tempDrops.push(<p key={i}> עדיפות {i}-</p>);
+            tempDrops.push(<h4 key={i}> עדיפות {i}-</h4>);
             tempDrops.push(<Dropdown options={options} onMenuOpen={handleMenuOpen} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
         }
         setDrops(tempDrops);
     }, [options])
+
+    useEffect(()=>{
+        setShowInternships(internships.map(internship => (
+            <div>
+                <h2>
+                    {internship.companyName}- {internship.internshipName}
+                </h2>
+                <p>
+                    {internship.about}
+                </p>
+                <p>
+                    <h4>דרישות: </h4>
+                    {internship.requirements}
+                </p>
+            </div>
+        )))
+    }, [internships])
 
 
     const handleChange = (chosenOption) => {
@@ -61,11 +80,18 @@ const InternshipsPriorities = () => {
 
     return (
         <div>
-            <p>נא לבחור את ההתמחויות לפי סדר עדיפות</p>
-            {drops}
-            <ButtonWrapper>
-                <Button value={"שלח עדיפויות"} onClick={handleClick}/>
-            </ButtonWrapper>
+            <div>
+                <h1>התמחויות</h1>
+                {showInternships}
+            </div>
+            <div>
+                <h1>בחירת עדיפויות</h1>
+                <h3>נא לבחור את ההתמחויות לפי סדר עדיפות (יש חשיבות לסדר בחירה)</h3>
+                {drops}
+                <ButtonWrapper>
+                    <Button value={"שלח עדיפויות"} onClick={handleClick}/>
+                </ButtonWrapper>
+            </div>
         </div>
     );
 };

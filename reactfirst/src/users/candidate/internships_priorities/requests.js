@@ -2,9 +2,12 @@ import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
 
 fetchMock.mock(SERVER_ADDRESS+'/internships/program1', [
-    {'companyName': 'אלביט','internshipName':'מפתח/ת צד לקוח', 'about':'bla', 'requirments':'askdnaskn'},
-    {'companyName': 'דל','internshipName':'מפתח/ת פול סטאק', 'about':'bla', 'requirments':'askdnaskn'},
-    {'companyName': 'מיקרוסופט','internshipName':'מפתח/ת צד שרת', 'about':'bla', 'requirments':'askdnaskn'},
+    {'companyName': 'רפאל','internshipName':'מפתח/ת צד לקוח', 'about':'אם אתם רוצים לעבוד עם טכנולוגיות פורצות-דרך ועם אנשים מבריקים, לשדרג את היכולות שלכם ולעסוק באתגרים משמעותיים, סימן שהעתיד שלכם ברפאל.',
+     'requirements':'התמודדות עם אתגרים משמעותיים בעולמות תוכן בחזית הטכנולוגיה, בליווי עובדי רפאל בשלוחת באר שבע. יכולת למידה עצמית, התמודדות עם אתגרים, עבודה בצוות.'},
+    {'companyName': 'רזיליון','internshipName':'מפתח/ת פול סטאק', 'about':'רזיליון בנתה מאגר נתונים המכיל מידע עבור יותר מ 2000 חבילות לינוקס נפוצות. מטרת הפרוייקט היא לנתח את המידע ולספק תובנות בנוגע לנוכחות של מנגנוני הגנה כנגד פגיעויות ובעיות נפוצות.',
+     'requirements':'רקע מוקדם בתחומים של אבטחת מידע, מערכות הפעלה, ניתוח סטטי ומחקר חולשות הם יתרון.'},
+    {'companyName': 'סיגמאביט','internshipName':'מפתח/ת צד שרת', 'about':'סיגמאביט מחפשת סטודנטים להתמחות בפיתוח מוצרים בעולמות התקשורת האלחוטית. במסגרת התפקיד תצטרף לצוות ההנדסה של החברה הפועל בתחומי הנדסת מערכת, פיתוח, ניהול בדיקות ואוטומציה ועוד. כמתמחה תיקח חלק פעיל בפיתוח מערכות ומוצרים מובילים של החברה.',
+     'requirements':'ידע בסיסי ב Linux ,C/c++ , C#/java/java script -ייתרון'},
 ]);
 fetchMock.mock(SERVER_ADDRESS+'/prioritiesAmount/program1', JSON.stringify(3));
 fetchMock.mock(SERVER_ADDRESS+'/candidate/internshipsPriorities', 200);
@@ -23,16 +26,16 @@ export const getPrioritiesAmount = (program, setPrioritiesAmount) => {
     }));
 }
 
-export const getInternships = (program, setOptions) => {
+export const getInternships = (program, setOptions, setInternships) => {
     fetch(SERVER_ADDRESS+'/internships/'+program,
         {
             method: 'Get',
             mode: "cors",
         }).then((response) => {
             response.json().then(data => {
-                var tempData = data.map((obj)=>{return obj.companyName + "- " + obj.internshipName});
-                tempData.push("");
-                // todo: add empty label
+                setInternships(data);
+                var tempData = [""];
+                tempData.push(...data.map((obj)=>{return obj.companyName + "- " + obj.internshipName}));
                 setOptions(tempData);
             });
         }).catch(error => {
