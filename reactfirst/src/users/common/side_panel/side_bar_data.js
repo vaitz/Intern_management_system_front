@@ -215,7 +215,7 @@ export const SidebarData = {
         },
         {
             title: 'סטודנטים',
-            path: '/',
+            path: '/students',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },

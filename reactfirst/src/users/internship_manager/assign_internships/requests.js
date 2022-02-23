@@ -32,7 +32,7 @@ export const getCompanyData = (setCompanyData) => {
     }));
 }
 
-const students = [
+const studentsNames = [
     { name: "חי מתתיהו"},
     { name: "מאי וייץ"},
     { name: "יובל מור"},
@@ -40,7 +40,7 @@ const students = [
     { name: "ארנון סטורם"},
     { name: "טל בשן" },
 ];
-// fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
-fetchMock.mock(SERVER_ADDRESS+'/company', students);
+
+// fetchMock.mock(SERVER_ADDRESS+'/company', studentsNames);
 
 

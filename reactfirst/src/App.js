@@ -7,13 +7,12 @@ import styled from "styled-components";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Register from "./users/guest/register/register";
 import Login from "./users/guest/login/login";
-import PublicRoute from "./utils/public_route";
 import Home from "./users/common/home/home";
 import CreateInternship from "./users/common/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
 import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
-import { GUEST } from "./constants";
-import PrivateRoute from "./utils/private_route";
+import {GUEST, PROGRAM_MANAGER} from "./constants";
+import Students from "./users/internship_manager/students/students";
 
 
 const Container = styled.div`
@@ -29,7 +28,7 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-    const [userType, setUserType] = useState(GUEST);
+    const [userType, setUserType] = useState(PROGRAM_MANAGER);
     const [firstName, setFirstName] = useState("אורח");
 
     return (
@@ -39,6 +38,7 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/createProgram" component={CreateProgram}/>
+                        <Route path="/students" component={Students}/>
                         <Route path="/assignInternships" component={AssignInternships}/>
                         <Route path="/reportHours" component={ReportHours}/>
                         <Route path="/createInternship" component={CreateInternship}/>

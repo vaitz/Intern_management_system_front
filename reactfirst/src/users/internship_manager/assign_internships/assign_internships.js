@@ -51,7 +51,8 @@ export const AssignInternships = () => {
             title: "שם",
             field: "name",
             cellStyle: {
-               width: "150px"
+                textAlign: "center",
+                width: "200px"
             }
         },
         {
@@ -63,8 +64,8 @@ export const AssignInternships = () => {
                 </>
             ),
             cellStyle: {
-                justifyContent: "center",
-                width: "150px"
+                textAlign: "center",
+                width: "200px"
             }
         }
     ];
@@ -81,7 +82,10 @@ export const AssignInternships = () => {
                            pageSize: 10,
                            rowStyle: rowData => ({
                                backgroundColor: (selectedRow === rowData.tableData.id) ? '#EEE' : '#FFF'
-                           })
+                           }),
+                           headerStyle: {
+                               textAlign: "center",
+                           }
                        }}
                    onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
                 />

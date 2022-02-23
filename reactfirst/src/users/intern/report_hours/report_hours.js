@@ -134,6 +134,7 @@ const ReportHours =(username) =>  {
                             onChange={(newValue) => {
                                 setDate(newValue);
                             }}
+                            dateAdapter={AdapterDateFns}
                         />
                     </LocalizationProvider>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
