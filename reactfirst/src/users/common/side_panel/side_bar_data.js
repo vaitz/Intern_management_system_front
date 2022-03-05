@@ -73,6 +73,12 @@ export const SidebarData = {
             cName: 'nav-text'
         },
         {
+            title: 'צפייה בהתמחויות',
+            path: '/internships',
+            icon: <FaRegEdit />,
+            cName: 'nav-text'
+        },
+        {
             title: 'בחירת התמחויות',
             path: '/internshipsPriorities',
             icon: <FaRegEdit />,

@@ -15,15 +15,13 @@ const username = "may"
 
 const InternshipsPriorities = () => {
     const [options, setOptions] = useState([]);
-    const [internships, setInternships] = useState([]);
     const [prioritiesAmount, setPrioritiesAmount] = useState(1);
     const [selected, setSelected] = useState([]);
-    const [showInternships, setShowInternships] = useState([]);
     const [drops, setDrops] = useState([]);
 
     useEffect(() => {
         getPrioritiesAmount(program, setPrioritiesAmount);
-        getInternships(program, setOptions, setInternships);
+        getInternships(program, setOptions);
     }, [])
 
     useEffect(()=>{
@@ -34,23 +32,6 @@ const InternshipsPriorities = () => {
         }
         setDrops(tempDrops);
     }, [options])
-
-    useEffect(()=>{
-        setShowInternships(internships.map(internship => (
-            <div>
-                <h2>
-                    {internship.companyName}- {internship.internshipName}
-                </h2>
-                <p>
-                    {internship.about}
-                </p>
-                <p>
-                    <h4>דרישות: </h4>
-                    {internship.requirements}
-                </p>
-            </div>
-        )))
-    }, [internships])
 
 
     const handleChange = (chosenOption) => {
@@ -80,10 +61,6 @@ const InternshipsPriorities = () => {
 
     return (
         <div>
-            <div>
-                <h1>התמחויות</h1>
-                {showInternships}
-            </div>
             <div>
                 <h1>בחירת עדיפויות</h1>
                 <h3>נא לבחור את ההתמחויות לפי סדר עדיפות (יש חשיבות לסדר בחירה)</h3>
