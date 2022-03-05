@@ -4,8 +4,10 @@ import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MA
 
 
 fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
-fetchMock.mock(SERVER_ADDRESS+'/users/register/company', 201);
-fetchMock.mock(SERVER_ADDRESS+'/users/register/program', 201);
+fetchMock.mock(SERVER_ADDRESS+'/users/register/companyRep', 201);
+fetchMock.mock(SERVER_ADDRESS+'/users/register/mentor', 201);
+fetchMock.mock(SERVER_ADDRESS+'/users/register/programCoordinator', 201);
+fetchMock.mock(SERVER_ADDRESS+'/users/register/programManager', 201);
 
 export async function sendDetailsToServer({userType, username, firstname, lastname, email, password, companyName}){
     // need to hash the password in the server, suppose to return error if username exists (or other)
@@ -22,20 +24,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
         
         endpoint_address = SERVER_ADDRESS+'/users/register/student';
     }
-    else if(userType === PROGRAM_MANAGER_HEBREW || userType === PROGRAM_COORDINATOR_HEBREW){
+    else if(userType === COMPANY_REPRESENTATIVE_HEBREW){
         data = {
-            "manager": userType === PROGRAM_MANAGER_HEBREW,
-            "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
-            "password": password,
-            "email": email,
-        }
-        endpoint_address = SERVER_ADDRESS+'/users/register/company';
-    }
-    else if(userType === COMPANY_REPRESENTATIVE_HEBREW || userType === MENTOR_HEBREW){
-        data = {
-            "mentor": userType === MENTOR_HEBREW,
             "username": username,
             "firstName": firstname,
             "lastName": lastname,
@@ -43,7 +33,39 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
             "email": email,
             "companyName": companyName
         }
-        endpoint_address = SERVER_ADDRESS+'/users/register/program';
+        endpoint_address = SERVER_ADDRESS+'/users/register/companyRep';
+    }
+    else if(userType === MENTOR_HEBREW){
+        data = {
+            "username": username,
+            "firstName": firstname,
+            "lastName": lastname,
+            "password": password,
+            "email": email,
+            "companyName": companyName
+        }
+        endpoint_address = SERVER_ADDRESS+'/users/register/mentor';
+    }
+    else if(userType === PROGRAM_COORDINATOR_HEBREW){
+        data = {
+            "username": username,
+            "firstName": firstname,
+            "lastName": lastname,
+            "password": password,
+            "email": email,
+        }
+        endpoint_address = SERVER_ADDRESS+'/users/register/programCoordinator';
+    }
+
+    else if(userType === PROGRAM_MANAGER_HEBREW){
+        data = {
+            "username": username,
+            "firstName": firstname,
+            "lastName": lastname,
+            "password": password,
+            "email": email,
+        }
+        endpoint_address = SERVER_ADDRESS+'/users/register/programManager';
     }
 
     if(data != null && endpoint_address != null){
