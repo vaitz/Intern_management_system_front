@@ -1,8 +1,4 @@
-import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
-
-fetchMock.mock(SERVER_ADDRESS+'/prioritiesAmount/program1', JSON.stringify(3));
-fetchMock.mock(SERVER_ADDRESS+'/candidate/internshipsPriorities', 200);
 
 export const getPrioritiesAmount = (program, setPrioritiesAmount) => {
     fetch(SERVER_ADDRESS+'/prioritiesAmount/'+program,

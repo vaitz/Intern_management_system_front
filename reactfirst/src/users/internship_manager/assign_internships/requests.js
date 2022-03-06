@@ -1,4 +1,3 @@
-import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
 export const getCompanies = (setCompanies) => {
@@ -15,9 +14,6 @@ export const getCompanies = (setCompanies) => {
     }));
 }
 
-// const companies = [{value: 1, label: "פייסבוק"}, { value: 2, label: "גוגל" },{ value: 2, label: "אפל" } ]
-const companies = ["פייסבוק", "גוגל" ,"אפל"]
-fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
 
 export const getCompanyData = (setCompanyData) => {
     fetch(SERVER_ADDRESS+`/company`,
@@ -32,15 +28,5 @@ export const getCompanyData = (setCompanyData) => {
     }));
 }
 
-const studentsNames = [
-    { name: "חי מתתיהו"},
-    { name: "מאי וייץ"},
-    { name: "יובל מור"},
-    { name: "ליל ג'ו" },
-    { name: "ארנון סטורם"},
-    { name: "טל בשן" },
-];
-
-// fetchMock.mock(SERVER_ADDRESS+'/company', studentsNames);
 
 

@@ -1,4 +1,3 @@
-import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
 
@@ -25,7 +24,3 @@ export const createProgram = (internshipName, year, semester, programManager, ho
         }).then(response => response.json().then(data => console.log(data)));
 }
 
-//create program
-const data = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
-fetchMock.mock(SERVER_ADDRESS+'/programManagers', data);
-fetchMock.mock(SERVER_ADDRESS+'/admin/openProgram', "success");
