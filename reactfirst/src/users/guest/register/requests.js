@@ -8,8 +8,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     if(userType === STUDENT_HEBREW){
         data = {
             "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
+            "first_name": firstname,
+            "last_name": lastname,
             "password": password,
             "email": email
         }
@@ -19,8 +19,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     else if(userType === COMPANY_REPRESENTATIVE_HEBREW){
         data = {
             "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
+            "first_name": firstname,
+            "last_name": lastname,
             "password": password,
             "email": email,
             "companyName": companyName
@@ -30,8 +30,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     else if(userType === MENTOR_HEBREW){
         data = {
             "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
+            "first_name": firstname,
+            "last_name": lastname,
             "password": password,
             "email": email,
             "companyName": companyName
@@ -41,8 +41,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     else if(userType === PROGRAM_COORDINATOR_HEBREW){
         data = {
             "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
+            "first_name": firstname,
+            "last_name": lastname,
             "password": password,
             "email": email,
         }
@@ -52,8 +52,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     else if(userType === PROGRAM_MANAGER_HEBREW){
         data = {
             "username": username,
-            "firstName": firstname,
-            "lastName": lastname,
+            "first_name": firstname,
+            "last_name": lastname,
             "password": password,
             "email": email,
         }
@@ -66,6 +66,10 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
                 {
                     method: 'POST',
                     mode: "cors",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(data)
                 }).then(response => {
                 console.log("post",response);
