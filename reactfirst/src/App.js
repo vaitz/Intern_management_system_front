@@ -29,7 +29,7 @@ const ContentWrapper = styled.div`
 
 const App = () => {
 
-    const [userType, setUserType] = useState(PROGRAM_MANAGER);
+    const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
 
     return (
