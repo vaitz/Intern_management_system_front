@@ -12,7 +12,7 @@ import Home from "./users/common/home/home";
 import CreateInternship from "./users/common/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
 import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
-import {GUEST, PROGRAM_MANAGER} from "./constants";
+import {GUEST} from "./constants";
 import Students from "./users/internship_manager/students/students";
 
 
