@@ -1,17 +1,36 @@
 import {SERVER_ADDRESS} from '../../../config'
 import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
 
-export async function sendDetailsToServer({userType, username, firstname, lastname, email, password, companyName}){
+
+// get programs
+export const getPrograms = (setPrograms) => {
+    fetch(SERVER_ADDRESS+'/activePrograms',
+        {
+            method: 'Get',
+            mode: "cors",
+        }).then((response) => {
+        response.json().then(data => {
+            let tempData = [""];
+            tempData.push(...data);
+            setPrograms(tempData);
+        });
+    }).catch(error => {
+        console.log("error");
+    });
+}
+
+export async function sendDetailsToServer({userType, username, firstname, lastname, email, password, companyName, program}){
     // need to hash the password in the server, suppose to return error if username exists (or other)
-    var data = null;
-    var endpoint_address = null;
+    let data = null;
+    let endpoint_address = null;
     if(userType === STUDENT_HEBREW){
         data = {
             "username": username,
             "first_name": firstname,
             "last_name": lastname,
             "password": password,
-            "email": email
+            "email": email,
+            "program": program
         }
         
         endpoint_address = SERVER_ADDRESS+'/users/register/student';

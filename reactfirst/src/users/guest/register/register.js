@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername, validateEmptyFields, validateEmail} from './validations'
-import {sendDetailsToServer} from './requests';
+import {getPrograms, sendDetailsToServer} from './requests';
 import { useHistory } from "react-router-dom";
 import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
 
@@ -61,6 +61,11 @@ const Register = () => {
     const [openPopUpStatement, setOpenPopUpStatement] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState('');
+    const [programs, setPrograms] = useState([]);
+
+    useEffect(() => {
+        getPrograms(setPrograms);
+    }, [programs]);
 
     // State for registration
     const [state , setState] = useState({
@@ -71,12 +76,14 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        companyName: ""
+        companyName: "",
+        program: ""
     })
 
 
     const handleChange = (e) => {
         const {id , value} = e.target;
+        console.log(id, value);
         setState(prevState => ({
             ...prevState,
             [id] : value
@@ -160,7 +167,7 @@ const Register = () => {
                 {errorMessage()}
                 {successMessage()}
             </div>
-            <Label>סוג משתמש</Label>
+            <Label>סוג משתמש:</Label>
             <Select id="userType" value={state.userType} onChange={handleChange}>
                 {userTypes && userTypes.map(option => <option key={option} value={option}>{option}</option>)}
             </Select>
@@ -221,6 +228,16 @@ const Register = () => {
                     onChange={handleChange}
                     required 
             />
+            {(state.userType === STUDENT_HEBREW) &&
+                <>
+                    <Label>שם תוכנית התמחות:</Label>
+                    <Select id="program" value={state.program} onChange={handleChange}>
+                        {programs && programs.map(option => <option key={option} value={option}>{option}</option>)}
+                    </Select>
+                </>
+
+            }
+
             {state.userType === STUDENT_HEBREW && 
             <div>
                 <PopUp trigger={openPopUpStatement} setTrigger={clicked}>
@@ -253,6 +270,7 @@ const Register = () => {
                 />
             </Container>
             }
+
             {!(state.userType === STUDENT_HEBREW) && 
             <Button 
                     type="submit"

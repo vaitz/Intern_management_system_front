@@ -19,6 +19,9 @@ export function validateEmptyFields(fields){
         if(field === "companyName" && (fields.userType !== COMPANY_REPRESENTATIVE_HEBREW || fields.userType !== MENTOR_HEBREW)){
             continue;
         }
+        if(field === "program" && (fields.userType !== STUDENT_HEBREW)){
+            continue;
+        }
         if(validator.isEmpty(fields[field])){
             return false;
         }
