@@ -7,6 +7,8 @@ import { GUEST } from "../../../constants";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import {FaSignOutAlt} from 'react-icons/fa';
+import {removeUserSession} from "../../../utils/common";
+import {logoutRequest} from "./requests";
 
 const Div = styled.div`
     margin-right: 20px;
@@ -24,10 +26,11 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
 
     const showSidebar = () => setSidebar(!sidebar);
 
-    const handleClick = () => {
+    const onLogout = () => {
         setUserType(GUEST);
         setFirstName("אורח");
-        // todo: delete cookie/session
+        removeUserSession();
+        logoutRequest();
     }
 
     return (
@@ -51,7 +54,7 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
                         })}
                         {userType !== GUEST && 
                             <li key="disconnect" className='nav-text'>
-                                <Link to="/" onClick={handleClick}>
+                                <Link to="/" onClick={onLogout}>
                                     <FaSignOutAlt/>
                                     <Div/>
                                     (התנתקות)

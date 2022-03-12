@@ -1,21 +1,20 @@
 import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (companyName,internshipName,internshipDescription,demands,mentor,notes) => {
+export const createInternship = (program,internshipName,internshipDescription,demands,mentor) => {
     const data = {
-        "company name": companyName,
-        "internship name": internshipName,
-        "internship description": internshipDescription,
-        "demands": demands,
-        "mentor": mentor,
-        "notes": notes ? notes : ""
+        "program": program,
+        "internshipName": internshipName,
+        "about": internshipDescription,
+        "requirements": demands,
+        "mentor": mentor
     }
     const response = fetch(SERVER_ADDRESS+'/createInternship',
         {
             method: 'POST',
             mode: "cors",
             body: JSON.stringify(data)
-        }).then(response => response.json().then(data => console.log(data)));
+        }).then(response => console.log(response));
 }
 
 fetchMock.mock(SERVER_ADDRESS+'/createInternship', "success");
