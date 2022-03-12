@@ -57,7 +57,7 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
                                 <Link to="/" onClick={onLogout}>
                                     <FaSignOutAlt/>
                                     <Div/>
-                                    (התנתקות)
+                                    התנתקות
                                 </Link>
                             </li>
                         }

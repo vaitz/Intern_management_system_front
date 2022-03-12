@@ -16,8 +16,7 @@ export const createProgram = (internshipName, year, semester, prioritiesAmount, 
         prioritiesAmount: prioritiesAmount,
         programManager: programManager,
         hoursRequired: hoursRequired,
-
-        "department": department
+        department: department
     }
     const response = fetch(SERVER_ADDRESS+'/admin/openProgram',
         {

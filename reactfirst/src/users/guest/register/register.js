@@ -22,7 +22,7 @@ const Input = styled.input`
   height: 20px;
 `
 
-const Select = styled.select`
+export const Select = styled.select`
   width:  500px;
   height: 20px;
 `
@@ -65,7 +65,7 @@ const Register = () => {
 
     useEffect(() => {
         getPrograms(setPrograms);
-    }, [programs]);
+    }, []);
 
     // State for registration
     const [state , setState] = useState({

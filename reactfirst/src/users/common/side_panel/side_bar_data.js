@@ -155,7 +155,7 @@ export const SidebarData = {
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship',
+            path: '/createInternship/company',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
@@ -182,7 +182,7 @@ export const SidebarData = {
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship',
+            path: '/createInternship/manager',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
@@ -227,7 +227,7 @@ export const SidebarData = {
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship',
+            path: '/createInternship/manager',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },

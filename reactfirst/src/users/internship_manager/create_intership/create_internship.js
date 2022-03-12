@@ -29,15 +29,14 @@ const Button = styled.button`
 `
 
 const CreateInternship = () => {
-    const [program, setProgram] = useState("");
+    const [company, setCompany] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
-    const [mentor, setMentor] = useState("");
     const [popup, setPopup] = useState(false);
 
     const onSubmit = () => {
-        createInternship(program,internshipName,internshipDescription,demands,mentor)
+        createInternship(company,internshipName,internshipDescription,demands)
         setPopup(true);
     }
 
@@ -46,17 +45,15 @@ const CreateInternship = () => {
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
                 {`נוצרה ההתמחות:  "${internshipName}"  `}
             </PopUp>}
-            <Label>שם התוכנית</Label>
-            <Input type="text" value={program} onChange={e => setProgram(e.target.value)}/>
+            <Label>שם חברה</Label>
+            <Input type="text" value={company} onChange={e => setCompany(e.target.value)}/>
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>תיאור ההתמחות</Label>
             <Input type="text" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
             <Input type="text" value={demands} onChange={e => setDemands(e.target.value)}/>
-            <Label>פרטי המנטור</Label>
-            <Input type="text" value={mentor} onChange={e => setMentor(e.target.value)}/>
-            <Button onClick={() => onSubmit()} disabled={!(program && internshipName && internshipDescription && demands && mentor)}>צור התמחות</Button>
+            <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands)}>צור התמחות</Button>
         </Container>
     )
 }
