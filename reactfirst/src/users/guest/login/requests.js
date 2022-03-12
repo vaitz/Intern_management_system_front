@@ -3,7 +3,7 @@ import {SERVER_ADDRESS} from '../../../config'
 import fetchMock from "fetch-mock";
 import { PROGRAM_MANAGER } from "../../../constants";
 
-export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId) => {
     const data = {
         username: username.value,
         password: password.value
@@ -21,6 +21,7 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
         setUserType(data.userType);
         setUserSession(data.session, data.username);
         setFirstName(data.firstName)
+        setProgramId(data.program)
         return response;
     }
 ).catch(error => {
@@ -31,5 +32,5 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
     return "dd";
 }
 
-const data =  { userType: PROGRAM_MANAGER, session: 2, username: "user", firstName: "חי" } ;
+const data =  { userType: PROGRAM_MANAGER, session: 2, username: "user", firstName: "חי", program: "123" } ;
 fetchMock.mock(SERVER_ADDRESS+'/users/login', data);

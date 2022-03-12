@@ -31,6 +31,7 @@ const App = () => {
 
     const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
+    const [programId, setProgramId] = useState();
 
     return (
         <BrowserRouter>
@@ -47,7 +48,7 @@ const App = () => {
                         <Route path="/internships" component={Internships}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/login">
-                            <Login setUserType={setUserType} setFirstName={setFirstName}/>
+                            <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName}/>
                         </Route>
                         <Route path="/" component={Home}/>
                     </Switch>
