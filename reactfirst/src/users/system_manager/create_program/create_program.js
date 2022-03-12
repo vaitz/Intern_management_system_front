@@ -46,6 +46,7 @@ const CreateProgram = () => {
     const [year, setYear] = useState("");
     const [semester, setSemester] = useState("");
     const [hoursRequired, setHoursRequired] = useState("");
+    const [prioritiesAmount, setPrioritiesAmount] = useState()
     const [popup, setPopup] = useState(false);
 
     const formatOptions = (options) => (
@@ -57,7 +58,7 @@ const CreateProgram = () => {
     }, [])
 
     const onSubmit = () => {
-        createProgram(internshipName,year,semester,programManager.value,hoursRequired,department)
+        createProgram(internshipName,year,semester, prioritiesAmount,programManager.value,hoursRequired,department)
         setPopup(true);
      }
 
@@ -76,6 +77,8 @@ const CreateProgram = () => {
             <Input type="text" value={semester} onChange={e => setSemester(e.target.value)}/>
             <Label>שעות התמחות</Label>
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
+            <Label>מספר עדיפויות אשר סטודנט יבחר</Label>
+            <Input type="text" value={prioritiesAmount} onChange={e => setPrioritiesAmount(e.target.value)}/>
             <Label>מנהל תוכנית התמחות</Label>
             <Dropdown onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
             <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור תוכנית התמחות</Button>

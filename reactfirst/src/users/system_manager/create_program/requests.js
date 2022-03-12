@@ -8,13 +8,15 @@ export const getProgramManagers = (setOptions, formatOptions) => fetch(SERVER_AD
     })
 
 
-export const createProgram = (internshipName, year, semester, programManager, hoursRequired, department) => {
+export const createProgram = (internshipName, year, semester, prioritiesAmount, programManager, hoursRequired, department) => {
     const data = {
-        "program name": internshipName,
-        "year": year,
-        "semester": semester,
-        "program manager": programManager,
-        "hours required": hoursRequired,
+        program: internshipName,
+        year: year,
+        semester: semester,
+        prioritiesAmount: prioritiesAmount,
+        programManager: programManager,
+        hoursRequired: hoursRequired,
+
         "department": department
     }
     const response = fetch(SERVER_ADDRESS+'/admin/openProgram',
