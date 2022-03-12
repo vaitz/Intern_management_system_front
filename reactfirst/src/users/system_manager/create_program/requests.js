@@ -1,20 +1,21 @@
 import {SERVER_ADDRESS} from '../../../config'
 
 
-export const getProgramManagers = (setOptions) => fetch(SERVER_ADDRESS+'/programManagers')
+export const getProgramManagers = (setOptions, formatOptions) => fetch(SERVER_ADDRESS+'/programManagers')
     .then((response) => {
-        response.json().then(data => setOptions(data));
+        response.json().then(data => setOptions(formatOptions(data)));
     })
 
 
-export const createProgram = (internshipName, year, semester, programManager, hoursRequired, department) => {
+export const createProgram = (internshipName, year, semester, prioritiesAmount, programManager, hoursRequired, department) => {
     const data = {
-        "program name": internshipName,
-        "year": year,
-        "semester": semester,
-        "program manager": programManager,
-        "hours required": hoursRequired,
-        "department": department
+        program: internshipName,
+        year: year,
+        semester: semester,
+        prioritiesAmount: prioritiesAmount,
+        programManager: programManager,
+        hoursRequired: hoursRequired,
+        department: department
     }
     const response = fetch(SERVER_ADDRESS+'/admin/openProgram',
         {

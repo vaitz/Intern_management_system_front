@@ -1,8 +1,6 @@
 import {SERVER_ADDRESS} from '../../../config'
 import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
 
-
-// get programs
 export const getPrograms = (setPrograms) => {
     fetch(SERVER_ADDRESS+'/activePrograms',
         {
@@ -90,10 +88,8 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
-                }).then(response => {
-                console.log("post",response);
-                return (response.status === 201);
-            })
+                });
+        console.log("post",res);
         return res;
     }
     return false;

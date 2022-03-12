@@ -9,7 +9,8 @@ import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Register from "./users/guest/register/register";
 import Login from "./users/guest/login/login";
 import Home from "./users/common/home/home";
-import CreateInternship from "./users/common/create_intership/create_internship";
+import CreateInternship from "./users/internship_manager/create_intership/create_internship";
+import CreateInternshipCom from "./users/company_representive/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
 import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
 import {GUEST} from "./constants";
@@ -31,6 +32,7 @@ const App = () => {
 
     const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
+    const [programId, setProgramId] = useState();
 
     return (
         <BrowserRouter>
@@ -42,12 +44,13 @@ const App = () => {
                         <Route path="/students" component={Students}/>
                         <Route path="/assignInternships" component={AssignInternships}/>
                         <Route path="/reportHours" component={ReportHours}/>
-                        <Route path="/createInternship" component={CreateInternship}/>
+                        <Route path="/createInternship/company" component={CreateInternshipCom}/>
+                        <Route path="/createInternship/manager" component={CreateInternship}/>
                         <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
                         <Route path="/internships" component={Internships}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/login">
-                            <Login setUserType={setUserType} setFirstName={setFirstName}/>
+                            <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName}/>
                         </Route>
                         <Route path="/" component={Home}/>
                     </Switch>

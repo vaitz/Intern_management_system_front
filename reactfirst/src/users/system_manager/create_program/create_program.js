@@ -39,21 +39,26 @@ const Button = styled.button`
 // }
 
 const CreateProgram = () => {
-    const [options, setOptions] = useState([{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }]);
-    const [programManager, setProgramManager] = useState();
+    const [options, setOptions] = useState([]);
+    const [programManager, setProgramManager] = useState({});
     const [internshipName, setInternshipName] = useState("");
     const [department, setDepartment] = useState("");
     const [year, setYear] = useState("");
     const [semester, setSemester] = useState("");
     const [hoursRequired, setHoursRequired] = useState("");
+    const [prioritiesAmount, setPrioritiesAmount] = useState()
     const [popup, setPopup] = useState(false);
 
+    const formatOptions = (options) => (
+        options.map(option => ({value: option.id, label: option.firstName + " " + option.lastName }))
+    )
+
     useEffect( () => {
-         getProgramManagers(setOptions).then(r => console.log(r));
+         getProgramManagers(setOptions, formatOptions).then(r => console.log(r));
     }, [])
 
     const onSubmit = () => {
-        createProgram(internshipName,year,semester,programManager,hoursRequired,department)
+        createProgram(internshipName,year,semester, prioritiesAmount,programManager.value,hoursRequired,department)
         setPopup(true);
      }
 
@@ -62,7 +67,7 @@ const CreateProgram = () => {
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
                 {`נוצרה תוכנית התמחות חדשה:  "${internshipName}"  `}
             </PopUp>}
-            <Label>שם התמחות</Label>
+            <Label>שם תוכנית התמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>מחלקה</Label>
             <Input type="text" value={department} onChange={e => setDepartment(e.target.value)}/>
@@ -72,7 +77,9 @@ const CreateProgram = () => {
             <Input type="text" value={semester} onChange={e => setSemester(e.target.value)}/>
             <Label>שעות התמחות</Label>
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
-            <Label>מנהל התמחות</Label>
+            <Label>מספר עדיפויות אשר סטודנט יבחר</Label>
+            <Input type="text" value={prioritiesAmount} onChange={e => setPrioritiesAmount(e.target.value)}/>
+            <Label>מנהל תוכנית התמחות</Label>
             <Dropdown onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
             <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור תוכנית התמחות</Button>
         </Container>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {loginRequest} from "./requests";
 import {useHistory} from "react-router-dom";
+import {validateEmptyFields} from "./validations";
 
-function Login({setUserType, setFirstName}) {
+function Login({setUserType, setFirstName, setProgramId}) {
     const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
@@ -11,12 +12,16 @@ function Login({setUserType, setFirstName}) {
     let history = useHistory();
 
     const onClick = () => {
-        const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName);
-        if(response){
-            history.push("/");
-        }
-        else {
+        if(!validateEmptyFields([username.value, password.value])){
+            setError(`אסור להשאיר שדות ריקים`);
+        }else{
+            const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId);
+            if(response){
+                history.push("/");
+            }
+            else {
 
+            }
         }
     }
 

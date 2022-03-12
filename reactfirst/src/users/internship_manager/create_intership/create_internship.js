@@ -29,16 +29,14 @@ const Button = styled.button`
 `
 
 const CreateInternship = () => {
-    const [companyName, setCompanyName] = useState("");
+    const [company, setCompany] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
-    const [mentor, setMentor] = useState("");
-    const [notes, setNotes] = useState("");
     const [popup, setPopup] = useState(false);
 
     const onSubmit = () => {
-        createInternship(companyName,internshipName,internshipDescription,demands,mentor,notes)
+        createInternship(company,internshipName,internshipDescription,demands)
         setPopup(true);
     }
 
@@ -47,19 +45,15 @@ const CreateInternship = () => {
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
                 {`נוצרה ההתמחות:  "${internshipName}"  `}
             </PopUp>}
-            <Label>שם החברה</Label>
-            <Input type="text" value={companyName} onChange={e => setCompanyName(e.target.value)}/>
+            <Label>שם חברה</Label>
+            <Input type="text" value={company} onChange={e => setCompany(e.target.value)}/>
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>תיאור ההתמחות</Label>
             <Input type="text" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
             <Input type="text" value={demands} onChange={e => setDemands(e.target.value)}/>
-            <Label>פרטי המנטור</Label>
-            <Input type="text" value={mentor} onChange={e => setMentor(e.target.value)}/>
-            <Label>הערות</Label>
-            <Input type="text" value={notes} onChange={e => setNotes(e.target.value)}/>
-            <Button onClick={() => onSubmit()} disabled={!(companyName && internshipName && internshipDescription && demands && mentor)}>צור התמחות</Button>
+            <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands)}>צור התמחות</Button>
         </Container>
     )
 }
