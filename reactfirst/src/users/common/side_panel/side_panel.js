@@ -8,7 +8,7 @@ import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import {FaSignOutAlt} from 'react-icons/fa';
 import {removeUserSession} from "../../../utils/common";
-import {logoutRequest} from "./requests";
+import {logoutRequest} from "../../../requests";
 
 const Div = styled.div`
     margin-right: 20px;
