@@ -20,19 +20,19 @@ export const SidebarData = {
     [GUEST]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'הרשמה',
-            path: '/register',
+            path: '/njsw36/register',
             icon: <FaPaste />,
             cName: 'nav-text'
         },
         {
             title: 'התחברות',
-            path: '/login',
+            path: '/njsw36/login',
             icon: <FaSignInAlt />,
             cName: 'nav-text'
         }
@@ -41,19 +41,19 @@ export const SidebarData = {
     [STUDENT]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'תשלום דמי רצינות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaCreditCard />,
             cName: 'nav-text'
         }
@@ -62,25 +62,25 @@ export const SidebarData = {
     [ADVANCED_CANDIDATE]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'צפייה בהתמחויות',
-            path: '/internships',
+            path: '/njsw36/internships',
             icon: <FaRegEdit />,
             cName: 'nav-text'
         },
         {
             title: 'בחירת התמחויות',
-            path: '/internshipsPriorities',
+            path: '/njsw36/internshipsPriorities',
             icon: <FaRegEdit />,
             cName: 'nav-text'
         }
@@ -89,25 +89,25 @@ export const SidebarData = {
     [INTERN]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף אישי',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaRegAddressCard />,
             cName: 'nav-text'
         },
         {
             title: 'דיווח שעות',
-            path: '/reportHours',
+            path: '/njsw36/reportHours',
             icon: <FaCalendarDay />,
             cName: 'nav-text'
         },
         {
             title: 'הגש דוח',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaFileUpload />,
             cName: 'nav-text'
         }
@@ -116,25 +116,25 @@ export const SidebarData = {
     [MENTOR]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
             title: 'אישור דיווח שעות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaCalendarCheck />,
             cName: 'nav-text'
         },
         {
             title: 'הגשת משובים',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaFileUpload />,
             cName: 'nav-text'
         }
@@ -143,25 +143,25 @@ export const SidebarData = {
     [COMPANY_REPRESENTATIVE]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'דף החברה',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship/company',
+            path: '/njsw36/createInternship/company',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'צפה במועמדים',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaPeopleArrows />,
             cName: 'nav-text'
         }
@@ -170,37 +170,37 @@ export const SidebarData = {
     [PROGRAM_COORDINATOR]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'חברות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship/manager',
+            path: '/njsw36/createInternship/manager',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
             title: 'שיבוץ התמחויות',
-            path: '/assignInternships',
+            path: '/njsw36/assignInternships',
             icon: <FaUserCheck />,
             cName: 'nav-text'
         },
         {
             title: 'סטטיסטיקות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaChartBar />,
             cName: 'nav-text'
         }
@@ -209,37 +209,37 @@ export const SidebarData = {
     [PROGRAM_MANAGER]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'חברות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaBriefcase />,
             cName: 'nav-text'
         },
         {
             title: 'סטודנטים',
-            path: '/students',
+            path: '/njsw36/students',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },
         {
             title: 'יצירת התמחות',
-            path: '/createInternship/manager',
+            path: '/njsw36/createInternship/manager',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'שיבוץ התמחויות',
-            path: '/assignInternships',
+            path: '/njsw36/assignInternships',
             icon: <FaUserCheck />,
             cName: 'nav-text'
         },
         {
             title: 'סטטיסטיקות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaChartBar />,
             cName: 'nav-text'
         }
@@ -248,25 +248,25 @@ export const SidebarData = {
     [SYSTEM_MANAGER]: [
         {
             title: 'בית',
-            path: '/',
+            path: '/njsw36/',
             icon: <AiFillHome />,
             cName: 'nav-text'
         },
         {
             title: 'תוכניות קיימות',
-            path: '/',
+            path: '/njsw36/',
             icon: <IoIosPaper />,
             cName: 'nav-text'
         },
         {
             title: 'הוספת תוכנית התמחות',
-            path: '/createProgram',
+            path: '/njsw36/createProgram',
             icon: <FaClipboard />,
             cName: 'nav-text'
         },
         {
             title: 'סטטיסטיקות',
-            path: '/',
+            path: '/njsw36/',
             icon: <FaChartBar />,
             cName: 'nav-text'
         }

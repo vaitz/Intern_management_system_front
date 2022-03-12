@@ -17,7 +17,7 @@ function Login({setUserType, setFirstName, setProgramId}) {
         }else{
             const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId);
             if(response){
-                history.push("/");
+                history.push("/njsw36/");
             }
             else {
 
