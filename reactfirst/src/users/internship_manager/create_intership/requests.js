@@ -1,8 +1,9 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (company,internshipName,internshipDescription,demands) => {
+export const createInternship = (company,internshipName,internshipDescription,demands, program) => {
     const data = {
         "company": company,
+        "program": program,
         "internshipName": internshipName,
         "about": internshipDescription,
         "requirements": demands

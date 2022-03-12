@@ -50,7 +50,7 @@ const CreateProgram = () => {
     const [popup, setPopup] = useState(false);
 
     const formatOptions = (options) => (
-        options.map(option => ({value: option.id, label: option.firstName + " " + option.lastName }))
+        options.map(option => ({value: option.id, label: option.first_name + " " + option.last_name }))
     )
 
     useEffect( () => {
