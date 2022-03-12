@@ -54,7 +54,7 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
                         })}
                         {userType !== GUEST && 
                             <li key="disconnect" className='nav-text'>
-                                <Link to="/" onClick={onLogout}>
+                                <Link to="/njsw36/" onClick={onLogout}>
                                     <FaSignOutAlt/>
                                     <Div/>
                                     התנתקות

@@ -15,6 +15,7 @@ import ReportHours from "./users/intern/report_hours/report_hours";
 import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
 import {GUEST} from "./constants";
 import Students from "./users/internship_manager/students/students";
+import PublicRoute from "./utils/public_route";
 
 
 const Container = styled.div`
@@ -40,19 +41,19 @@ const App = () => {
                 <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
                 <ContentWrapper>
                     <Switch>
-                        <Route path="/createProgram" component={CreateProgram}/>
-                        <Route path="/students" component={Students}/>
-                        <Route path="/assignInternships" component={AssignInternships}/>
-                        <Route path="/reportHours" component={ReportHours}/>
-                        <Route path="/createInternship/company" component={CreateInternshipCom}/>
-                        <Route path="/createInternship/manager" component={CreateInternship}/>
-                        <Route path="/internshipsPriorities" component={InternshipsPriorities}/>
-                        <Route path="/internships" component={Internships}/>
-                        <Route path="/register" component={Register}/>
-                        <Route path="/login">
+                        <Route path="/njsw36/createProgram" component={CreateProgram}/>
+                        <Route path="/njsw36/students" component={Students}/>
+                        <Route path="/njsw36/assignInternships" component={AssignInternships}/>
+                        <Route path="/njsw36/reportHours" component={ReportHours}/>
+                        <Route path="/njsw36/createInternship/company" component={CreateInternshipCom}/>
+                        <Route path="/njsw36/createInternship/manager" component={CreateInternship}/>
+                        <Route path="/njsw36/internshipsPriorities" component={InternshipsPriorities}/>
+                        <Route path="/njsw36/internships" component={Internships}/>
+                        <Route path="/njsw36/register" component={Register}/>
+                        <Route path="/njsw36/login">
                             <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName}/>
                         </Route>
-                        <Route path="/" component={Home}/>
+                        <PublicRoute path="/njsw36/" component={Home}/>
                     </Switch>
                 </ContentWrapper>
             </Container>

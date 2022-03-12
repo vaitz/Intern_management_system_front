@@ -148,9 +148,9 @@ const Register = () => {
     // Showing success message
     const successMessage = () => {
         return (
-        <PopUp trigger={submitted} setTrigger={()=>{history.push('/login');}}>
+        <PopUp trigger={submitted} setTrigger={()=>{history.push('/njsw36/login');}}>
             <h3>ההרשמה בוצעה בהצלחה!</h3>
-            <button onClick={()=>{history.push('/login');}}>ok</button>
+            <button onClick={()=>{history.push('/njsw36/login');}}>ok</button>
         </PopUp>
         );
     };
