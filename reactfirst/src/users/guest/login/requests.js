@@ -4,7 +4,7 @@ import fetchMock from "fetch-mock";
 import {PROGRAM_MANAGER, MENTOR, COMPANY_REPRESENTATIVE, INTERN, SYSTEM_MANAGER} from "../../../constants";
 
 
-export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId, history) => {
     const data = {
         username: username.value,
         password: password.value
@@ -26,15 +26,16 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
             if (data.program) {
                 setProgramId(data.program)
             }
+            history.push("/njsw36/");
+        } else {
+            setError(`שם משתמש או סיסמא לא תקינים`);
         }
-        return response;
     }
 ).catch(error => {
     setLoading(false);
     if (error.response.status === 401) setError(error.response.data.message);
     else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
 }));
-    return false;
 }
 
 const data =  { userType: SYSTEM_MANAGER, session: 2, username: "user", firstName: "חי", program: "123" } ;

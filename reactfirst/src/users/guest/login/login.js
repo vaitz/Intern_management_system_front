@@ -15,13 +15,7 @@ function Login({setUserType, setFirstName, setProgramId}) {
         if(!validateEmptyFields([username.value, password.value])){
             setError(`אסור להשאיר שדות ריקים`);
         }else{
-            const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId);
-            if(response.status === 200){
-                history.push("/njsw36/");
-            }
-            else {
-                setError(`שם משתמש או סיסמא לא תקינים`);
-            }
+            loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId, history);
         }
     }
 
