@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {createInternship} from "./requests";
 import PopUp from "../../../components/popup";
+import {Select} from "../../guest/register/register";
+import {getPrograms} from "../../company_representive/create_intership/requests";
 
 
 const Label =  styled.text`
@@ -29,14 +31,20 @@ const Button = styled.button`
 `
 
 const CreateInternship = () => {
+    const [program, setProgram] = useState("");
     const [company, setCompany] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
+    const [programs, setPrograms] = useState([]);
+
+    useEffect(() => {
+        getPrograms(setPrograms);
+    }, []);
 
     const onSubmit = () => {
-        createInternship(company,internshipName,internshipDescription,demands)
+        createInternship(company,internshipName,internshipDescription,demands, program)
         setPopup(true);
     }
 
@@ -45,6 +53,10 @@ const CreateInternship = () => {
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
                 {`נוצרה ההתמחות:  "${internshipName}"  `}
             </PopUp>}
+            <Label>שם התוכנית</Label>
+            <Select id="program" value={program} onChange={e => setProgram(e.target.value)}>
+                {programs && programs.map(option => <option key={option} value={option}>{option}</option>)}
+            </Select>
             <Label>שם חברה</Label>
             <Input type="text" value={company} onChange={e => setCompany(e.target.value)}/>
             <Label>שם ההתמחות</Label>
@@ -53,7 +65,7 @@ const CreateInternship = () => {
             <Input type="text" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
             <Input type="text" value={demands} onChange={e => setDemands(e.target.value)}/>
-            <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands)}>צור התמחות</Button>
+            <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands && program)}>צור התמחות</Button>
         </Container>
     )
 }
