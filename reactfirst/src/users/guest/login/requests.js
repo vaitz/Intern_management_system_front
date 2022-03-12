@@ -20,7 +20,9 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
         setUserType(data.userType);
         setUserSession(data.session, data.username);
         setFirstName(data.firstName)
-        setProgramId(data.program)
+        if(data.program){
+            setProgramId(data.program)
+        }
         return response;
     }
 ).catch(error => {
