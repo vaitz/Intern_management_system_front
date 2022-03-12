@@ -62,7 +62,7 @@ const CreateProgram = () => {
             { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
                 {`נוצרה תוכנית התמחות חדשה:  "${internshipName}"  `}
             </PopUp>}
-            <Label>שם התמחות</Label>
+            <Label>שם תוכנית התמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>מחלקה</Label>
             <Input type="text" value={department} onChange={e => setDepartment(e.target.value)}/>
@@ -72,7 +72,7 @@ const CreateProgram = () => {
             <Input type="text" value={semester} onChange={e => setSemester(e.target.value)}/>
             <Label>שעות התמחות</Label>
             <Input type="text" value={hoursRequired} onChange={e => setHoursRequired(e.target.value)}/>
-            <Label>מנהל התמחות</Label>
+            <Label>מנהל תוכנית התמחות</Label>
             <Dropdown onChange={setProgramManager} options={options} placeholder={"בחר מנהל"}/>
             <Button onClick={() => onSubmit()} disabled={!(programManager && internshipName && department && hoursRequired && semester && year)}>צור תוכנית התמחות</Button>
         </Container>
