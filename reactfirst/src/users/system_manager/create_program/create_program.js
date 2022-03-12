@@ -39,8 +39,8 @@ const Button = styled.button`
 // }
 
 const CreateProgram = () => {
-    const [options, setOptions] = useState([{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }]);
-    const [programManager, setProgramManager] = useState();
+    const [options, setOptions] = useState([]);
+    const [programManager, setProgramManager] = useState({});
     const [internshipName, setInternshipName] = useState("");
     const [department, setDepartment] = useState("");
     const [year, setYear] = useState("");
@@ -48,12 +48,16 @@ const CreateProgram = () => {
     const [hoursRequired, setHoursRequired] = useState("");
     const [popup, setPopup] = useState(false);
 
+    const formatOptions = (options) => (
+        options.map(option => ({value: option.id, label: option.firstName + " " + option.lastName }))
+    )
+
     useEffect( () => {
-         getProgramManagers(setOptions).then(r => console.log(r));
+         getProgramManagers(setOptions, formatOptions).then(r => console.log(r));
     }, [])
 
     const onSubmit = () => {
-        createProgram(internshipName,year,semester,programManager,hoursRequired,department)
+        createProgram(internshipName,year,semester,programManager.value,hoursRequired,department)
         setPopup(true);
      }
 
