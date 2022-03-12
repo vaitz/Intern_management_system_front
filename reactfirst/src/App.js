@@ -16,7 +16,7 @@ import {AssignInternships} from "./users/internship_manager/assign_internships/a
 import {GUEST} from "./constants";
 import Students from "./users/internship_manager/students/students";
 import PublicRoute from "./utils/public_route";
-import {getToken} from "./utils/common";
+import {getToken, getUser} from "./utils/common";
 import {getDetails} from "./requests";
 
 
@@ -37,15 +37,10 @@ const App = () => {
     const [firstName, setFirstName] = useState("אורח");
     const [programId, setProgramId] = useState();
 
-    useEffect(()=>{
-        const token = getToken();
-        if(token){
-            const res = getDetails(token.user);
-            if(res.status === 200) {
-                setUserType(res.userType);
-                setFirstName(res.firstName);
-                setProgramId(res.program);
-            }
+    useEffect(() => {
+        const user = getUser();
+        if (user) {
+            getDetails(user,setUserType,setFirstName,setProgramId);
         }
     }, []);
 
