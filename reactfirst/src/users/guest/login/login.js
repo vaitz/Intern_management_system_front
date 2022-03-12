@@ -16,11 +16,11 @@ function Login({setUserType, setFirstName, setProgramId}) {
             setError(`אסור להשאיר שדות ריקים`);
         }else{
             const response = loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId);
-            if(response){
+            if(response.status === 200){
                 history.push("/njsw36/");
             }
             else {
-
+                setError(`שם משתמש או סיסמא לא תקינים`);
             }
         }
     }
