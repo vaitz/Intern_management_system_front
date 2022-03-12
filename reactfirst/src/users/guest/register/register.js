@@ -111,13 +111,24 @@ const Register = () => {
                 setError('אימייל לא תקין, יש להקפיד על כתובת אימייל חוקית');
             }
             else{
-                const success = await sendDetailsToServer(state);
-                console.log(success);
-                if(success){
+                const response = await sendDetailsToServer(state);
+                if(response){
                     // show massage that the register succeed and redirect to login page
-                    setSubmitted(true);
+                    if(response.status === 201){
+                        setSubmitted(true);
+                    }
+                    else{ // errors
+                        if(response.message === 'A user with the same username already exists'){
+                            setError('שם המשתמש קיים במערכת, נא לבחור שם משתמש אחר');
+                        }
+                        else if(state.userType === MENTOR_HEBREW){
+                            setError('שם החברה לא קיים במערכת, נא לבחור שם חברה תקין');
+                        } else{
+                            setError('משהו השתבש.. נסה שנית');
+                        }
+                    }
                 } else {
-                    setError('שם המשתמש קיים במערכת, נא לבחור שם משתמש אחר');
+                    setError('משהו השתבש.. נסה שנית');
                 }
             }
            

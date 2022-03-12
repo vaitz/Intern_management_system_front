@@ -10,7 +10,6 @@ fetchMock.mock(SERVER_ADDRESS+'/users/register/programCoordinator', 201);
 fetchMock.mock(SERVER_ADDRESS+'/users/register/programManager', 201);
 fetchMock.mock(SERVER_ADDRESS+'/activePrograms', ["starships","פסיכולוגיה"]);
 
-// get programs
 export const getPrograms = (setPrograms) => {
     fetch(SERVER_ADDRESS+'/activePrograms',
         {
@@ -98,12 +97,9 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
-                }).then(response => {
-                console.log("post",response);
-                return (response.status === 201);
-            })
+                });
+        console.log("post",res);
         return res;
     }
     return false;
-    //  todo: check if the user exists in the response
 };
