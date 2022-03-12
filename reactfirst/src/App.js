@@ -1,5 +1,5 @@
 
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import InternshipsPriorities from "./users/candidate/internships_priorities/internships_priorities";
 import Internships from "./users/candidate/internships/internships";
 import SidePanel from "./users/common/side_panel/side_panel";
@@ -16,6 +16,8 @@ import {AssignInternships} from "./users/internship_manager/assign_internships/a
 import {GUEST} from "./constants";
 import Students from "./users/internship_manager/students/students";
 import PublicRoute from "./utils/public_route";
+import {getToken} from "./utils/common";
+import {getDetails} from "./requests";
 
 
 const Container = styled.div`
@@ -34,6 +36,18 @@ const App = () => {
     const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
     const [programId, setProgramId] = useState();
+
+    useEffect(()=>{
+        const token = getToken();
+        if(token){
+            const res = getDetails(token.user);
+            if(res.status === 200) {
+                setUserType(res.userType);
+                setFirstName(res.firstName);
+                setProgramId(res.program);
+            }
+        }
+    }, []);
 
     return (
         <BrowserRouter>
