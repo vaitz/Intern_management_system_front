@@ -11,6 +11,10 @@ export const createInternship = (program,internshipName,internshipDescription,de
         {
             method: 'POST',
             mode: "cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(data)
         }).then(response => console.log(response));
 }
