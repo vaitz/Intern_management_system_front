@@ -7,7 +7,7 @@ import { GUEST } from "../../../constants";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import {FaSignOutAlt} from 'react-icons/fa';
-import {removeUserSession} from "../../../utils/common";
+import {getToken, removeUserSession} from "../../../utils/common";
 import {logoutRequest} from "../../../requests";
 
 const Div = styled.div`
@@ -29,8 +29,9 @@ function SidePanel({userType, firstName, setUserType, setFirstName}) {
     const onLogout = () => {
         setUserType(GUEST);
         setFirstName("אורח");
+        const token = getToken();
         removeUserSession();
-        logoutRequest();
+        logoutRequest(token);
     }
 
     return (
