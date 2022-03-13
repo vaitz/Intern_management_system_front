@@ -1,7 +1,7 @@
 import {SERVER_ADDRESS} from './config'
 
 export const logoutRequest  = (token) => {
-    const data = {"Authentication": token};
+    const data = {"Authorization": token};
     console.log(data);
     fetch(SERVER_ADDRESS+ `/users/logout`,
         {
