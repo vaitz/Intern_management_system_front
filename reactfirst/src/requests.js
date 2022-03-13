@@ -3,7 +3,7 @@ import fetchMock from "fetch-mock";
 import {SYSTEM_MANAGER} from "./constants";
 
 export const logoutRequest  = (token) => {
-    const data = {"Authentication": token};
+    const data = {"Authorization": token};
     console.log(data);
     fetch(SERVER_ADDRESS+ `/users/logout`,
         {
