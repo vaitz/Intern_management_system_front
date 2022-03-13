@@ -1,15 +1,17 @@
 import {SERVER_ADDRESS} from './config'
 import fetchMock from "fetch-mock";
 import {SYSTEM_MANAGER} from "./constants";
-import {setUserSession} from "./utils/common";
 
-export const logoutRequest  = () => {
+export const logoutRequest  = (token) => {
+    const data = {"Authentication": token};
+    console.log(data);
     fetch(SERVER_ADDRESS+ `/users/logout`,
         {
-            method: 'Get',
+            method: 'POST',
             mode: "cors",
+            body: JSON.stringify(data)
         }
-    ).then(res => console.log("here"))
+    ).then(res => console.log(res))
 }
 
 export const getDetails  = (username,setUserType,setFirstName,setProgramId) => {
