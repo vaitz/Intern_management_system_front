@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import styled from "styled-components";
 import MaterialTable from "material-table";
-import tableIcons from "../assign_internships/MaterialTableIcons";
+import tableIcons from "../internship_manager/assign_internships/MaterialTableIcons";
 import { getStudentsRequest} from "./requests";
 
 const Div = styled.div`
@@ -10,7 +10,7 @@ const Div = styled.div`
   background-color: #F7F8FC;
 `
 
-const Students = (programId) => {
+const Students = () => {
     const [students, setStudents] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
 
@@ -26,14 +26,6 @@ const Students = (programId) => {
         {
             title: "שם משפחה",
             field: "lastName",
-            cellStyle: {
-                textAlign: "center",
-                width: "150px"
-            }
-        },
-        {
-            title: "סטטוס",
-            field: "status",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
@@ -59,7 +51,7 @@ const Students = (programId) => {
     ];
 
     useEffect(() => {
-        getStudentsRequest(setStudents, programId);
+        getStudentsRequest(setStudents);
     }, [])
 
     return (

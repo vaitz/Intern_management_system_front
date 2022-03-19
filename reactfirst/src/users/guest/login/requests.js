@@ -1,10 +1,17 @@
 import {setUserSession} from "../../../utils/common";
 import {SERVER_ADDRESS} from '../../../config'
 import fetchMock from "fetch-mock";
-import {PROGRAM_MANAGER, MENTOR, COMPANY_REPRESENTATIVE, INTERN, SYSTEM_MANAGER} from "../../../constants";
+import {
+    PROGRAM_MANAGER,
+    MENTOR,
+    COMPANY_REPRESENTATIVE,
+    INTERN,
+    SYSTEM_MANAGER,
+    ADVANCED_CANDIDATE
+} from "../../../constants";
 
 
-export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId, history) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId, setUsername, history) => {
     const data = {
         username: username.value,
         password: password.value
@@ -23,6 +30,7 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
             setUserType(data.userType);
             setUserSession(data.session, data.username);
             setFirstName(data.firstName)
+            setUsername(data.username)
             if (data.program) {
                 setProgramId(data.program)
             }
@@ -38,5 +46,5 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
 }));
 }
 
-const data =  { userType: SYSTEM_MANAGER, session: 2, username: "user", firstName: "חי", program: "123" } ;
+const data =  { userType: ADVANCED_CANDIDATE, session: 2, username: "user", firstName: "חי", program: "123" } ;
 fetchMock.mock(SERVER_ADDRESS+'/users/login', data);

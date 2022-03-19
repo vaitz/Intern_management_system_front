@@ -3,7 +3,7 @@ import {loginRequest} from "./requests";
 import {useHistory} from "react-router-dom";
 import {validateEmptyFields} from "./validations";
 
-function Login({setUserType, setFirstName, setProgramId}) {
+function Login({setUserType, setFirstName, setProgramId, setUsername}) {
     const [loading, setLoading] = useState(false);
     const username = useFormInput('');
     const password = useFormInput('');
@@ -15,7 +15,7 @@ function Login({setUserType, setFirstName, setProgramId}) {
         if(!validateEmptyFields([username.value, password.value])){
             setError(`אסור להשאיר שדות ריקים`);
         }else{
-            loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId, history);
+            loginRequest(setLoading, setError, username, password, setUserType, setFirstName, setProgramId, setUsername, history);
         }
     }
 

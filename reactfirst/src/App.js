@@ -16,8 +16,9 @@ import {AssignInternships} from "./users/internship_manager/assign_internships/a
 import {GUEST} from "./constants";
 import Students from "./users/internship_manager/students/students";
 import PublicRoute from "./utils/public_route";
-import {getToken, getUser} from "./utils/common";
+import {getUser} from "./utils/common";
 import {getDetails} from "./requests";
+import MentorStudents from "./users/mentor/students";
 
 
 const Container = styled.div`
@@ -36,10 +37,12 @@ const App = () => {
     const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
     const [programId, setProgramId] = useState();
+    const [username, setUsername] = useState();
 
     useEffect(() => {
         const user = getUser();
         if (user) {
+            setUsername(user);
             getDetails(user,setUserType,setFirstName,setProgramId);
         }
     }, []);
@@ -51,16 +54,21 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/njsw36/createProgram" component={CreateProgram}/>
-                        <Route path="/njsw36/students" component={Students}/>
+                        <Route path="/mentor/students" component={MentorStudents}/>
+                        <Route path="/students">
+                            <Students programId={programId}/>
+                        </Route>
                         <Route path="/njsw36/assignInternships" component={AssignInternships}/>
                         <Route path="/njsw36/reportHours" component={ReportHours}/>
                         <Route path="/njsw36/createInternship/company" component={CreateInternshipCom}/>
                         <Route path="/njsw36/createInternship/manager" component={CreateInternship}/>
-                        <Route path="/njsw36/internshipsPriorities" component={InternshipsPriorities}/>
+                        <Route path="/njsw36/internshipsPriorities">
+                            <InternshipsPriorities program={programId} username={username}/>
+                        </Route>
                         <Route path="/njsw36/internships" component={Internships}/>
                         <Route path="/njsw36/register" component={Register}/>
                         <Route path="/njsw36/login">
-                            <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName}/>
+                            <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName} setUsername={setUsername}/>
                         </Route>
                         <PublicRoute path="/njsw36/" component={Home}/>
                     </Switch>
