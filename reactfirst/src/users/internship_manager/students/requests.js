@@ -18,4 +18,4 @@ const students = [
     { firstName: "טל", lastName: "בשן", status: "מועמד", internship: "", hours: "-" }
 ];
 
-fetchMock.mock(SERVER_ADDRESS+`/students/1`, students);
+fetchMock.mock(SERVER_ADDRESS+`/students/123`, students);
