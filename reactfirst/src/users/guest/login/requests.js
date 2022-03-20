@@ -2,7 +2,7 @@ import {setUserSession} from "../../../utils/common";
 import {SERVER_ADDRESS} from '../../../config'
 
 
-export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId, history) => {
+export const loginRequest = (setLoading, setError, username, password, setUserType, setFirstName,setProgramId, setUsername, history) => {
     const data = {
         username: username.value,
         password: password.value
@@ -21,6 +21,7 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
             setUserType(data.userType);
             setUserSession(data.session, data.username);
             setFirstName(data.firstName)
+            setUsername(data.username)
             if (data.program) {
                 setProgramId(data.program)
             }

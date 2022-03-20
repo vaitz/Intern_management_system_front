@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import styled from "styled-components";
 import MaterialTable from "material-table";
-import tableIcons from "../assign_internships/MaterialTableIcons";
+import tableIcons from "../../program_manager/assign_internships/MaterialTableIcons";
 import { getStudentsRequest} from "./requests";
 
 const Div = styled.div`
@@ -26,14 +26,6 @@ const Students = () => {
         {
             title: "שם משפחה",
             field: "lastName",
-            cellStyle: {
-                textAlign: "center",
-                width: "150px"
-            }
-        },
-        {
-            title: "סטטוס",
-            field: "status",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
