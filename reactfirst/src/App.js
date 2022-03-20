@@ -9,16 +9,16 @@ import {Route, Switch, BrowserRouter} from "react-router-dom";
 import Register from "./users/guest/register/register";
 import Login from "./users/guest/login/login";
 import Home from "./users/common/home/home";
-import CreateInternship from "./users/internship_manager/create_intership/create_internship";
+import CreateInternship from "./users/program_manager/create_intership/create_internship";
 import CreateInternshipCom from "./users/company_representive/create_intership/create_internship";
 import ReportHours from "./users/intern/report_hours/report_hours";
-import {AssignInternships} from "./users/internship_manager/assign_internships/assign_internships";
+import {AssignInternships} from "./users/program_manager/assign_internships/assign_internships";
 import {GUEST} from "./constants";
-import Students from "./users/internship_manager/students/students";
+import Students from "./users/program_manager/students/students";
 import PublicRoute from "./utils/public_route";
 import {getUser} from "./utils/common";
 import {getDetails} from "./requests";
-import MentorStudents from "./users/mentor/students";
+import MentorStudents from "./users/mentor/interns/students";
 
 
 const Container = styled.div`
@@ -54,8 +54,8 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/njsw36/createProgram" component={CreateProgram}/>
-                        <Route path="/mentor/students" component={MentorStudents}/>
-                        <Route path="/students">
+                        <Route path="/njsw36/mentor/interns" component={MentorStudents}/>
+                        <Route path="/njsw36/students">
                             <Students programId={programId}/>
                         </Route>
                         <Route path="/njsw36/assignInternships" component={AssignInternships}/>

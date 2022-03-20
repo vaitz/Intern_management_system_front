@@ -1,5 +1,5 @@
 import fetchMock from "fetch-mock";
-import {SERVER_ADDRESS} from '../../config'
+import {SERVER_ADDRESS} from '../../../config'
 
 export const getStudentsRequest = (setStudents) => fetch(SERVER_ADDRESS+'/mentor/getInterns',
     {

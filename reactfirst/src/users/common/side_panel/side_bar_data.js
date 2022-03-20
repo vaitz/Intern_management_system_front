@@ -122,7 +122,7 @@ export const SidebarData = {
         },
         {
             title: 'סטודנטים',
-            path: '/njsw36/',
+            path: '/njsw36/mentor/interns',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },
@@ -188,7 +188,7 @@ export const SidebarData = {
         },
         {
             title: 'סטודנטים',
-            path: '/njsw36/',
+            path: '/njsw36/students',
             icon: <FaUserFriends />,
             cName: 'nav-text'
         },

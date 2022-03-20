@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import styled from "styled-components";
 import MaterialTable from "material-table";
-import tableIcons from "../internship_manager/assign_internships/MaterialTableIcons";
+import tableIcons from "../../program_manager/assign_internships/MaterialTableIcons";
 import { getStudentsRequest} from "./requests";
 
 const Div = styled.div`
