@@ -10,7 +10,7 @@ const Div = styled.div`
   background-color: #F7F8FC;
 `
 
-const Students = (programId) => {
+const Students = ({programId}) => {
     const [students, setStudents] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
 
