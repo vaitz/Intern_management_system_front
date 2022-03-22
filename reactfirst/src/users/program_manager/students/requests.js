@@ -11,11 +11,11 @@ export const getStudentsRequest = (setStudents, programId) => fetch(SERVER_ADDRE
     })))
 
 const students = [
-    { firstName: "חי", lastName: "מתתיהו", status: "מועמד", internship: "", hours: "-" },
-    { firstName: "יובל", lastName: "מור", status: "מועמד מתקדם", internship: "", hours: "-" },
-    { firstName: "ליל", lastName: "ג'ו", status: "מתמחה", internship: "גוגל-התמחות 1", hours: 5 },
-    { firstName: "ארנון", lastName: "סטורם", status: "מתמחה", internship: "גוגל-התמחות 2", hours: 8 },
-    { firstName: "טל", lastName: "בשן", status: "מועמד", internship: "", hours: "-" }
+    { firstName: "חי", lastName: "מתתיהו", company: "google", email: "mail@google.com", status: "מועמד", internship: "", hours: "-" },
+    { firstName: "יובל", lastName: "מור",company: "apple", email: "mail@google.com", status: "מועמד מתקדם", internship: "", hours: "-" },
+    { firstName: "ליל", lastName: "ג'ו",company: "meta", email: "mail@google.com", status: "מתמחה", internship: "גוגל-התמחות 1", hours: 5 },
+    { firstName: "ארנון", lastName: "סטורם",company: "kenshoo", email: "mail@google.com", status: "מתמחה", internship: "גוגל-התמחות 2", hours: 8 },
+    { firstName: "טל", lastName: "בשן",company: "google", email: "mail@google.com", status: "מועמד", internship: "", hours: "-" }
 ];
 
 fetchMock.mock(SERVER_ADDRESS+`/students/123`, students);
