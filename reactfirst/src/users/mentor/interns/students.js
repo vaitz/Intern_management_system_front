@@ -10,7 +10,7 @@ const Div = styled.div`
   background-color: #F7F8FC;
 `
 
-const Students = () => {
+const Students = ({ username }) => {
     const [students, setStudents] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
 
@@ -32,26 +32,17 @@ const Students = () => {
             }
         },
         {
-            title: "התמחות",
-            field: "internship",
-            cellStyle: {
-                textAlign: "center",
-                width: "150px"
-            }
-        },
-        {
-            title: "שעות בהתמחות",
-            field: "hours",
+            title: "תעודת זהות",
+            field: "id",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
             }
         }
-
     ];
 
     useEffect(() => {
-        getStudentsRequest(setStudents);
+        getStudentsRequest(setStudents, username);
     }, [])
 
     return (

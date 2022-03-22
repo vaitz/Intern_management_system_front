@@ -10,7 +10,7 @@ const Div = styled.div`
   background-color: #F7F8FC;
 `
 
-const Students = ({programId}) => {
+const Students = ({programId, student}) => {
     const [students, setStudents] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
 
@@ -32,6 +32,14 @@ const Students = ({programId}) => {
             }
         },
         {
+            title: "מייל",
+            field: "email",
+            cellStyle: {
+                textAlign: "center",
+                width: "150px"
+            }
+        },
+        {
             title: "סטטוס",
             field: "status",
             cellStyle: {
@@ -45,6 +53,14 @@ const Students = ({programId}) => {
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
+            }
+        },
+        {
+            title: "חברה",
+            field: "company",
+            cellStyle: {
+                textAlign: "center",
+                width: "100px"
             }
         },
         {
