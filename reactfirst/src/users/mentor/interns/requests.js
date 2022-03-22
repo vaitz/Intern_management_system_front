@@ -1,6 +1,6 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const getStudentsRequest = (setStudents) => fetch(SERVER_ADDRESS+'/mentor/getInterns',
+export const getStudentsRequest = (setStudents, username) => fetch(SERVER_ADDRESS+`/mentor/getInterns${username}`,
     {
         method: 'Get',
         mode: "cors",

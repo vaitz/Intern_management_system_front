@@ -28,7 +28,7 @@ const InternshipsPriorities = () => {
         var tempDrops = [];
         for (var i=1; i <= prioritiesAmount; i++) {
             tempDrops.push(<h4 key={i}> עדיפות {i}-</h4>);
-            tempDrops.push(<Dropdown options={options} onMenuOpen={handleMenuOpen} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
+            tempDrops.push(<Dropdown options={options} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
         }
         setDrops(tempDrops);
     }, [options])
@@ -39,16 +39,6 @@ const InternshipsPriorities = () => {
         // pop from options
         setOptions(options.filter((option)=> {return option !== chosenOption}));
 
-    }
-
-    const handleMenuOpen = (oldValue) => {
-                
-        // console.log(oldValue);
-        // todo: remove the last value from selected
-
-        // todo: add to options
-
-        // todo: make sure the selected in order of priorities
     }
 
     console.log(selected);
