@@ -36,7 +36,7 @@ const App = () => {
 
     const [userType, setUserType] = useState(GUEST);
     const [firstName, setFirstName] = useState("אורח");
-    const [programId, setProgramId] = useState();
+    const [programId, setProgramId] = useState("");
     const [username, setUsername] = useState();
 
     useEffect(() => {
@@ -54,12 +54,18 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/njsw36/createProgram" component={CreateProgram}/>
-                        <Route path="/njsw36/mentor/interns" component={MentorStudents}/>
+                        <Route path="/njsw36/mentor/interns">
+                            <MentorStudents username={username} />
+                        </Route>
                         <Route path="/njsw36/students">
                             <Students programId={programId}/>
                         </Route>
-                        <Route path="/njsw36/assignInternships" component={AssignInternships}/>
-                        <Route path="/njsw36/reportHours" component={ReportHours}/>
+                        <Route path="/njsw36/assignInternships">
+                            <AssignInternships programId={programId} />
+                        </Route>
+                        <Route path="/njsw36/reportHours">
+                            <ReportHours username={username} />
+                        </Route>
                         <Route path="/njsw36/createInternship/company" component={CreateInternshipCom}/>
                         <Route path="/njsw36/createInternship/manager" component={CreateInternship}/>
                         <Route path="/njsw36/internshipsPriorities">
