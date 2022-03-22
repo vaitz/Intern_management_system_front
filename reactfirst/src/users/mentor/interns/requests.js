@@ -1,7 +1,7 @@
 import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
-export const getStudentsRequest = (setStudents) => fetch(SERVER_ADDRESS+'/mentor/getInterns',
+export const getStudentsRequest = (setStudents, username) => fetch(SERVER_ADDRESS+`/mentor/getInterns${username}`,
     {
         method: 'Get',
         mode: "cors",
@@ -11,11 +11,11 @@ export const getStudentsRequest = (setStudents) => fetch(SERVER_ADDRESS+'/mentor
     })))
 
 const students = [
-    { firstName: "חי", lastName: "מתתיהו", internship: "אפל - התמחות 1", hours: 2 },
-    { firstName: "יובל", lastName: "מור", internship: "אפל - התמחות 2", hours: 3 },
-    { firstName: "ליל", lastName: "ג'ו", internship: "גוגל-התמחות 1", hours: 5 },
-    { firstName: "ארנון", lastName: "סטורם", internship: "גוגל-התמחות 2", hours: 8 },
-    { firstName: "טל", lastName: "בשן", internship: "אפל - התמחות 1", hours: 4 }
+    { firstName: "חי", lastName: "מתתיהו", id: 1 },
+    { firstName: "יובל", lastName: "מור", id: 2 },
+    { firstName: "ליל", lastName: "ג'ו", id: 3 },
+    { firstName: "ארנון", lastName: "סטורם", id: 4 },
+    { firstName: "טל", lastName: "בשן", id: 5 }
 ];
 
-fetchMock.mock(SERVER_ADDRESS+'/mentor/getInterns', students);
+fetchMock.mock(SERVER_ADDRESS+`/mentor/getInterns/user` , students);
