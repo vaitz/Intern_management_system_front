@@ -4,7 +4,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import styled from "styled-components";
 import {DatePicker, TimePicker} from "@mui/lab";
-import {getWorkingHours} from "./requests";
+import {getWorkingHours, reportHours} from "./requests";
 
 const Label =  styled.text`
   font-size: 18px;
@@ -63,27 +63,29 @@ const Separator = styled.div`
   margin-bottom: 50px;
 `
 
-const ReportHours =(username) =>  {
+const ReportHours =({username}) =>  {
     const [date, setDate] = useState(new Date());
     const [start, setStart] = useState(new Date());
     const [end, setEnd] = useState(new Date());
-    const [hours, setHours] = useState([{date: "", start: "", end: ""}]);
+    const [hours, setHours] = useState([]);
     const [hoursSoFar, setHoursSoFar] = useState(0)
 
-    const getHoursDiff = (start, end) => {
-        const timeStart = new Date("01/01/2007 " + start).getHours();
-        const timeEnd = new Date("01/01/2007 " + end).getHours();
-        return timeEnd - timeStart;
-    }
 
     useEffect(() => {
-        getWorkingHours("username", setHours);
+        getWorkingHours(username, setHours);
     }, [])
 
-    useMemo(() => {
+    console.log(hours)
+
+    useEffect(() => {
         let num = 0;
-        hours.forEach(hour => num = num + getHoursDiff(hour.start, hour.end))
+        hours.forEach(hour => num = num + getHoursDiff(hour.startTime, hour.endTime))
         setHoursSoFar(num);
+    }, [hours])
+
+
+    useEffect(() => {
+        reportHours(username, hours);
     }, [hours])
 
     const getTime = (time) => {
@@ -100,7 +102,13 @@ const ReportHours =(username) =>  {
     const onAddHour = (date, start, end) => {
         const startTime = getTime(start);
         const endTime = getTime(end);
-        setHours([...hours, {date: parseDate(date), start: startTime, end: endTime }])
+        setHours([...hours, {date: parseDate(date), startTime: startTime, endTime: endTime }])
+    }
+
+    const getHoursDiff = (startTime, endTime) => {
+        const timeStart = new Date("01/01/2007 " + startTime).getHours();
+        const timeEnd = new Date("01/01/2007 " + endTime).getHours();
+        return timeEnd - timeStart;
     }
 
     return (
@@ -117,9 +125,9 @@ const ReportHours =(username) =>  {
                 </HeaderWrapper>
                 {hours.map(hour => <Item>
                     <div>{hour.date}</div>
-                    <div>{hour.start}</div>
-                    <div>{hour.end}</div>
-                    {getHoursDiff(hour.start, hour.end)}
+                    <div>{hour.startTime}</div>
+                    <div>{hour.endTime}</div>
+                    {getHoursDiff(hour.startTime, hour.endTime)}
                 </Item>)}
                 <Separator/>
                 <div>שעות שנצברו:</div>
