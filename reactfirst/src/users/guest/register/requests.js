@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
-import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
+import {STUDENT, COMPANY_REPRESENTATIVE, MENTOR, PROGRAM_MANAGER, PROGRAM_COORDINATOR} from "../../../constants"
 
 
 fetchMock.mock(SERVER_ADDRESS+'/users/register/student', 201);
@@ -30,7 +30,7 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
     // need to hash the password in the server, suppose to return error if username exists (or other)
     let data = null;
     let endpoint_address = null;
-    if(userType === STUDENT_HEBREW){
+    if(userType === STUDENT){
         data = {
             "username": username,
             "first_name": firstname,
@@ -42,7 +42,7 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
         
         endpoint_address = SERVER_ADDRESS+'/users/register/student';
     }
-    else if(userType === COMPANY_REPRESENTATIVE_HEBREW){
+    else if(userType === COMPANY_REPRESENTATIVE){
         data = {
             "username": username,
             "first_name": firstname,
@@ -53,7 +53,7 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
         }
         endpoint_address = SERVER_ADDRESS+'/users/register/companyRep';
     }
-    else if(userType === MENTOR_HEBREW){
+    else if(userType === MENTOR){
         data = {
             "username": username,
             "first_name": firstname,
@@ -64,7 +64,7 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
         }
         endpoint_address = SERVER_ADDRESS+'/users/register/mentor';
     }
-    else if(userType === PROGRAM_COORDINATOR_HEBREW){
+    else if(userType === PROGRAM_COORDINATOR){
         data = {
             "username": username,
             "first_name": firstname,
@@ -75,7 +75,7 @@ export async function sendDetailsToServer({userType, username, firstname, lastna
         endpoint_address = SERVER_ADDRESS+'/users/register/programCoordinator';
     }
 
-    else if(userType === PROGRAM_MANAGER_HEBREW){
+    else if(userType === PROGRAM_MANAGER){
         data = {
             "username": username,
             "first_name": firstname,
