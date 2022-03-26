@@ -1,4 +1,3 @@
-import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
 export const getCompanies = (setCompanies) => {
@@ -14,22 +13,6 @@ export const getCompanies = (setCompanies) => {
         console.log("error");
     }));
 }
-
-const data = [
-    {
-        companyName: "google",
-        internshipName: "one",
-        about: "blabla",
-        requirements: "requirements"
-    },
-    {
-        companyName: "apple",
-        internshipName: "two",
-        about: "blabla",
-        requirements: "requirements"
-    }
-    ]
-fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
 export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
