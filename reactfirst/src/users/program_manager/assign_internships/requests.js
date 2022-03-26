@@ -15,8 +15,8 @@ export const getCompanies = (setCompanies) => {
 }
 
 
-export const getCompanyData = (setCompanyData) => {
-    fetch(SERVER_ADDRESS+`/company`,
+export const getCompanyData = (setCompanyData, companyName, internshipName) => {
+    fetch(SERVER_ADDRESS+`/company/${companyName}/${internshipName}/nominees`,
         {
             method: 'Get',
             mode: "cors",
@@ -29,4 +29,22 @@ export const getCompanyData = (setCompanyData) => {
 }
 
 
+
+
+export const assignIntern = (company, student) => {
+    const data = {
+        "companyName": company.companyName,
+        "internshipName": company.internshipName,
+        "studentName": student.username
+    }
+    fetch(SERVER_ADDRESS+`/assignIntern`,
+        {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => console.log(response));}
 
