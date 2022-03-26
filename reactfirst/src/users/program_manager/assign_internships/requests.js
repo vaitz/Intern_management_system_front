@@ -1,18 +1,21 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const getCompanies = (setCompanies) => {
-    fetch(SERVER_ADDRESS+'/getCompanies',
+export const getCompanies = ({setCompanies, programId, formatCompanies, setSelectedCompany}) => {
+
+    fetch(SERVER_ADDRESS+`/internships/${programId}`,
         {
             method: 'Get',
             mode: "cors",
         }).then(response => response.json().then(data => {
-            console.log(data);
-            setCompanies(data);
+            const formattedCompanies = formatCompanies(data);
+            setCompanies(formattedCompanies);
+            setSelectedCompany(formattedCompanies[0]);
         }
     ).catch(error => {
         console.log("error");
     }));
 }
+
 
 export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
