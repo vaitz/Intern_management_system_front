@@ -87,7 +87,7 @@ export const AssignInternships = ({programId}) => {
 
     return (
         <Fragment>
-            <BaseDropDown options={companies} placeholder={"בחר חברה"} value={selectedCompany} />
+            <BaseDropDown options={companies} placeholder={"בחר חברה"} value={selectedCompany} onChange={ company => setSelectedCompany(company)} />
             <Div>
                 <MaterialTable pageSize={30} title="מועמדים" data={companyData} columns={columns} icons={tableIcons}
                    options={
