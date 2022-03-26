@@ -1,18 +1,19 @@
+import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
 
-export const getPrioritiesAmount = (program, setPrioritiesAmount) => {
-    fetch(SERVER_ADDRESS+'/prioritiesAmount/'+program,
-        {
-            method: 'Get',
-            mode: "cors",
-        }).then(response => response.json().then(data => {
-            console.log(data);
-            setPrioritiesAmount(data);
-        }
-    ).catch(error => {
-        console.log("error");
-    }));
-}
+// export const getPrioritiesAmount = (program, setPrioritiesAmount) => {
+//     fetch(SERVER_ADDRESS+'/prioritiesAmount/'+program,
+//         {
+//             method: 'Get',
+//             mode: "cors",
+//         }).then(response => response.json().then(data => {
+//             console.log(data);
+//             setPrioritiesAmount(data);
+//         }
+//     ).catch(error => {
+//         console.log("error");
+//     }));
+// }
 
 export const getInternships = (program, setOptions) => {
     fetch(SERVER_ADDRESS+'/internships/'+program,
@@ -21,8 +22,7 @@ export const getInternships = (program, setOptions) => {
             mode: "cors",
         }).then((response) => {
             response.json().then(data => {
-                var tempData = [""];
-                tempData.push(...data.map((obj)=>{return obj.companyName + "- " + obj.internshipName}));
+                const tempData = data.map((internship, index) => ({value: index, object: internship, label: internship.companyName + "- " + internship.internshipName }))
                 setOptions(tempData);
             });
         }).catch(error => {
@@ -31,11 +31,10 @@ export const getInternships = (program, setOptions) => {
 }
         
 
-export function sendInternshipsToServer(username, prioritiesArr){
-    // prioritiesArr- suppose to be array of string order by the priorities of the user
+export function sendInternshipsToServer(username, priorities){
     const data = {
         "username": username,
-        "priorities": prioritiesArr,
+        "priorities": priorities,
     };
     fetch(SERVER_ADDRESS+'/candidate/internshipsPriorities',
         {
