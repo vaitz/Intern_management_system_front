@@ -1,4 +1,3 @@
-import fetchMock from 'fetch-mock';
 import {SERVER_ADDRESS} from '../../../config'
 
 // export const getPrioritiesAmount = (program, setPrioritiesAmount) => {
