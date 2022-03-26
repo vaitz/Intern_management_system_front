@@ -33,7 +33,7 @@ export const AssignInternships = ({programId}) => {
 
     useEffect(() => {
         if (selectedCompany.companyName) {
-            getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName);
+            getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
         }
     }, [selectedCompany])
 
@@ -79,8 +79,10 @@ export const AssignInternships = ({programId}) => {
     ];
 
     const onClick = () => {
-        console.log(selectedRow)
-        assignIntern(selectedCompany, selectedRow)
+        assignIntern(selectedCompany, selectedRow);
+        getCompanies({ setCompanies, programId, formatCompanies, setSelectedCompany });
+        getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
+        setSelectedRow(null);
     }
 
     return (

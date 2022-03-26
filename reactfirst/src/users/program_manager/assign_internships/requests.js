@@ -33,8 +33,8 @@ const data = [
     ]
 fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
-export const getCompanyData = (setCompanyData, companyName, internshipName) => {
-    fetch(SERVER_ADDRESS+`/company/${companyName}/${internshipName}/nominees`,
+export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
+    fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
         {
             method: 'Get',
             mode: "cors",
@@ -55,7 +55,7 @@ const studentsNames = [
     { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
 ];
 
-fetchMock.mock(SERVER_ADDRESS+'/company/google/one/nominees', studentsNames);
+fetchMock.mock(SERVER_ADDRESS+'/programManager/123/google/one/nominees', studentsNames);
 
 
 // todo: assignIntern request.
