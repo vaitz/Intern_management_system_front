@@ -71,7 +71,9 @@ const App = () => {
                         <Route path="/njsw36/internshipsPriorities">
                             <InternshipsPriorities program={programId} username={username}/>
                         </Route>
-                        <Route path="/njsw36/internships" component={Internships}/>
+                        <Route path="/njsw36/internships">
+                            <Internships program={programId}/>
+                        </Route>
                         <Route path="/njsw36/register" component={Register}/>
                         <Route path="/njsw36/login">
                             <Login setUserType={setUserType} setProgramId={setProgramId} setFirstName={setFirstName} setUsername={setUsername}/>

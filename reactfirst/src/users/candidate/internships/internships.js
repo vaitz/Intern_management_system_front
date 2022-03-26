@@ -9,11 +9,8 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   margin: 100px;
 `
-const program = "program1"
-const username = "may"
-// todo: get the program and the username from the cookie
 
-const Internships = () => {
+const Internships = ({program}) => {
     const [internships, setInternships] = useState([]);
     const [showInternships, setShowInternships] = useState([]);
 

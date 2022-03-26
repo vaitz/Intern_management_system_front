@@ -1,6 +1,6 @@
 import {SERVER_ADDRESS} from './config'
 import fetchMock from "fetch-mock";
-import {SYSTEM_MANAGER} from "./constants";
+import {ADVANCED_CANDIDATE, SYSTEM_MANAGER} from "./constants";
 
 export const logoutRequest  = (token) => {
     const data = {"Authorization": token};
@@ -35,5 +35,6 @@ export const getDetails  = (username,setUserType,setFirstName,setProgramId) => {
     }));
 }
 
+const data =  { userType: ADVANCED_CANDIDATE, session: 2, username: "user", firstName: "חי", program: "123" } ;
 fetchMock.mock(SERVER_ADDRESS+ `/users/logout` ,{data: ""});
-fetchMock.mock(SERVER_ADDRESS+ `/users/details/user` ,{status: 200, userType: SYSTEM_MANAGER, firstName: "hay", program: "star"});
+fetchMock.mock(SERVER_ADDRESS+ `/users/details/user`, data);
