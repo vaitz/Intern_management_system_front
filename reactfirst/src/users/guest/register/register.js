@@ -4,7 +4,7 @@ import PopUp from '../../../components/popup';
 import {validatePassword, validateUsername, validateEmptyFields, validateEmail} from './validations'
 import {getPrograms, sendDetailsToServer} from './requests';
 import { useHistory } from "react-router-dom";
-import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
+import {STUDENT, COMPANY_REPRESENTATIVE, MENTOR, PROGRAM_MANAGER, PROGRAM_COORDINATOR} from "../../../constants"
 
 
 const Container = styled.div`
@@ -51,7 +51,7 @@ const TextLink = styled.a`
       }
 `;
 
-const userTypes= [STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW]
+const userTypes= [STUDENT, COMPANY_REPRESENTATIVE, MENTOR, PROGRAM_MANAGER, PROGRAM_COORDINATOR]
 
 const Register = () => {
     let history = useHistory();
@@ -69,7 +69,7 @@ const Register = () => {
 
     // State for registration
     const [state , setState] = useState({
-        userType: STUDENT_HEBREW,
+        userType: STUDENT,
         username: "",
         firstname: "",
         lastname: "",
@@ -121,7 +121,7 @@ const Register = () => {
                         if(response.message === 'A user with the same username already exists'){
                             setError('שם המשתמש קיים במערכת, נא לבחור שם משתמש אחר');
                         }
-                        else if(state.userType === MENTOR_HEBREW){
+                        else if(state.userType === MENTOR){
                             setError('שם החברה לא קיים במערכת, נא לבחור שם חברה תקין');
                         } else{
                             setError('משהו השתבש.. נסה שנית');
@@ -239,7 +239,7 @@ const Register = () => {
                     onChange={handleChange}
                     required 
             />
-            {(state.userType === STUDENT_HEBREW) &&
+            {(state.userType === STUDENT) &&
                 <>
                     <Label>שם תוכנית התמחות:</Label>
                     <Select id="program" value={state.program} onChange={handleChange}>
@@ -249,7 +249,7 @@ const Register = () => {
 
             }
 
-            {state.userType === STUDENT_HEBREW && 
+            {state.userType === STUDENT &&
             <div>
                 <PopUp trigger={openPopUpStatement} setTrigger={clicked}>
                     <h3>הצהרת רצינות</h3>
@@ -269,7 +269,7 @@ const Register = () => {
                 </Button>
             </div>
             }
-            {(state.userType === COMPANY_REPRESENTATIVE_HEBREW || state.userType === MENTOR_HEBREW) && 
+            {(state.userType === COMPANY_REPRESENTATIVE || state.userType === MENTOR) &&
             <Container>
                 <Label>שם חברה:</Label>
                 <Input type="text" 
@@ -282,7 +282,7 @@ const Register = () => {
             </Container>
             }
 
-            {!(state.userType === STUDENT_HEBREW) && 
+            {!(state.userType === STUDENT) &&
             <Button 
                     type="submit"
                     onClick={handleSubmitClick}

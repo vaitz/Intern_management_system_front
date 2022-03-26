@@ -1,5 +1,5 @@
 import validator from 'validator'
-import {STUDENT_HEBREW, COMPANY_REPRESENTATIVE_HEBREW, MENTOR_HEBREW, PROGRAM_MANAGER_HEBREW, PROGRAM_COORDINATOR_HEBREW} from "../../../constants"
+import {STUDENT, COMPANY_REPRESENTATIVE, MENTOR} from "../../../constants"
 
 
 export function validatePassword(password){
@@ -16,10 +16,10 @@ export function validateEmail(email){
 
 export function validateEmptyFields(fields){
     for(const field in fields){
-        if(field === "companyName" && (fields.userType !== COMPANY_REPRESENTATIVE_HEBREW || fields.userType !== MENTOR_HEBREW)){
+        if(field === "companyName" && (fields.userType !== COMPANY_REPRESENTATIVE || fields.userType !== MENTOR)){
             continue;
         }
-        if(field === "program" && (fields.userType !== STUDENT_HEBREW)){
+        if(field === "program" && (fields.userType !== STUDENT)){
             continue;
         }
         if(validator.isEmpty(fields[field])){
