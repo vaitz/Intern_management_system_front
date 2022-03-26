@@ -102,7 +102,7 @@ const ReportHours =({username}) =>  {
     const onAddHour = (date, start, end) => {
         const startTime = getTime(start);
         const endTime = getTime(end);
-        setHours([...hours, {date: parseDate(date), startTime: startTime, endTime: endTime }])
+        setHours([...hours, {date: parseDate(date), startTime: startTime, endTime: endTime, totalTime: getHoursDiff(startTime, endTime) }])
     }
 
     const getHoursDiff = (startTime, endTime) => {
@@ -127,7 +127,7 @@ const ReportHours =({username}) =>  {
                     <div>{hour.date}</div>
                     <div>{hour.startTime}</div>
                     <div>{hour.endTime}</div>
-                    {getHoursDiff(hour.startTime, hour.endTime)}
+                    <div>{hour.totalTime}</div>
                 </Item>)}
                 <Separator/>
                 <div>שעות שנצברו:</div>
