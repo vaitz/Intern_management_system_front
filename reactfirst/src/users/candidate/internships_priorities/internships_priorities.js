@@ -1,62 +1,54 @@
 import React, {useEffect, useState} from 'react';
 import {getInternships, getPrioritiesAmount, sendInternshipsToServer} from "./requests";
-import Dropdown from "../../../components/dropdown";
 import Button from "../../../components/button";
 import styled from "styled-components";
+import Select from "react-select";
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 100px;
 `
-const program = "program1"
-const username = "may"
-// todo: get the program and the username from the cookie
+const Dropdown = styled(Select)`
+  width: 300px;
+`
 
-const InternshipsPriorities = () => {
+const InternshipsPriorities = ({username, program}) => {
+    const [error, setError] = useState(null);
     const [options, setOptions] = useState([]);
-    const [prioritiesAmount, setPrioritiesAmount] = useState(1);
-    const [selected, setSelected] = useState([]);
-    const [drops, setDrops] = useState([]);
+    const [select1, setSelect1] = useState({});
+    const [select2, setSelect2] = useState({});
+    const [select3, setSelect3] = useState({});
+
+    const handleChange1 = (selected) => {
+        console.log(selected);
+        setSelect1(selected);
+    }
+
+    const handleChange2 = (selected) => {
+        console.log(selected);
+        setSelect2(selected);
+    }
+
+    const handleChange3 = (selected) => {
+        console.log(selected);
+        setSelect3(selected);
+    }
 
     useEffect(() => {
-        getPrioritiesAmount(program, setPrioritiesAmount);
         getInternships(program, setOptions);
     }, [])
 
-    useEffect(()=>{
-        var tempDrops = [];
-        for (var i=1; i <= prioritiesAmount; i++) {
-            tempDrops.push(<h4 key={i}> עדיפות {i}-</h4>);
-            tempDrops.push(<Dropdown options={options} onMenuOpen={handleMenuOpen} onChange={handleChange} placeholder={"בחר התמחות"} width='200px' height="100px"/>);
-        }
-        setDrops(tempDrops);
-    }, [options])
-
-
-    const handleChange = (chosenOption) => {
-        console.log(chosenOption);
-        // pop from options
-        setOptions(options.filter((option)=> {return option !== chosenOption}));
-
-    }
-
-    const handleMenuOpen = (oldValue) => {
-                
-        // console.log(oldValue);
-        // todo: remove the last value from selected
-
-        // todo: add to options
-
-        // todo: make sure the selected in order of priorities
-    }
-
-    console.log(selected);
-
     const handleClick = () => {
-        sendInternshipsToServer(username, selected);
-        console.log(username);
-        console.log(selected);
+        setError(null);
+        const selected = [select1, select2, select3];
+        const unique = selected.filter((q, idx) => selected.indexOf(q) === idx);
+
+        if(selected.length !== unique.length){
+            setError(`אי אפשר לבחור התמחות כמה פעמים, נא לבחור התמחויות שונות`);
+        }else{
+            sendInternshipsToServer(username, selected);
+        }
     }
 
     return (
@@ -64,10 +56,22 @@ const InternshipsPriorities = () => {
             <div>
                 <h1>בחירת עדיפויות</h1>
                 <h3>נא לבחור את ההתמחויות לפי סדר עדיפות (יש חשיבות לסדר בחירה)</h3>
-                {drops}
-                <ButtonWrapper>
-                    <Button value={"שלח עדיפויות"} onClick={handleClick}/>
-                </ButtonWrapper>
+
+                <h4> עדיפות 1-</h4>
+                <Dropdown options={options} value={select1} onChange={handleChange1} placeholder={"בחר התמחות"} width='200px' height="100px"/>
+
+                <h4> עדיפות 2-</h4>
+                <Dropdown options={options} value={select2} onChange={handleChange2} placeholder={"בחר התמחות"} width='200px' height="100px"/>
+
+                <h4> עדיפות 3-</h4>
+                <Dropdown options={options} value={select3} onChange={handleChange3} placeholder={"בחר התמחות"} width='200px' height="100px"/>
+
+                <div>
+                    {error && <><small style={{ color: 'red' }}>{error}</small></>}
+                    <ButtonWrapper>
+                        <Button value={"שלח עדיפויות"} onClick={handleClick}/>
+                    </ButtonWrapper>
+                </div>
             </div>
         </div>
     );
