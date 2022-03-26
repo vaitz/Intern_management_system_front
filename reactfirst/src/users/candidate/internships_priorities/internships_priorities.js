@@ -47,7 +47,12 @@ const InternshipsPriorities = ({username, program}) => {
         if(selected.length !== unique.length){
             setError(`אי אפשר לבחור התמחות כמה פעמים, נא לבחור התמחויות שונות`);
         }else{
-            sendInternshipsToServer(username, selected);
+            const selectedObj = selected.map(obj=>({
+                companyName: obj.object.companyName,
+                internshipName: obj.object.internshipName
+            }));
+            console.log(selectedObj);
+            sendInternshipsToServer(username, selectedObj);
         }
     }
 
