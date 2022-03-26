@@ -37,7 +37,7 @@ export const assignIntern = (company, student) => {
     const data = {
         "companyName": company.companyName,
         "internshipName": company.internshipName,
-        "studentName": student.username
+        "username": student.username
     }
     fetch(SERVER_ADDRESS+`/assignIntern`,
         {
