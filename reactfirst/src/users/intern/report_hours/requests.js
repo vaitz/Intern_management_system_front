@@ -10,7 +10,7 @@ export const getWorkingHours = (username, setHours) => fetch(SERVER_ADDRESS+`/in
             setHours(data);
     })))
 
-const data = JSON.stringify([{date: "1/2/2022", startTime: "09:00", endTime: "11:00"}, {date: "2/2/2022", startTime: "08:00", endTime: "13:00"}]);
+const data = JSON.stringify([{date: "1/2/2022", startTime: "09:00", endTime: "11:00", totalTime: 2}, {date: "2/2/2022", startTime: "08:00", endTime: "13:00" ,totalTime: 5}]);
 fetchMock.mock(SERVER_ADDRESS+`/intern/getHours/user`, data);
 
 const bla = [
