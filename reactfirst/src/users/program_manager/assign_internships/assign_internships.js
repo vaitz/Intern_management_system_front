@@ -2,9 +2,10 @@ import React, {Fragment, useEffect, useState} from "react";
 import styled from "styled-components";
 import Dropdown from "../../../components/dropdown";
 import MaterialTable from "material-table";
-import {getCompanies, getCompanyData} from "./requests";
+import {assignIntern, getCompanies, getCompanyData} from "./requests";
 import tableIcons from "./MaterialTableIcons";
 import Button from "../../../components/button";
+import Select from "react-select";
 
 const Div = styled.div`
   width: 400px;
@@ -12,44 +13,51 @@ const Div = styled.div`
   margin-top: 100px;
   display: flex;
 `
-// const Button = styled.button`
-//   width: auto;
-//   background: #7A5CFA;
-//   height: 50px;
-//   margin: 150px 400px 200px;
-//   color: #FFFFFF
-//
+const BaseDropDown = styled(Select)`
+  width: 300px;
+`
 
 const ButtonWrapper = styled.div`
   margin: 150px 400px 200px;
 `
 
-export const AssignInternships = () => {
+export const AssignInternships = ({programId}) => {
     const [companies, setCompanies] = useState([]);
-    const [selectedCompany, setSelectedCompany] = useState();
+    const [selectedCompany, setSelectedCompany] = useState({});
     const [companyData, setCompanyData] = useState();
     const [selectedRow, setSelectedRow] = useState(null);
 
-    console.log("assign" ,companies);
-
     useEffect(() => {
-        getCompanies(setCompanies);
+        getCompanies({ setCompanies, programId, formatCompanies, setSelectedCompany });
     }, [])
 
     useEffect(() => {
-        setSelectedCompany(companies[0])
-    }, [companies])
-
-    useEffect(() => {
-        getCompanyData(setCompanyData);
+        if (selectedCompany.companyName) {
+            getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName);
+        }
     }, [selectedCompany])
 
-    // const options = [{value: 1, label: "מאי וייץ"}, { value: 2, label: "חי מתתיהו" }] ;
+    const formatCompanies = (data) =>
+        data.map((company, index) => (
+            {
+                ...company,
+                label: company.internshipName,
+                value: index
+            }
+        ))
 
     const columns = [
         {
-            title: "שם",
-            field: "name",
+            title: "שם פרטי",
+            field: "firstName",
+            cellStyle: {
+                textAlign: "center",
+                width: "200px"
+            }
+        },
+        {
+            title: "שם משפחה",
+            field: "lastName",
             cellStyle: {
                 textAlign: "center",
                 width: "200px"
@@ -60,7 +68,7 @@ export const AssignInternships = () => {
             field: "assign",
             render: rowData => (
                 <>
-                    <input type="checkbox"/>
+                    <input type="radio" checked={rowData?.tableData.id === selectedRow?.tableData.id}/>
                 </>
             ),
             cellStyle: {
@@ -70,9 +78,14 @@ export const AssignInternships = () => {
         }
     ];
 
+    const onClick = () => {
+        console.log(selectedRow)
+        assignIntern(selectedCompany, selectedRow)
+    }
+
     return (
         <Fragment>
-            <Dropdown options={companies} placeholder={"בחר חברה"} width='200px' height="100px"/>
+            <BaseDropDown options={companies} placeholder={"בחר חברה"} value={selectedCompany} />
             <Div>
                 <MaterialTable pageSize={30} title="מועמדים" data={companyData} columns={columns} icons={tableIcons}
                    options={
@@ -87,11 +100,11 @@ export const AssignInternships = () => {
                                textAlign: "center",
                            }
                        }}
-                   onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow.tableData.id))}
+                   onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow))}
                 />
             </Div>
             <ButtonWrapper>
-                <Button value={"שבץ להתמחות"}/>
+                <Button value={"שבץ להתמחות"} onClick={onClick} disabled={!selectedRow}/>
             </ButtonWrapper>
         </Fragment>
     );

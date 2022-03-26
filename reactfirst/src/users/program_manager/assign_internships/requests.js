@@ -1,26 +1,40 @@
 import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
-export const getCompanies = (setCompanies) => {
-    fetch(SERVER_ADDRESS+'/getCompanies',
+export const getCompanies = ({setCompanies, programId, formatCompanies, setSelectedCompany}) => {
+
+    fetch(SERVER_ADDRESS+`/internships/${programId}`,
         {
             method: 'Get',
             mode: "cors",
         }).then(response => response.json().then(data => {
-            console.log(data);
-            setCompanies(data);
+            const formattedCompanies = formatCompanies(data);
+            setCompanies(formattedCompanies);
+            setSelectedCompany(formattedCompanies[0]);
         }
     ).catch(error => {
         console.log("error");
     }));
 }
 
-// const companies = [{value: 1, label: "פייסבוק"}, { value: 2, label: "גוגל" },{ value: 2, label: "אפל" } ]
-const companies = ["פייסבוק", "גוגל" ,"אפל"]
-fetchMock.mock(SERVER_ADDRESS+'/getCompanies', companies);
+const data = [
+    {
+        companyName: "google",
+        internshipName: "one",
+        about: "blabla",
+        requirements: "requirements"
+    },
+    {
+        companyName: "apple",
+        internshipName: "two",
+        about: "blabla",
+        requirements: "requirements"
+    }
+    ]
+fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
-export const getCompanyData = (setCompanyData) => {
-    fetch(SERVER_ADDRESS+`/company`,
+export const getCompanyData = (setCompanyData, companyName, internshipName) => {
+    fetch(SERVER_ADDRESS+`/company/${companyName}/${internshipName}/nominees`,
         {
             method: 'Get',
             mode: "cors",
@@ -33,14 +47,34 @@ export const getCompanyData = (setCompanyData) => {
 }
 
 const studentsNames = [
-    { name: "חי מתתיהו"},
-    { name: "מאי וייץ"},
-    { name: "יובל מור"},
-    { name: "ליל ג'ו" },
-    { name: "ארנון סטורם"},
-    { name: "טל בשן" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
 ];
 
-// fetchMock.mock(SERVER_ADDRESS+'/company', studentsNames);
+fetchMock.mock(SERVER_ADDRESS+'/company/google/one/nominees', studentsNames);
 
 
+// todo: assignIntern request.
+
+export const assignIntern = (company, student) => {
+    const data = {
+        "companyName": company.companyName,
+        "internshipName": company.internshipName,
+        "studentName": student.username
+    }
+    fetch(SERVER_ADDRESS+`/assignIntern`,
+        {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => console.log(response));}
+
+fetchMock.mock(SERVER_ADDRESS + '/assignIntern', {status: 200});
