@@ -17,21 +17,21 @@ export const getCompanies = ({setCompanies, programId, formatCompanies, setSelec
     }));
 }
 
-// const data = [
-//     {
-//         companyName: "google",
-//         internshipName: "one",
-//         about: "blabla",
-//         requirements: "requirements"
-//     },
-//     {
-//         companyName: "apple",
-//         internshipName: "two",
-//         about: "blabla",
-//         requirements: "requirements"
-//     }
-//     ]
-// fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
+const data = [
+    {
+        companyName: "google",
+        internshipName: "one",
+        about: "blabla",
+        requirements: "requirements"
+    },
+    {
+        companyName: "apple",
+        internshipName: "two",
+        about: "blabla",
+        requirements: "requirements"
+    }
+    ]
+fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
 export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
@@ -47,12 +47,12 @@ export const getCompanyData = (setCompanyData, companyName, internshipName, prog
 }
 
 const studentsNames = [
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", status: "?" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: true },
 ];
 
 fetchMock.mock(SERVER_ADDRESS+'/programManager/123/google/one/nominees', studentsNames);

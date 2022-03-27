@@ -46,5 +46,5 @@ export const loginRequest = (setLoading, setError, username, password, setUserTy
 }));
 }
 
-const data =  { userType: ADVANCED_CANDIDATE, session: 2, username: "user", firstName: "חי", program: "123" } ;
+const data =  { userType: PROGRAM_MANAGER, session: 2, username: "user", firstName: "חי", program: "123" } ;
 fetchMock.mock(SERVER_ADDRESS+'/users/login', data);

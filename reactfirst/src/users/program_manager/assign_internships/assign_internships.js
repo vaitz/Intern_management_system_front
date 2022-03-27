@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
 export const AssignInternships = ({programId}) => {
     const [companies, setCompanies] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState({});
-    const [companyData, setCompanyData] = useState();
+    const [companyData, setCompanyData] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
 
     useEffect(() => {
@@ -34,6 +34,10 @@ export const AssignInternships = ({programId}) => {
     useEffect(() => {
         if (selectedCompany.companyName) {
             getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
+            const selected = companyData.filter(obj=>obj.assigned);
+            if(selected.length > 0){
+                setSelectedRow(selected[0]);
+            }
         }
     }, [selectedCompany])
 
@@ -82,7 +86,7 @@ export const AssignInternships = ({programId}) => {
         assignIntern(selectedCompany, selectedRow);
         getCompanies({ setCompanies, programId, formatCompanies, setSelectedCompany });
         getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
-        setSelectedRow(null);
+        setSelectedRow(selectedCompany);
     }
 
     return (
@@ -102,6 +106,7 @@ export const AssignInternships = ({programId}) => {
                                textAlign: "center",
                            }
                        }}
+                   defaultValue={selectedRow}
                    onRowClick={((evt, selectedRow) => setSelectedRow(selectedRow))}
                 />
             </Div>
