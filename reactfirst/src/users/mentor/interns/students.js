@@ -17,7 +17,7 @@ const Students = ({ username }) => {
     const columns = [
         {
             title: "שם פרטי",
-            field: "firstName",
+            field: "first_name",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
@@ -25,15 +25,23 @@ const Students = ({ username }) => {
         },
         {
             title: "שם משפחה",
-            field: "lastName",
+            field: "last_name",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
             }
         },
         {
-            title: "תעודת זהות",
-            field: "id",
+            title: "אימייל",
+            field: "email",
+            cellStyle: {
+                textAlign: "center",
+                width: "150px"
+            }
+        },
+        {
+            title: "התמחות",
+            field: "internship",
             cellStyle: {
                 textAlign: "center",
                 width: "150px"
