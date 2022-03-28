@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {createInternship, getPrograms} from "./requests";
 import PopUp from "../../../components/popup";
 import {Select} from "../../guest/register/register";
+import {useHistory} from "react-router-dom";
 
 const Label =  styled.text`
   font-size: 18px;
@@ -28,26 +29,27 @@ const Button = styled.button`
   color: #FFFFFF
 `
 
-const CreateInternshipCom = () => {
+const CreateInternshipCom = ({username}) => {
     const [program, setProgram] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    let history = useHistory();
 
     useEffect(() => {
         getPrograms(setPrograms);
     }, []);
 
     const onSubmit = () => {
-        createInternship(program,internshipName,internshipDescription,demands)
+        createInternship(program,internshipName,internshipDescription,demands,username)
         setPopup(true);
     }
 
     return (
         <Container>
-            { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
+            { popup && <PopUp trigger={popup} setTrigger={() => history.push("/njsw36/")}>
                 {`נוצרה ההתמחות:  "${internshipName}"  `}
             </PopUp>}
             <Label>שם התוכנית</Label>

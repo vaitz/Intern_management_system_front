@@ -1,12 +1,13 @@
 import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (program,internshipName,internshipDescription,demands) => {
+export const createInternship = (program,internshipName,internshipDescription,demands, username) => {
     const data = {
         "program": program,
         "internshipName": internshipName,
         "about": internshipDescription,
         "requirements": demands,
+        "username": username,
     }
     const response = fetch(SERVER_ADDRESS+'/companyRep/createInternship',
         {

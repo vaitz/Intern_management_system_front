@@ -66,7 +66,9 @@ const App = () => {
                         <Route path="/njsw36/reportHours">
                             <ReportHours username={username} />
                         </Route>
-                        <Route path="/njsw36/createInternship/company" component={CreateInternshipCom}/>
+                        <Route path="/njsw36/createInternship/company">
+                            <CreateInternshipCom username={username} />
+                        </Route>
                         <Route path="/njsw36/createInternship/manager" component={CreateInternship}/>
                         <Route path="/njsw36/internshipsPriorities">
                             <InternshipsPriorities program={programId} username={username}/>
