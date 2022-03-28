@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Select from 'react-select';
 import {createProgram, getProgramManagers} from "./requests";
 import PopUp from "../../../components/popup";
+import {useHistory} from "react-router-dom";
 
 const Label =  styled.text`
   font-size: 18px;
@@ -48,6 +49,7 @@ const CreateProgram = () => {
     const [hoursRequired, setHoursRequired] = useState("");
     const [prioritiesAmount, setPrioritiesAmount] = useState()
     const [popup, setPopup] = useState(false);
+    let history = useHistory();
 
     const formatOptions = (options) => (
         options.map(option => ({value: option.id, label: option.first_name + " " + option.last_name }))
@@ -64,7 +66,7 @@ const CreateProgram = () => {
 
     return (
         <Container>
-            { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
+            { popup && <PopUp trigger={popup} setTrigger={() => history.push("/njsw36/")}>
                 {`נוצרה תוכנית התמחות חדשה:  "${internshipName}"  `}
             </PopUp>}
             <Label>שם תוכנית התמחות</Label>
