@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {getInternships, getPrioritiesAmount, sendInternshipsToServer} from "./requests";
+import {getInternships, sendInternshipsToServer} from "./requests";
 import Button from "../../../components/button";
 import styled from "styled-components";
 import Select from "react-select";
+import PopUp from "../../../components/popup";
+import {useHistory} from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -19,6 +21,8 @@ const InternshipsPriorities = ({username, program}) => {
     const [select1, setSelect1] = useState({});
     const [select2, setSelect2] = useState({});
     const [select3, setSelect3] = useState({});
+    const [popup, setPopup] = useState(false);
+    let history = useHistory();
 
     const handleChange1 = (selected) => {
         console.log(selected);
@@ -53,12 +57,16 @@ const InternshipsPriorities = ({username, program}) => {
             }));
             console.log(selectedObj);
             sendInternshipsToServer(username, selectedObj);
+            setPopup(true);
         }
     }
 
     return (
         <div>
             <div>
+                { popup && <PopUp trigger={popup} setTrigger={() => history.push("/njsw36/")}>
+                    {'בחירת התמחויות לפי סדר עדיפויות בוצע בהצלחה!'}
+                </PopUp>}
                 <h1>בחירת עדיפויות</h1>
                 <h3>נא לבחור את ההתמחויות לפי סדר עדיפות (יש חשיבות לסדר בחירה)</h3>
 
