@@ -4,6 +4,7 @@ import {createInternship} from "./requests";
 import PopUp from "../../../components/popup";
 import {Select} from "../../guest/register/register";
 import {getPrograms} from "../../company_representive/create_intership/requests";
+import {useHistory} from "react-router-dom";
 
 
 const Label =  styled.text`
@@ -38,6 +39,7 @@ const CreateInternship = () => {
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    let history = useHistory();
 
     useEffect(() => {
         getPrograms(setPrograms);
@@ -50,7 +52,7 @@ const CreateInternship = () => {
 
     return (
         <Container>
-            { popup && <PopUp trigger={popup} setTrigger={() => setPopup(false)}>
+            { popup && <PopUp trigger={popup} setTrigger={() => history.push("/njsw36/")}>
                 {`נוצרה ההתמחות:  "${internshipName}"  `}
             </PopUp>}
             <Label>שם התוכנית</Label>
