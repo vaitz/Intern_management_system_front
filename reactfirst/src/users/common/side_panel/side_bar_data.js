@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaEnvelopeOpenText, FaRegAddressCard, FaBriefcase, FaCalendarCheck, FaCalendarDay, FaCog, 
     FaFileUpload, FaCreditCard, FaRegEdit, FaPaste, FaSignInAlt, FaClipboard, FaPeopleArrows, 
-    FaUserFriends, FaUserCheck, FaChartBar} from 'react-icons/fa';
+    FaUserFriends, FaUserCheck, FaChartBar, FaBlackTie} from 'react-icons/fa';
 import {AiFillHome} from 'react-icons/ai';
 import {IoIosPaper, IoMdHelpCircle} from 'react-icons/io';
 import {
@@ -75,7 +75,7 @@ export const SidebarData = {
         {
             title: 'צפייה בהתמחויות',
             path: '/njsw36/internships',
-            icon: <FaRegEdit />,
+            icon: <FaBlackTie />,
             cName: 'nav-text'
         },
         {
