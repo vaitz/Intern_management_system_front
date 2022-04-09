@@ -1,5 +1,4 @@
 import {SERVER_ADDRESS} from '../../../config'
-import fetchMock from "fetch-mock";
 
 export const changePassRequest = async (setLoading, setError, username, oldPassword, newPassword) => {
     const data = {
@@ -23,5 +22,3 @@ export const changePassRequest = async (setLoading, setError, username, oldPassw
     }
     return false;
 }
-
-fetchMock.mock(SERVER_ADDRESS+'/users/changePsw', {status: 200});
