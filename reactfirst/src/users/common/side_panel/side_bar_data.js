@@ -1,9 +1,9 @@
 import React from 'react';
-import {FaEnvelopeOpenText, FaRegAddressCard, FaBriefcase, FaCalendarCheck, FaCalendarDay, FaCog, 
+import {FaRegAddressCard, FaBriefcase, FaCalendarCheck, FaCalendarDay, FaCog,
     FaFileUpload, FaCreditCard, FaRegEdit, FaPaste, FaSignInAlt, FaClipboard, FaPeopleArrows, 
-    FaUserFriends, FaUserCheck, FaChartBar, FaBlackTie} from 'react-icons/fa';
+    FaUserFriends, FaUserCheck, FaChartBar, FaBlackTie, FaUserLock} from 'react-icons/fa';
 import {AiFillHome} from 'react-icons/ai';
-import {IoIosPaper, IoMdHelpCircle} from 'react-icons/io';
+import {IoIosPaper} from 'react-icons/io';
 import {
     ADVANCED_CANDIDATE,
     COMPANY_REPRESENTATIVE, GUEST,
@@ -56,6 +56,12 @@ export const SidebarData = {
             path: '/njsw36/',
             icon: <FaCreditCard />,
             cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
+            cName: 'nav-text'
         }
     ],
 
@@ -82,6 +88,12 @@ export const SidebarData = {
             title: 'בחירת התמחויות',
             path: '/njsw36/internshipsPriorities',
             icon: <FaRegEdit />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
             cName: 'nav-text'
         }
     ],
@@ -110,6 +122,12 @@ export const SidebarData = {
             path: '/njsw36/',
             icon: <FaFileUpload />,
             cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
+            cName: 'nav-text'
         }
     ],
 
@@ -137,6 +155,12 @@ export const SidebarData = {
             path: '/njsw36/',
             icon: <FaFileUpload />,
             cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
+            cName: 'nav-text'
         }
     ],
 
@@ -163,6 +187,12 @@ export const SidebarData = {
             title: 'צפה במועמדים',
             path: '/njsw36/',
             icon: <FaPeopleArrows />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
             cName: 'nav-text'
         }
     ],
@@ -203,6 +233,12 @@ export const SidebarData = {
             path: '/njsw36/',
             icon: <FaChartBar />,
             cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
+            cName: 'nav-text'
         }
     ],
 
@@ -242,6 +278,12 @@ export const SidebarData = {
             path: '/njsw36/',
             icon: <FaChartBar />,
             cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
+            cName: 'nav-text'
         }
     ],
 
@@ -268,6 +310,12 @@ export const SidebarData = {
             title: 'סטטיסטיקות',
             path: '/njsw36/',
             icon: <FaChartBar />,
+            cName: 'nav-text'
+        },
+        {
+            title: 'עדכון סיסמה',
+            path: '/njsw36/changePass',
+            icon: <FaUserLock />,
             cName: 'nav-text'
         }
     ]
