@@ -2,9 +2,9 @@ import {SERVER_ADDRESS} from '../../../config'
 
 export const changePassRequest = async (setLoading, setError, username, oldPassword, newPassword) => {
     const data = {
-        username: username.value,
-        old_password: oldPassword.value,
-        new_password: newPassword.value
+        "username": username,
+        "old_password": oldPassword.value,
+        "new_password": newPassword.value
     }
     const res = await fetch(SERVER_ADDRESS+'/users/changePsw',
         {
