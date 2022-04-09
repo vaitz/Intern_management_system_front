@@ -20,7 +20,7 @@ function ChangePass({username}) {
     const successMessage = () => {
         return (
             <PopUp trigger={submitted} setTrigger={()=>{history.push('/njsw36/');}}>
-                <h3>עדכון הסיסמא בוצע בהצלחה!</h3>
+                <h3>עדכון הסיסמה בוצע בהצלחה!</h3>
                 <button onClick={()=>{history.push('/njsw36/');}}>ok</button>
             </PopUp>
         );
@@ -32,13 +32,13 @@ function ChangePass({username}) {
             setError(`אסור להשאיר שדות ריקים`);
         }else{
             if(password.value === oldPassword.value) {
-                setError('הסיסמא החדשה חייבת להיות שונה מהישנה');
+                setError('הסיסמה החדשה חייבת להיות שונה מהישנה');
             } else {
                 if (password.value !== confirmPassword.value) {
                     setError('הסיסמאות שהוקלדו לא תאומות');
                 } else{
                     if(!validatePassword(password.value)){
-                        setError('סיסמא לא תקינה, יש להקפיד על ההנחיות לסיסמא');
+                        setError('סיסמה לא תקינה, יש להקפיד על ההנחיות לסיסמה');
                     } else {
                         const response = await changePassRequest(setLoading, setError, username, oldPassword, password, history);
                         // const response = await changePassRequest(setLoading, setError, username, oldPassword, password, history);
@@ -56,7 +56,7 @@ function ChangePass({username}) {
             {successMessage()}
             <div>
                 <h1>עדכון סיסמה</h1>
-                <label style={{ fontSize: 14 }}>הסיסמא החדשה צריכה להכיל לפחות 6 תווים ולשלב בתוכה אותיות גדולות וקטנות באנגלית ומספרים</label>
+                <label style={{ fontSize: 14 }}>הסיסמה החדשה צריכה להכיל לפחות 6 תווים ולשלב בתוכה אותיות גדולות וקטנות באנגלית ומספרים</label>
                 <br /><br />
             </div>
             <div>
