@@ -82,7 +82,7 @@ const ApproveHours = ({ username }) => {
     )
 
     const formatInterns = (interns) => {
-        return interns.map((intern, index) => ({...intern, value: index, label: intern.firstName + " " +  intern.lastName})
+        return interns.map((intern, index) => ({...intern, value: index, label: intern.first_name + " " +  intern.last_name})
         )
     }
 

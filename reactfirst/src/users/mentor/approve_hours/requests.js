@@ -11,12 +11,12 @@ export const getInterns = (username, setInterns, formatInterns) => fetch(SERVER_
     })));
 
 const studentsNames1 = [
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
+    { username: "hay", first_name: "חי", last_name: "מתתיהו", email: "someEmail@gmail.com", internship: "some internship" },
 ];
 
 fetchMock.mock(SERVER_ADDRESS+'/mentor/getInterns/user', studentsNames1);
