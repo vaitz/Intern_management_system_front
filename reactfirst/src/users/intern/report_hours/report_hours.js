@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -39,11 +39,11 @@ const HeaderWrapper = styled.div`
 `
 
 const StartTime = styled.div`
-  margin-right: 50px  ;
+  margin-right: 24px  ;
 `
 
 const EndTime = styled.div`
-  margin-right: 20px
+  margin-right: 4px
 `
 
 const Button = styled.button`
@@ -63,6 +63,10 @@ const Separator = styled.div`
   margin-bottom: 50px;
 `
 
+const Approved = styled.div`
+  margin-left: 4px;
+`
+
 const ReportHours =({username}) =>  {
     const [date, setDate] = useState(new Date());
     const [start, setStart] = useState(new Date());
@@ -74,8 +78,6 @@ const ReportHours =({username}) =>  {
     useEffect(() => {
         getWorkingHours(username, setHours);
     }, [])
-
-    console.log(hours)
 
     useEffect(() => {
         let num = 0;
@@ -121,13 +123,15 @@ const ReportHours =({username}) =>  {
                         <StartTime>שעת התחלה</StartTime>
                         <EndTime>שעת סיום</EndTime>
                         <div>שעות עבודה</div>
+                        <Approved>אושר</Approved>
                     </Row>
                 </HeaderWrapper>
                 {hours.map(hour => <Item>
                     <div>{hour.date}</div>
                     <div>{hour.startTime}</div>
                     <div>{hour.endTime}</div>
-                    <div>{hour.totalTime}</div>
+                    <div>{getHoursDiff(hour.startTime, hour.endTime)}</div>
+                    {hour.approved ? <div>כן</div> :  <div>לא</div>}
                 </Item>)}
                 <Separator/>
                 <div>שעות שנצברו:</div>

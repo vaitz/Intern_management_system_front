@@ -38,7 +38,7 @@ const data1 = JSON.stringify([
     {id:5, date: "5/2/2022", startTime: "11:00", endTime: "13:00" , approved: false}
 ]);
 
-fetchMock.mock(SERVER_ADDRESS+`/intern/getHours/hay`, data1);
+// fetchMock.mock(SERVER_ADDRESS+`/intern/getHours/hay`, data1);
 
 export const approvedHours = (mentorUsername, internUsername, hours) => {
     const data = {
