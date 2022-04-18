@@ -64,9 +64,9 @@ const CreateInternship = () => {
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>תיאור ההתמחות</Label>
-            <Input type="text" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
+            <textarea rows="4" cols="50" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
-            <Input type="text" value={demands} onChange={e => setDemands(e.target.value)}/>
+            <textarea rows="4" cols="50" value={demands} onChange={e => setDemands(e.target.value)}/>
             <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands && program)}>צור התמחות</Button>
         </Container>
     )
