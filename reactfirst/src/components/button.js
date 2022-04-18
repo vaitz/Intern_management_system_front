@@ -8,8 +8,8 @@ const BaseButton = styled.button`
   color: #FFFFFF
 `;
 
-const Button = ({onClick, value}) => {
-    return <BaseButton onClick={onClick}>
+const Button = ({onClick, value, disabled}) => {
+    return <BaseButton onClick={onClick} disabled={disabled}>
         {value}
     </BaseButton>
 }
