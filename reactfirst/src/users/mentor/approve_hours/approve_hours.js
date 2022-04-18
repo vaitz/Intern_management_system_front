@@ -130,7 +130,7 @@ const ApproveHours = ({ username }) => {
                     <div>{startTime}</div>
                     <div>{endTime}</div>
                     <div>{getHoursDiff(startTime, endTime)}</div>
-                    {approved === "no" ? <input id={id} type={"checkbox"} onClick={() => handleOnChange(index)}/> : <MarginDiv /> }
+                    {!approved ? <input id={id} type={"checkbox"} onClick={() => handleOnChange(index)}/> : <MarginDiv /> }
                 </Item>)}
             <ButtonWrapper>
                 <Button value={"אישור"} onClick={onApprove} disabled={disableButton}/>
