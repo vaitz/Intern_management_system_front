@@ -296,7 +296,7 @@ export const SidebarData = {
         },
         {
             title: 'תוכניות קיימות',
-            path: '/njsw36/',
+            path: '/njsw36/programs',
             icon: <IoIosPaper />,
             cName: 'nav-text'
         },
