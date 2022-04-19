@@ -82,7 +82,7 @@ const Programs = () => {
         <>
             <MaterialTable
                 pageSize={30}
-                title="תוכניות"
+                title="תוכניות קיימות"
                 data={programs}
                 columns={columns}
                 icons={tableIcons}
