@@ -17,29 +17,30 @@ export const getCompanies = ({setCompanies, programId, formatCompanies, setSelec
     }));
 }
 
-// const data = [
-//     {
-//         companyName: "google",
-//         internshipName: "one",
-//         about: "blabla",
-//         requirements: "requirements"
-//     },
-//     {
-//         companyName: "apple",
-//         internshipName: "two",
-//         about: "blabla",
-//         requirements: "requirements"
-//     }
-//     ]
-// fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
+const data = [
+    {
+        companyName: "google",
+        internshipName: "one",
+        about: "blabla",
+        requirements: "requirements"
+    },
+    {
+        companyName: "apple",
+        internshipName: "two",
+        about: "blabla",
+        requirements: "requirements"
+    }
+    ]
+fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
-export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
+export const getCompanyData = (setCompanyData, companyName, internshipName, program, setRow) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
         {
             method: 'Get',
             mode: "cors",
         }).then(response => response.json().then(data => {
             setCompanyData(data);
+            setRow(data);
         }
     ).catch(error => {
         console.log("getCompany" ,"error");
@@ -47,28 +48,25 @@ export const getCompanyData = (setCompanyData, companyName, internshipName, prog
 }
 
 const studentsNames1 = [
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי", lastName: "מתתיהו" },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: true },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי", lastName: "מתתיהו", assigned: false },
 ];
 
 const studentsNames2 = [
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
-    { username: "hay", firstName: "חי2", lastName: "מתתיהו" },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: true },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: false },
+    { username: "hay", firstName: "חי2", lastName: "מתתיהו", assigned: false },
 ];
 
 fetchMock.mock(SERVER_ADDRESS+'/programManager/123/google/one/nominees', studentsNames1);
 fetchMock.mock(SERVER_ADDRESS+'/programManager/123/apple/two/nominees', studentsNames2);
-
-
-// todo: assignIntern request.
 
 export const assignIntern = (company, student) => {
     const data = {
