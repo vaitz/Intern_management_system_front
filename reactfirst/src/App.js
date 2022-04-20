@@ -21,6 +21,7 @@ import {getDetails} from "./requests";
 import MentorStudents from "./users/mentor/interns/students";
 import ChangePass from "./users/common/changePass/changePass";
 import ApproveHours from "./users/mentor/approve_hours/approve_hours";
+import Programs from "./users/system_manager/programs/programs";
 
 
 const Container = styled.div`
@@ -55,6 +56,9 @@ const App = () => {
                 <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
                 <ContentWrapper>
                     <Switch>
+                        <Route path="/njsw36/programs">
+                            <Programs />
+                        </Route>
                         <Route path="/njsw36/mentor/approveHours">
                             <ApproveHours username={username} />
                         </Route>

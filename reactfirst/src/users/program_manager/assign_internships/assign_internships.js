@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
 import styled from "styled-components";
-import Dropdown from "../../../components/dropdown";
 import MaterialTable from "material-table";
 import {assignIntern, getCompanies, getCompanyData} from "./requests";
 import tableIcons from "./MaterialTableIcons";
@@ -33,9 +32,16 @@ export const AssignInternships = ({programId}) => {
 
     useEffect(() => {
         if (selectedCompany.companyName) {
-            getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
+            getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId, setRow);
         }
     }, [selectedCompany])
+
+    const setRow = (data) => {
+        for (let index = 0; index < data.length; index++) {
+            if(data[index].assigned)
+                setSelectedRow(data[index]);
+        }
+    }
 
     const formatCompanies = (data) =>
         data.map((company, index) => (
