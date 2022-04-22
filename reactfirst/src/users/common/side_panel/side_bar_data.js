@@ -146,7 +146,7 @@ export const SidebarData = {
         },
         {
             title: 'אישור דיווח שעות',
-            path: '/njsw36/',
+            path: '/njsw36/mentor/approveHours',
             icon: <FaCalendarCheck />,
             cName: 'nav-text'
         },
@@ -296,7 +296,7 @@ export const SidebarData = {
         },
         {
             title: 'תוכניות קיימות',
-            path: '/njsw36/',
+            path: '/njsw36/programs',
             icon: <IoIosPaper />,
             cName: 'nav-text'
         },

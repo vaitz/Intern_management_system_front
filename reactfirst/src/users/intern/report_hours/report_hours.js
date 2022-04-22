@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -39,11 +39,11 @@ const HeaderWrapper = styled.div`
 `
 
 const StartTime = styled.div`
-  margin-right: 50px  ;
+  margin-right: 24px  ;
 `
 
 const EndTime = styled.div`
-  margin-right: 20px
+  margin-right: 4px
 `
 
 const Button = styled.button`
@@ -63,6 +63,10 @@ const Separator = styled.div`
   margin-bottom: 50px;
 `
 
+const Approved = styled.div`
+  margin-left: 4px;
+`
+
 const ReportHours =({username}) =>  {
     const [date, setDate] = useState(new Date());
     const [start, setStart] = useState(new Date());
@@ -75,18 +79,25 @@ const ReportHours =({username}) =>  {
         getWorkingHours(username, setHours);
     }, [])
 
-    console.log(hours)
-
     useEffect(() => {
-        let num = 0;
-        hours.forEach(hour => num = num + getHoursDiff(hour.startTime, hour.endTime))
+        let num = "00:00";
+        hours.forEach(hour => num = addTime(num, hour.totalTime))
         setHoursSoFar(num);
     }, [hours])
 
+    const addTime = (time1, time2) => {
+        const splitTime1 = time1.split(":");
+        const splitTime2 = time2.split(":");
+        const time1Hours = parseInt(splitTime1[0]);
+        const time1Minutes = parseInt(splitTime1[1]);
+        const time2Hours = parseInt(splitTime2[0]);
+        const time2Minutes = parseInt(splitTime2[1]);
+        if (time1Minutes + time2Minutes > 60){
+            return `${('0' + (time1Hours + time2Hours + 1)).slice(-2)}:${('0'+ (time1Minutes + time2Minutes - 60)).slice(-2)}`
+        }
+        return `${('0' + (time1Hours + time2Hours)).slice(-2)}:${('0' + (time1Minutes + time2Minutes)).slice(-2)}`
 
-    useEffect(() => {
-        reportHours(username, hours);
-    }, [hours])
+    }
 
     const getTime = (time) => {
         return `${time.getHours()}:${time.getMinutes()}`;
@@ -102,13 +113,17 @@ const ReportHours =({username}) =>  {
     const onAddHour = (date, start, end) => {
         const startTime = getTime(start);
         const endTime = getTime(end);
-        setHours([...hours, {date: parseDate(date), startTime: startTime, endTime: endTime, totalTime: getHoursDiff(startTime, endTime) }])
+        const newHours = [...hours, { date: parseDate(date), startTime: startTime, endTime: endTime, totalTime: getHoursDiff(startTime, endTime), approved: false }]
+        setHours(newHours);
+        reportHours(username, newHours);
     }
 
     const getHoursDiff = (startTime, endTime) => {
-        const timeStart = new Date("01/01/2007 " + startTime).getHours();
-        const timeEnd = new Date("01/01/2007 " + endTime).getHours();
-        return timeEnd - timeStart;
+        const timeStart = new Date("01/01/2007 " + startTime).getTime();
+        const timeEnd = new Date("01/01/2007 " + endTime).getTime();
+        const minutes = ('0' + ((timeEnd - timeStart)/(1000 * 60))% 60).slice(-2);
+        const hours = ('0' + Math.round((timeEnd - timeStart) / (1000 * 60 * 60))).slice(-2);
+        return `${hours}:${minutes}`;
     }
 
     return (
@@ -121,13 +136,15 @@ const ReportHours =({username}) =>  {
                         <StartTime>שעת התחלה</StartTime>
                         <EndTime>שעת סיום</EndTime>
                         <div>שעות עבודה</div>
+                        <Approved>אושר</Approved>
                     </Row>
                 </HeaderWrapper>
                 {hours.map(hour => <Item>
                     <div>{hour.date}</div>
                     <div>{hour.startTime}</div>
                     <div>{hour.endTime}</div>
-                    <div>{hour.totalTime}</div>
+                    <div>{getHoursDiff(hour.startTime, hour.endTime)}</div>
+                    {hour.approved ? <div>כן</div> :  <div>לא</div>}
                 </Item>)}
                 <Separator/>
                 <div>שעות שנצברו:</div>
@@ -147,6 +164,7 @@ const ReportHours =({username}) =>  {
                     </LocalizationProvider>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <TimePicker
+                            ampm={false}
                             renderInput={(props) => <TextField {...props} />}
                             label="בחר שעת התחלה"
                             value={start}
@@ -155,12 +173,14 @@ const ReportHours =({username}) =>  {
                             }}
                         />
                         <TimePicker
+                            ampm={false}
                             renderInput={(props) => <TextField {...props} />}
                             label="בחר שעת סיום"
                             value={end}
                             onChange={(newValue) => {
                                 setEnd(newValue);
                             }}
+                            minTime={start}
                         />
                     </LocalizationProvider>
                 </Row>
