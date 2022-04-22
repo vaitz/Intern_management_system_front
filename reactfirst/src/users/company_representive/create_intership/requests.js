@@ -1,6 +1,6 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (program,internshipName,internshipDescription,demands, username) => {
+export const createInternship = (setError,program,internshipName,internshipDescription,demands, username) => {
     const data = {
         "program": program,
         "internshipName": internshipName,
@@ -17,7 +17,14 @@ export const createInternship = (program,internshipName,internshipDescription,de
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => console.log(response));
+        })
+        .then(response => console.log(response))
+        .catch(error => {
+            console.log(error);
+            if (error.response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
+            else if (error.response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
+            else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
+        });
 }
 
 export const getPrograms = (setPrograms) => {
@@ -32,6 +39,6 @@ export const getPrograms = (setPrograms) => {
             setPrograms(tempData);
         });
     }).catch(error => {
-        console.log("error");
+        console.log(error);
     });
 }

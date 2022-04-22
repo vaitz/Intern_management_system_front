@@ -41,7 +41,6 @@ function ChangePass({username}) {
                         setError('סיסמה לא תקינה, יש להקפיד על ההנחיות לסיסמה');
                     } else {
                         const response = await changePassRequest(setLoading, setError, username, oldPassword, password, history);
-                        // const response = await changePassRequest(setLoading, setError, username, oldPassword, password, history);
                         if(response){
                             setSubmitted(true);
                         }
