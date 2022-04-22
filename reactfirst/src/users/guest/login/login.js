@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {loginRequest} from "./requests";
-import {useHistory} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 import {validateEmptyFields} from "./validations";
 
 function Login({setUserType, setFirstName, setProgramId, setUsername}) {
@@ -30,6 +30,9 @@ function Login({setUserType, setFirstName, setProgramId, setUsername}) {
                 סיסמא<br />
                 <input type="password" {...password} autoComplete="new-password" />
             </div>
+            {/*<div>*/}
+            {/*    <Link to="/njsw36/forgetPass">שכחתי סיסמא</Link>*/}
+            {/*</div>*/}
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
             <input type="button" value={loading ? 'טוען...' : 'התחבר'} onClick={() => onClick()} disabled={loading} /><br />
         </div>
