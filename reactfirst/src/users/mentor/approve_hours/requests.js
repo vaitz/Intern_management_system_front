@@ -30,15 +30,15 @@ export const getWorkingHours = (username, setHours, formatHours) => fetch(SERVER
         setHours(formatHours(data));
     })))
 
-const data1 = JSON.stringify([
-    {id: 1, date: "1/2/2022", startTime: "09:00", endTime: "11:00", approved: true},
-    {id:2, date: "2/2/2022", startTime: "08:00", endTime: "13:00" , approved: false},
-    {id:3, date: "3/2/2022", startTime: "09:00", endTime: "17:00" , approved: false},
-    {id:4, date: "4/2/2022", startTime: "08:00", endTime: "12:00" , approved: true},
-    {id:5, date: "5/2/2022", startTime: "11:00", endTime: "13:00" , approved: false}
+const data = JSON.stringify([
+    {id: 1, date: "1/2/2022", startTime: "09:00", endTime: "11:30", approved: true, totalTime: "02:30"},
+    {id:2, date: "2/2/2022", startTime: "08:00", endTime: "13:00" , approved: false, totalTime: "05:00"},
+    {id:3, date: "3/2/2022", startTime: "09:00", endTime: "17:00" , approved: false, totalTime:'08:00' },
+    {id:4, date: "4/2/2022", startTime: "08:00", endTime: "12:00" , approved: true, totalTime: "04:00"},
+    {id:5, date: "5/2/2022", startTime: "11:00", endTime: "13:00" , approved: false, totalTime: "02:00"}
 ]);
 
-// fetchMock.mock(SERVER_ADDRESS+`/intern/getHours/hay`, data1);
+fetchMock.mock(SERVER_ADDRESS+`/intern/getHours/hay`, data);
 
 export const approvedHours = (mentorUsername, internUsername, hours) => {
     const data = {

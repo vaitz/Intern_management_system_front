@@ -86,12 +86,6 @@ const ApproveHours = ({ username }) => {
         )
     }
 
-    const getHoursDiff = (startTime, endTime) => {
-        const timeStart = new Date("01/01/2007 " + startTime).getHours();
-        const timeEnd = new Date("01/01/2007 " + endTime).getHours();
-        return timeEnd - timeStart;
-    }
-
     const handleOnChange = (position) => {
         const updatedCheckedState = hours.map((hour, index) => {
             const newChecked = index === position ? !hour.checked : hour.checked;
@@ -125,11 +119,11 @@ const ApproveHours = ({ username }) => {
                         <div>אושרו/מחכות לאישור</div>
                     </Row>
                 </HeaderWrapper>}
-                {hours.map(({date, startTime, endTime, id, approved}, index) => <Item>
+                {hours.map(({date, startTime, endTime, totalTime, id, approved}, index) => <Item>
                     <div>{date}</div>
                     <div>{startTime}</div>
                     <div>{endTime}</div>
-                    <div>{getHoursDiff(startTime, endTime)}</div>
+                    <div>{totalTime}</div>
                     {!approved ? <input id={id} type={"checkbox"} onClick={() => handleOnChange(index)}/> : <MarginDiv /> }
                 </Item>)}
             <ButtonWrapper>
