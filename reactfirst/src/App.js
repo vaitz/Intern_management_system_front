@@ -20,6 +20,7 @@ import {getUser} from "./utils/common";
 import {getDetails} from "./requests";
 import MentorStudents from "./users/mentor/interns/students";
 import ChangePass from "./users/common/changePass/changePass";
+import {ForgetPass, ForgetPassEmail} from "./users/guest/login/forget_password";
 import ApproveHours from "./users/mentor/approve_hours/approve_hours";
 import Programs from "./users/system_manager/programs/programs";
 
@@ -86,6 +87,8 @@ const App = () => {
                             <Internships program={programId}/>
                         </Route>
                         <Route path="/njsw36/register" component={Register}/>
+                        <Route path="/njsw36/forgetPass" component={ForgetPass}/>
+                        <Route path="/njsw36/forgetPassEmail" component={ForgetPassEmail}/>
                         <Route path="/njsw36/changePass">
                             <ChangePass username={username}/>
                         </Route>
