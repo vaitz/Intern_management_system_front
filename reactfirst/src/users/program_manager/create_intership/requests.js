@@ -1,7 +1,7 @@
 import fetchMock from "fetch-mock";
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (company,internshipName,internshipDescription,demands, program) => {
+export const createInternship = (setError, company,internshipName,internshipDescription,demands, program) => {
     const data = {
         "company": company,
         "program": program,
@@ -18,7 +18,14 @@ export const createInternship = (company,internshipName,internshipDescription,de
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => console.log(response));
+        })
+        .then(response => console.log(response))
+        .catch(error => {
+            console.log(error);
+            if (error.response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
+            else if (error.response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
+            else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
+        });
 }
 
 fetchMock.mock(SERVER_ADDRESS+'/programManager/createInternship', "success");
