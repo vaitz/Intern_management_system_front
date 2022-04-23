@@ -17,7 +17,7 @@ const ButtonWrapper = styled.div`
   margin: 150px 400px 200px;
 `
 
-const ApproveCandidate = ({ username }) => {
+const ApproveCandidate = ({ username, userType }) => {
     const [candidates, setCandidates] = useState([]);
     const [disableButton, setDisableButton] = useState(true);
     const [programs, setPrograms] = useState([]);
@@ -29,7 +29,7 @@ const ApproveCandidate = ({ username }) => {
 
     useEffect(() => {
         if (selectedProgram) {
-            getCandidates(username, selectedProgram, setCandidates, formatCandidates);
+            getCandidates(username, userType, selectedProgram, setCandidates, formatCandidates);
         }
     }, [selectedProgram]);
 

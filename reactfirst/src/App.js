@@ -25,6 +25,8 @@ import ApproveHours from "./users/mentor/approve_hours/approve_hours";
 import Programs from "./users/system_manager/programs/programs";
 import ApproveCandidate from "./users/common/approve_candidate/approve_candidate";
 import UploadReport from "./users/intern/upload_report/upload_report";
+import ApproveMentorCandidates from "./users/mentor/approve_candidates";
+import ApproveCompanyRepCandidates from "./users/company_representive/approve_candidates";
 
 
 const Container = styled.div`
@@ -62,8 +64,11 @@ const App = () => {
                         <Route path="/njsw36/uploadReport">
                             <UploadReport username={username}/>
                         </Route>
-                        <Route path="/njsw36/approveCandidates">
-                            <ApproveCandidate username={username}/>
+                        <Route path="/njsw36/approveMentorCandidates">
+                            <ApproveMentorCandidates username={username}/>
+                        </Route>
+                        <Route path="/njsw36/approveCompanyRepCandidates">
+                            <ApproveCompanyRepCandidates username={username}/>
                         </Route>
                         <Route path="/njsw36/programs">
                             <Programs />

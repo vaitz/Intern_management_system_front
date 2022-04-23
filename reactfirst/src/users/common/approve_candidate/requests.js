@@ -3,8 +3,8 @@ import {SERVER_ADDRESS} from "../../../config";
 
 
 
-export const getCandidates = (username, program, setCandidates, formatCandidates) => {
-    fetch(SERVER_ADDRESS+`/companyRep/${username}/candidates/${program.label}`,
+export const getCandidates = (username, userType, program, setCandidates, formatCandidates) => {
+    fetch(SERVER_ADDRESS+`/${userType}/${username}/candidates/${program.label}`,
         {
             method: 'Get',
             mode: "cors",
