@@ -119,7 +119,7 @@ export const SidebarData = {
         },
         {
             title: 'הגש דוח',
-            path: '/njsw36/',
+            path: '/njsw36/uploadReport',
             icon: <FaFileUpload />,
             cName: 'nav-text'
         },
