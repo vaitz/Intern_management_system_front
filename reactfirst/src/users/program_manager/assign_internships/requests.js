@@ -16,22 +16,19 @@ export const getCompanies = ({setCompanies, programId, formatCompanies, setSelec
     }));
 }
 
-
-export const getCompanyData = (setCompanyData, companyName, internshipName, program) => {
+export const getCompanyData = (setCompanyData, companyName, internshipName, program, setRow) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
         {
             method: 'Get',
             mode: "cors",
         }).then(response => response.json().then(data => {
             setCompanyData(data);
+            setRow(data);
         }
     ).catch(error => {
         console.log("getCompany" ,"error");
     }));
 }
-
-
-
 
 export const assignIntern = (company, student) => {
     const data = {
@@ -49,4 +46,3 @@ export const assignIntern = (company, student) => {
             },
             body: JSON.stringify(data)
         }).then(response => console.log(response));}
-
