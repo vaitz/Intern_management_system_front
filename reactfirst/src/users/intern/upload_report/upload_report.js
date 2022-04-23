@@ -8,7 +8,7 @@ const UploadReport = ({username}) => {
     const onFileUpload = () => {
         const formData = new FormData();
         formData.append(
-            "myFile",
+            "report",
             file
         );
         sendFile(username, formData);
