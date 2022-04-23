@@ -140,7 +140,7 @@ export const SidebarData = {
         },
         {
             title: 'צפה במועמדים',
-            path: '/njsw36/approveCandidates',
+            path: '/njsw36/approveMentorCandidates',
             icon: <FaPeopleArrows />,
             cName: 'nav-text'
         },
@@ -191,7 +191,7 @@ export const SidebarData = {
         },
         {
             title: 'צפה במועמדים',
-            path: '/njsw36/approveCandidates',
+            path: '/njsw36/approveCompanyRepCandidates',
             icon: <FaPeopleArrows />,
             cName: 'nav-text'
         },
