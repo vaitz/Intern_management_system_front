@@ -57,7 +57,7 @@ const CreateInternship = () => {
     }, [company]);
 
     const onSubmit = () => {
-        createInternship(setPopup,setError,company,internshipName,internshipDescription,demands, program);
+        createInternship(setPopup,setError,company,internshipName,internshipDescription,demands,program,mentor);
     }
 
     return (
