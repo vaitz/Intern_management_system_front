@@ -27,6 +27,7 @@ import ApproveCandidate from "./users/common/approve_candidate/approve_candidate
 import UploadReport from "./users/intern/upload_report/upload_report";
 import ApproveMentorCandidates from "./users/mentor/approve_candidates";
 import ApproveCompanyRepCandidates from "./users/company_representive/approve_candidates";
+import UploadReportMentor from "./users/mentor/upload_report/upload_report";
 
 
 const Container = styled.div`
@@ -61,6 +62,9 @@ const App = () => {
                 <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
                 <ContentWrapper>
                     <Switch>
+                        <Route path="/njsw36/uploadReportMentor">
+                            <UploadReportMentor username={username}/>
+                        </Route>
                         <Route path="/njsw36/uploadReport">
                             <UploadReport username={username}/>
                         </Route>
