@@ -1,9 +1,10 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (setPopup,setError, company,internshipName,internshipDescription,demands, program) => {
+export const createInternship = (setPopup,setError, company,internshipName,internshipDescription,demands,program,mentor) => {
     const data = {
         "company": company,
         "program": program,
+        "mentor": mentor,
         "internshipName": internshipName,
         "about": internshipDescription,
         "requirements": demands
@@ -28,4 +29,38 @@ export const createInternship = (setPopup,setError, company,internshipName,inter
         .catch(error => {
             console.log(error);
         });
+}
+
+export const getMentors = (setMentors,company) => {
+    fetch(SERVER_ADDRESS+`/mentors/${company}`,
+        {
+            method: 'Get',
+            mode: "cors",
+        }).then((response) => {
+        response.json().then(data => {
+            console.log(data);
+            let tempData = [{username: "", name: ""}];
+            let names = data.map((mentor) => ({username: mentor.username , name: (mentor.firstName + " " + mentor.lastName)}));
+            tempData.push(...names);
+            setMentors(tempData);
+        });
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+export const getCompanies = (setCompanies) => {
+    fetch(SERVER_ADDRESS+`/companies`,
+        {
+            method: 'Get',
+            mode: "cors",
+        }).then((response) => {
+        response.json().then(data => {
+            let tempData = [""];
+            tempData.push(...data);
+            setCompanies(tempData);
+        });
+    }).catch(error => {
+        console.log(error);
+    });
 }
