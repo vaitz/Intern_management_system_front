@@ -101,7 +101,7 @@ const ApproveHours = ({ username }) => {
 
     const onApprove = () => {
         const hoursIds = hours.filter((hour) => hour.checked === true).map(({id}) => id);
-        approvedHours(username,selectedIntern.username, hoursIds).then(() => getWorkingHours('test', setHours, formatHours))
+        approvedHours(username,selectedIntern.username, hoursIds).then(() => getWorkingHours(selectedIntern.username, setHours, formatHours))
     }
 
     return (
