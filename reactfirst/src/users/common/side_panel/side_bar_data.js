@@ -158,7 +158,7 @@ export const SidebarData = {
         },
         {
             title: 'הגשת משובים',
-            path: '/njsw36/',
+            path: '/njsw36/uploadReportMentor',
             icon: <FaFileUpload />,
             cName: 'nav-text'
         },
