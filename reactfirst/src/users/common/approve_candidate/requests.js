@@ -1,8 +1,10 @@
 import {SERVER_ADDRESS} from "../../../config";
 
-export const getCandidates = (username, program, setCandidates, formatCandidates) => {
 
-    fetch(SERVER_ADDRESS+`/companyRep/${username}/candidates/${program}`,
+
+
+export const getCandidates = (username, program, setCandidates, formatCandidates) => {
+    fetch(SERVER_ADDRESS+`/companyRep/${username}/candidates/${program.label}`,
         {
             method: 'Get',
             mode: "cors",
@@ -17,9 +19,11 @@ export const getCandidates = (username, program, setCandidates, formatCandidates
 export const approveCandidates = (username, program, approved) => {
     const data = {
         "username": username,
-        "program": program,
+        "program": program.label,
         "approved": approved
     }
+
+    console.log(data);
 
     return fetch(SERVER_ADDRESS+`/companyRep/setStatus`,
         {
@@ -30,4 +34,5 @@ export const approveCandidates = (username, program, approved) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => console.log(response));}
+        }).then(response => console.log(response));
+}
