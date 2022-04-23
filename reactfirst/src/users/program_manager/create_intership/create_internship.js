@@ -39,6 +39,7 @@ const CreateInternship = () => {
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    const [error, setError] = useState(null);
     let history = useHistory();
 
     useEffect(() => {
@@ -46,8 +47,7 @@ const CreateInternship = () => {
     }, []);
 
     const onSubmit = () => {
-        createInternship(company,internshipName,internshipDescription,demands, program)
-        setPopup(true);
+        createInternship(setPopup,setError,company,internshipName,internshipDescription,demands, program);
     }
 
     return (
@@ -67,6 +67,7 @@ const CreateInternship = () => {
             <textarea rows="4" cols="50" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
             <textarea rows="4" cols="50" value={demands} onChange={e => setDemands(e.target.value)}/>
+            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
             <Button onClick={() => onSubmit()} disabled={!(company && internshipName && internshipDescription && demands && program)}>צור התמחות</Button>
         </Container>
     )

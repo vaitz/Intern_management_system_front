@@ -36,6 +36,7 @@ const CreateInternshipCom = ({username}) => {
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    const [error, setError] = useState(null);
     let history = useHistory();
 
     useEffect(() => {
@@ -43,7 +44,7 @@ const CreateInternshipCom = ({username}) => {
     }, []);
 
     const onSubmit = () => {
-        createInternship(program,internshipName,internshipDescription,demands,username)
+        createInternship(setError,program,internshipName,internshipDescription,demands,username)
         setPopup(true);
     }
 
@@ -62,6 +63,7 @@ const CreateInternshipCom = ({username}) => {
             <Input type="text" value={internshipDescription} onChange={(e) => setInternshipDescription(e.target.value)}/>
             <Label>דרישות</Label>
             <Input type="text" value={demands} onChange={e => setDemands(e.target.value)}/>
+            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
             <Button onClick={() => onSubmit()} disabled={!(program && internshipName && internshipDescription && demands)}>צור התמחות</Button>
         </Container>
     )
