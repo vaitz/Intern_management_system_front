@@ -84,7 +84,7 @@ const ApproveCandidate = ({ username, userType }) => {
     }
 
     const onClick = () => {
-        approveCandidates(username, selectedProgram, getApprovedCandidates(candidates)).then(() => getCandidates(username, selectedProgram, setCandidates, formatCandidates));
+        approveCandidates(username, userType, selectedProgram, getApprovedCandidates(candidates)).then(() => getCandidates(username, selectedProgram, setCandidates, formatCandidates));
     }
 
     const getApprovedCandidates = (candidates) =>

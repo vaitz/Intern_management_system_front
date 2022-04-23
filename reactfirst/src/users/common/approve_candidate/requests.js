@@ -1,8 +1,5 @@
 import {SERVER_ADDRESS} from "../../../config";
 
-
-
-
 export const getCandidates = (username, userType, program, setCandidates, formatCandidates) => {
     fetch(SERVER_ADDRESS+`/${userType}/${username}/candidates/${program.label}`,
         {
@@ -16,14 +13,14 @@ export const getCandidates = (username, userType, program, setCandidates, format
     }));
 }
 
-export const approveCandidates = (username, program, approved) => {
+export const approveCandidates = (username, userType, program, approved) => {
     const data = {
         "username": username,
         "program": program.label,
         "approved": approved
     }
 
-    return fetch(SERVER_ADDRESS+`/companyRep/setStatus`,
+    return fetch(SERVER_ADDRESS+`/${userType}/setStatus`,
         {
             method: 'POST',
             mode: "cors",
