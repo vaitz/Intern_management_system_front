@@ -23,6 +23,7 @@ import ChangePass from "./users/common/changePass/changePass";
 import {ForgetPass, ForgetPassEmail} from "./users/guest/login/forget_password";
 import ApproveHours from "./users/mentor/approve_hours/approve_hours";
 import Programs from "./users/system_manager/programs/programs";
+import ApproveCandidate from "./users/common/approve_candidate/approve_candidate";
 
 
 const Container = styled.div`
@@ -57,6 +58,9 @@ const App = () => {
                 <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
                 <ContentWrapper>
                     <Switch>
+                        <Route path="/njsw36/approveCandidates">
+                            <ApproveCandidate username={username} program={programId}/>
+                        </Route>
                         <Route path="/njsw36/programs">
                             <Programs />
                         </Route>
