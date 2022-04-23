@@ -21,13 +21,13 @@ export const createInternship = (setPopup,setError, company,internshipName,inter
         })
         .then(response => {
             console.log(response);
-            setPopup(true);
+            if (response.status === 200) setPopup(true);
+            else if (response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
+            else if (response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
+            else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
         })
         .catch(error => {
             console.log(error);
-            if (error.response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
-            else if (error.response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
-            else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
         });
 }
 
