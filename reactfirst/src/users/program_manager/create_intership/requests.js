@@ -1,6 +1,6 @@
 import {SERVER_ADDRESS} from '../../../config'
 
-export const createInternship = (setError, company,internshipName,internshipDescription,demands, program) => {
+export const createInternship = (setPopup,setError, company,internshipName,internshipDescription,demands, program) => {
     const data = {
         "company": company,
         "program": program,
@@ -18,7 +18,10 @@ export const createInternship = (setError, company,internshipName,internshipDesc
             },
             body: JSON.stringify(data)
         })
-        .then(response => console.log(response))
+        .then(response => {
+            console.log(response);
+            setPopup(true);
+        })
         .catch(error => {
             console.log(error);
             if (error.response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
