@@ -139,6 +139,12 @@ export const SidebarData = {
             cName: 'nav-text'
         },
         {
+            title: 'צפה במועמדים',
+            path: '/njsw36/approveCandidates',
+            icon: <FaPeopleArrows />,
+            cName: 'nav-text'
+        },
+        {
             title: 'סטודנטים',
             path: '/njsw36/mentor/interns',
             icon: <FaUserFriends />,

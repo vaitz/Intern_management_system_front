@@ -59,7 +59,7 @@ const App = () => {
                 <ContentWrapper>
                     <Switch>
                         <Route path="/njsw36/approveCandidates">
-                            <ApproveCandidate username={username} program={programId}/>
+                            <ApproveCandidate username={username}/>
                         </Route>
                         <Route path="/njsw36/programs">
                             <Programs />

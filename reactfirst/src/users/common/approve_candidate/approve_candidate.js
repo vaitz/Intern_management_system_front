@@ -23,8 +23,6 @@ const ApproveCandidate = ({ username }) => {
     const [programs, setPrograms] = useState([]);
     const [selectedProgram, setSelectedProgram] = useState();
 
-    console.log(selectedProgram);
-
     useEffect(() => {
         getPrograms(setPrograms);
     }, []);
@@ -66,7 +64,7 @@ const ApproveCandidate = ({ username }) => {
             type: 'boolean',
             render: rowData => (
                 <>
-                    {rowData.status_decision_by_company && <input type="checkbox" onClick={() => handleOnChange(rowData.id)}/>}
+                    {!rowData.status_decision_by_company && <input type="checkbox" onClick={() => handleOnChange(rowData.id)}/>}
                 </>
             )
         }
@@ -99,31 +97,35 @@ const ApproveCandidate = ({ username }) => {
     return (
         <Fragment>
             <Dropdown options={programs} placeholder={"בחר תוכנית"} value={selectedProgram} onChange={ program => setSelectedProgram(program)} />
-            <Div>
-                <MaterialTable
-                    pageSize={30} title="מועמדים"
-                    data={candidates}
-                    columns={columns}
-                    icons={tableIcons}
-                    options={
-                       {
-                           search: false,
-                           paging: false,
-                           pageSize: 10,
-                           headerStyle: {
-                               width: "200px",
-                               textAlign: "center"
-                           },
-                           cellStyle: {
-                               width: "200px",
-                               textAlign: "center"
-                           }
-                       }}
-                />
-            </Div>
-            <ButtonWrapper>
-                <Button value={"אשר מתמחים"} disabled={disableButton} onClick={onClick}/>
-            </ButtonWrapper>
+            {selectedProgram &&
+                <>
+                    <Div>
+                        <MaterialTable
+                            pageSize={30} title="מועמדים"
+                            data={candidates}
+                            columns={columns}
+                            icons={tableIcons}
+                            options={
+                                {
+                                    search: false,
+                                    paging: false,
+                                    pageSize: 10,
+                                    headerStyle: {
+                                        width: "200px",
+                                        textAlign: "center"
+                                    },
+                                    cellStyle: {
+                                        width: "200px",
+                                        textAlign: "center"
+                                    }
+                                }}
+                        />
+                    </Div>
+                    <ButtonWrapper>
+                        <Button value={"אשר מתמחים"} disabled={disableButton} onClick={onClick}/>
+                    </ButtonWrapper>
+                </>
+}
         </Fragment>
     )
 }
