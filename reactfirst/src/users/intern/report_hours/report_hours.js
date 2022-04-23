@@ -100,7 +100,9 @@ const ReportHours =({username}) =>  {
     }
 
     const getTime = (time) => {
-        return `${time.getHours()}:${time.getMinutes()}`;
+        const hours = ('0' + time.getHours()).slice(-2);
+        const minutes = ('0' + time.getMinutes()).slice(-2);
+        return `${hours}:${minutes}`;
     }
 
     const parseDate = (date) => {
@@ -113,6 +115,7 @@ const ReportHours =({username}) =>  {
     const onAddHour = (date, start, end) => {
         const startTime = getTime(start);
         const endTime = getTime(end);
+
         const newHours = [...hours, { date: parseDate(date), startTime: startTime, endTime: endTime, totalTime: getHoursDiff(startTime, endTime), approved: false }]
         setHours(newHours);
         reportHours(username, newHours);
@@ -121,9 +124,11 @@ const ReportHours =({username}) =>  {
     const getHoursDiff = (startTime, endTime) => {
         const timeStart = new Date("01/01/2007 " + startTime).getTime();
         const timeEnd = new Date("01/01/2007 " + endTime).getTime();
-        const minutes = ('0' + ((timeEnd - timeStart)/(1000 * 60))% 60).slice(-2);
-        const hours = ('0' + Math.round((timeEnd - timeStart) / (1000 * 60 * 60))).slice(-2);
-        return `${hours}:${minutes}`;
+        const totalMinutes = ((timeEnd - timeStart)/(1000 * 60));
+        const totalHours = Math.floor(totalMinutes/60);
+        const formatMinutes = ('0' + totalMinutes % 60).slice(-2);
+        const formatHours = ('0' + totalHours).slice(-2);
+        return `${formatHours}:${formatMinutes}`;
     }
 
     return (
