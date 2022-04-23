@@ -15,6 +15,7 @@ const UploadReport = ({username}) => {
     };
 
     const onFileChange = event => {
+        console.log(event.target.files[0])
         setFile(event.target.files[0]);
     };
 
