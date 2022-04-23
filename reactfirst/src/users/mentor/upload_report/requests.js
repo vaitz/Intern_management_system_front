@@ -2,7 +2,7 @@ import {SERVER_ADDRESS} from "../../../config";
 import fetchMock from "fetch-mock";
 
 export const sendFile = (username, report, intern) => {
-    return fetch(SERVER_ADDRESS+`/mentor/${username}/uploadReport/${intern}`,
+    return fetch(SERVER_ADDRESS+`/mentor/${username}/uploadReport/${intern.username}`,
         {
             method: 'POST',
             mode: "cors",

@@ -13,7 +13,7 @@ const Dropdown = styled(Select)`
 const UploadReportMentor = ({ username }) => {
     const [file, setFile] = useState();
     const [interns, setInterns] = useState([]);
-    const [selectedIntern, setSelectedIntern] = useState({});
+    const [selectedIntern, setSelectedIntern] = useState();
 
     useEffect(() => {
         getInterns(username, setInterns, formatInterns)
@@ -30,7 +30,7 @@ const UploadReportMentor = ({ username }) => {
             "report",
             file
         );
-        sendFile(username, formData, selectedIntern.username);
+        sendFile(username, formData, selectedIntern);
     };
 
     const onFileChange = event => {
@@ -42,7 +42,7 @@ const UploadReportMentor = ({ username }) => {
         <>
             <Dropdown options={interns} value={selectedIntern} onChange={setSelectedIntern} placeholder={"בחר מתמחה"}/>
             <input type="file" onChange={onFileChange} />
-            <Button onClick={onFileUpload}>שלח קובץ</Button>
+            <Button onClick={onFileUpload} disabled={!selectedIntern}>שלח קובץ</Button>
         </>
     )
 }
