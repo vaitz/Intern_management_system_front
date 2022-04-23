@@ -8,7 +8,6 @@ const BaseDropDown = styled(Select)`
 
 const DropDown = ({ options, placeholder, onChange, isDisabled, value}) => {
     const [currentOptions, setCurrentOptions] = useState();
-    console.log("dropdown" ,currentOptions);
     useEffect(() => {
         setCurrentOptions(options.map((option, index) => ({value: index, label: option})
     ))
