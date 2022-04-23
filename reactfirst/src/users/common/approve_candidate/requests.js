@@ -1,9 +1,6 @@
 import {SERVER_ADDRESS} from "../../../config";
 import fetchMock from "fetch-mock";
 
-
-
-
 export const getCandidates = (username, userType, program, setCandidates, formatCandidates) => {
     fetch(SERVER_ADDRESS+`/${userType}/${username}/candidates/${program.label}`,
         {
@@ -57,17 +54,17 @@ const data2 = [
         priority: 1
     }
 ]
-fetchMock.mock(SERVER_ADDRESS+'/companyRep/user/candidates/123', data);
-fetchMock.mock(SERVER_ADDRESS+'/companyRep/user/candidates/122', data2);
+fetchMock.mock(SERVER_ADDRESS+'/mentor/user/candidates/123', data);
+fetchMock.mock(SERVER_ADDRESS+'/mentor/user/candidates/122', data2);
 
-export const approveCandidates = (username, program, approved) => {
+export const approveCandidates = (username, userType, program, approved) => {
     const data = {
         "username": username,
         "program": program.label,
         "approved": approved
     }
 
-    return fetch(SERVER_ADDRESS+`/companyRep/setStatus`,
+    return fetch(SERVER_ADDRESS+`/${userType}/setStatus`,
         {
             method: 'POST',
             mode: "cors",
@@ -79,4 +76,4 @@ export const approveCandidates = (username, program, approved) => {
         }).then(response => console.log(response));
 }
 
-fetchMock.mock(SERVER_ADDRESS + '/companyRep/setStatus', {status: 200});
+fetchMock.mock(SERVER_ADDRESS + '/mentor/setStatus', {status: 200});
