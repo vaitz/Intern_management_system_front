@@ -74,8 +74,8 @@ const CreateInternship = () => {
                 {companies && companies.map(option => <option key={option} value={option}>{option}</option>)}
             </Select>
             <Label>שם המנטור</Label>
-            <Select id="mentor" value={mentor} onChange={e => setMentor(e.target.key)}>
-                {mentors && mentors.map(option => <option key={option.username} value={option.name}>{option.name}</option>)}
+            <Select id="mentor" value={mentor} onChange={e => setMentor(e.target.value)}>
+                {mentors && mentors.map(option => <option key={option.username} value={option.username}>{option.name}</option>)}
             </Select>
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
