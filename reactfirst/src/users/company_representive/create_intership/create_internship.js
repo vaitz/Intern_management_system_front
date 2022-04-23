@@ -44,8 +44,7 @@ const CreateInternshipCom = ({username}) => {
     }, []);
 
     const onSubmit = () => {
-        createInternship(setError,program,internshipName,internshipDescription,demands,username)
-        setPopup(true);
+        createInternship(setPopup,setError,program,internshipName,internshipDescription,demands,username)
     }
 
     return (
