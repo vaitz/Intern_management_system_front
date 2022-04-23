@@ -24,7 +24,7 @@ export const approvedHours = (mentorUsername, internUsername, hours) => {
         "intern": internUsername,
         "hours": hours
     }
-    const response = fetch(SERVER_ADDRESS+'/mentor/hoursApproval',
+    return fetch(SERVER_ADDRESS + '/mentor/hoursApproval',
         {
             method: 'POST',
             mode: "cors",
