@@ -87,7 +87,6 @@ export const AssignInternships = ({programId}) => {
     const onClick = () => {
         assignIntern(selectedCompany, selectedRow);
         getCompanies({ setCompanies, programId, formatCompanies, setSelectedCompany });
-        getCompanyData(setCompanyData, selectedCompany.companyName, selectedCompany.internshipName, programId);
         setSelectedRow(null);
     }
 
