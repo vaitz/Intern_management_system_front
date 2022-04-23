@@ -185,7 +185,7 @@ export const SidebarData = {
         },
         {
             title: 'צפה במועמדים',
-            path: '/njsw36/',
+            path: '/njsw36/approveCandidates',
             icon: <FaPeopleArrows />,
             cName: 'nav-text'
         },
