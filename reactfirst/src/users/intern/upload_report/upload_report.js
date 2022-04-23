@@ -8,14 +8,13 @@ const UploadReport = ({username}) => {
     const onFileUpload = () => {
         const formData = new FormData();
         formData.append(
-            "myFile",
+            "report",
             file
         );
         sendFile(username, formData);
     };
 
     const onFileChange = event => {
-        console.log(event.target.files[0])
         setFile(event.target.files[0]);
     };
 
