@@ -4,9 +4,10 @@ import MaterialTable from "material-table";
 import tableIcons from "../../program_manager/assign_internships/MaterialTableIcons";
 import Button from "../../../components/button";
 import {approveCandidates, getCandidates} from "./requests";
+import {getPrograms} from "../../company_representive/create_intership/requests";
+import Dropdown from "../../../components/dropdown";
 
 const Div = styled.div`
-  width: 400px;
   height: auto;
   margin-top: 50px;
   display: flex;
@@ -16,13 +17,23 @@ const ButtonWrapper = styled.div`
   margin: 150px 400px 200px;
 `
 
-const ApproveCandidate = ({ username, program }) => {
+const ApproveCandidate = ({ username }) => {
     const [candidates, setCandidates] = useState([]);
     const [disableButton, setDisableButton] = useState(true);
+    const [programs, setPrograms] = useState([]);
+    const [selectedProgram, setSelectedProgram] = useState();
+
+    console.log(selectedProgram);
 
     useEffect(() => {
-        getCandidates(username, program, setCandidates, formatCandidates);
-    }, [])
+        getPrograms(setPrograms);
+    }, []);
+
+    useEffect(() => {
+        if (selectedProgram) {
+            getCandidates(username, selectedProgram, setCandidates, formatCandidates);
+        }
+    }, [selectedProgram]);
 
     const formatCandidates = (candidates) =>
         candidates.map((candidate, index) => ({
@@ -35,35 +46,19 @@ const ApproveCandidate = ({ username, program }) => {
     const columns = [
         {
             title: "שם פרטי",
-            field: "first_name",
-            cellStyle: {
-                textAlign: "center",
-                width: "400px"
-            }
+            field: "first_name"
         },
         {
             title: "שם משפחה",
-            field: "last_name",
-            cellStyle: {
-                textAlign: "center",
-                width: "400px"
-            }
+            field: "last_name"
         },
         {
             title: "שם ההתמחות",
-            field: "internship_name",
-            cellStyle: {
-                textAlign: "center",
-                width: "400px"
-            }
+            field: "internship_name"
         },
         {
             title: "עדיפות",
-            field: "priority",
-            cellStyle: {
-                textAlign: "center",
-                width: "400px"
-            }
+            field: "priority"
         },
         {
             title: "אישור המועמד",
@@ -73,11 +68,7 @@ const ApproveCandidate = ({ username, program }) => {
                 <>
                     <input type="checkbox" onClick={() => handleOnChange(rowData.id)}/>
                 </>
-            ),
-            cellStyle: {
-                textAlign: "center",
-                width: "200px"
-            }
+            )
         }
     ];
 
@@ -95,7 +86,7 @@ const ApproveCandidate = ({ username, program }) => {
     }
 
     const onClick = () => {
-        approveCandidates(username, program, getApprovedCandidates(candidates)).then(() => getCandidates(username, 122, setCandidates, formatCandidates));
+        approveCandidates(username, selectedProgram, getApprovedCandidates(candidates)).then(() => getCandidates(username, selectedProgram, setCandidates, formatCandidates));
     }
 
     const getApprovedCandidates = (candidates) =>
@@ -107,6 +98,7 @@ const ApproveCandidate = ({ username, program }) => {
 
     return (
         <Fragment>
+            <Dropdown options={programs} placeholder={"בחר תוכנית"} value={selectedProgram} onChange={ program => setSelectedProgram(program)} />
             <Div>
                 <MaterialTable
                     pageSize={30} title="מועמדים"
@@ -119,8 +111,12 @@ const ApproveCandidate = ({ username, program }) => {
                            paging: false,
                            pageSize: 10,
                            headerStyle: {
-                               textAlign: "center",
-                               width: "400px"
+                               width: "200px",
+                               textAlign: "center"
+                           },
+                           cellStyle: {
+                               width: "200px",
+                               textAlign: "center"
                            }
                        }}
                 />

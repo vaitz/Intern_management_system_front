@@ -46,4 +46,7 @@ export const getPrograms = (setPrograms) => {
         console.log(error);
     });
 }
+
+const data = ["123", "2", "3"]
 fetchMock.mock(SERVER_ADDRESS+'/companyRep/createInternship', "success");
+fetchMock.mock(SERVER_ADDRESS+'/activePrograms', data);

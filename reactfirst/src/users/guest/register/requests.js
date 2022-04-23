@@ -8,7 +8,7 @@ fetchMock.mock(SERVER_ADDRESS+'/users/register/companyRep', 201);
 fetchMock.mock(SERVER_ADDRESS+'/users/register/mentor', 201);
 fetchMock.mock(SERVER_ADDRESS+'/users/register/programCoordinator', 201);
 fetchMock.mock(SERVER_ADDRESS+'/users/register/programManager', 201);
-fetchMock.mock(SERVER_ADDRESS+'/activePrograms', ["starships","פסיכולוגיה"]);
+// fetchMock.mock(SERVER_ADDRESS+'/activePrograms', ["starships","פסיכולוגיה"]);
 
 export const getPrograms = (setPrograms) => {
     fetch(SERVER_ADDRESS+'/activePrograms',

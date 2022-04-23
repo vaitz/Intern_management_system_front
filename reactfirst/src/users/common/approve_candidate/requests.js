@@ -1,9 +1,11 @@
 import {SERVER_ADDRESS} from "../../../config";
 import fetchMock from "fetch-mock";
 
-export const getCandidates = (username, program, setCandidates, formatCandidates) => {
 
-    fetch(SERVER_ADDRESS+`/companyRep/${username}/candidates/${program}`,
+
+
+export const getCandidates = (username, program, setCandidates, formatCandidates) => {
+    fetch(SERVER_ADDRESS+`/companyRep/${username}/candidates/${program.label}`,
         {
             method: 'Get',
             mode: "cors",
