@@ -67,8 +67,6 @@ export const approveCandidates = (username, program, approved) => {
         "approved": approved
     }
 
-    console.log(data);
-
     return fetch(SERVER_ADDRESS+`/companyRep/setStatus`,
         {
             method: 'POST',
