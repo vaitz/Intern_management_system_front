@@ -24,7 +24,17 @@ const data = [
         last_name: "matityaho",
         internship_id: "2030",
         internship_name: "google-1",
-        priority: 1
+        priority: 1,
+        status_decision_by_company: false
+    },
+    {
+        username: "haymatit",
+        first_name: "hay",
+        last_name: "matityaho",
+        internship_id: "2030",
+        internship_name: "google-1",
+        priority: 1,
+        status_decision_by_company: false
     },
     {
         username: "haymatit2",
@@ -32,7 +42,8 @@ const data = [
         last_name: "matityaho2",
         internship_id: "2031",
         internship_name: "google-2",
-        priority: 2
+        priority: 2,
+        status_decision_by_company: true
     }
 ]
 
@@ -52,9 +63,11 @@ fetchMock.mock(SERVER_ADDRESS+'/companyRep/user/candidates/122', data2);
 export const approveCandidates = (username, program, approved) => {
     const data = {
         "username": username,
-        "program": program,
+        "program": program.label,
         "approved": approved
     }
+
+    console.log(data);
 
     return fetch(SERVER_ADDRESS+`/companyRep/setStatus`,
         {
@@ -65,6 +78,7 @@ export const approveCandidates = (username, program, approved) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => console.log(response));}
+        }).then(response => console.log(response));
+}
 
 fetchMock.mock(SERVER_ADDRESS + '/companyRep/setStatus', {status: 200});

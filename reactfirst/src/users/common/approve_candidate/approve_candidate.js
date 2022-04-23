@@ -66,7 +66,7 @@ const ApproveCandidate = ({ username }) => {
             type: 'boolean',
             render: rowData => (
                 <>
-                    <input type="checkbox" onClick={() => handleOnChange(rowData.id)}/>
+                    {rowData.status_decision_by_company && <input type="checkbox" onClick={() => handleOnChange(rowData.id)}/>}
                 </>
             )
         }
