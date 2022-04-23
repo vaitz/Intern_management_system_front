@@ -31,4 +31,41 @@ export const createInternship = (setPopup,setError, company,internshipName,inter
         });
 }
 
+export const getMentors = (setMentors,company) => {
+    fetch(SERVER_ADDRESS+`/mentors/${company}`,
+        {
+            method: 'Get',
+            mode: "cors",
+        }).then((response) => {
+        response.json().then(data => {
+            console.log(data);
+            let tempData = [{username: "", name: ""}];
+            let names = data.map((mentor) => ({username: mentor.username , name: (mentor.firstName + " " + mentor.lastName)}));
+            tempData.push(...names);
+            setMentors(tempData);
+        });
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+export const getCompanies = (setCompanies) => {
+    fetch(SERVER_ADDRESS+`/companies`,
+        {
+            method: 'Get',
+            mode: "cors",
+        }).then((response) => {
+        response.json().then(data => {
+            let tempData = [""];
+            tempData.push(...data);
+            setCompanies(tempData);
+        });
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+
 fetchMock.mock(SERVER_ADDRESS+'/programManager/createInternship', "success");
+fetchMock.mock(SERVER_ADDRESS+'/companies', ['elbit','meta']);
+fetchMock.mock(SERVER_ADDRESS+'/mentors/elbit', [{username: "maor", firstName: "maor", lastName:"cohen"},{username: "maor", firstName: "yuval", lastName:"cohen"}]);
