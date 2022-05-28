@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {createInternship} from "./requests";
+import {createInternship, getCompanies, getMentors} from "./requests";
 import PopUp from "../../../components/popup";
 import {Select} from "../../guest/register/register";
 import {getPrograms} from "../../company_representive/create_intership/requests";
@@ -34,20 +34,30 @@ const Button = styled.button`
 const CreateInternship = () => {
     const [program, setProgram] = useState("");
     const [company, setCompany] = useState("");
+    const [mentor, setMentor] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    const [companies, setCompanies] = useState([]);
+    const [mentors, setMentors] = useState([]);
     const [error, setError] = useState(null);
     let history = useHistory();
 
     useEffect(() => {
         getPrograms(setPrograms);
+        getCompanies(setCompanies);
     }, []);
 
+    useEffect(() => {
+        if (company) {
+            getMentors(setMentors,company);
+        }
+    }, [company]);
+
     const onSubmit = () => {
-        createInternship(setPopup,setError,company,internshipName,internshipDescription,demands, program);
+        createInternship(setPopup,setError,company,internshipName,internshipDescription,demands,program,mentor);
     }
 
     return (
@@ -59,8 +69,14 @@ const CreateInternship = () => {
             <Select id="program" value={program} onChange={e => setProgram(e.target.value)}>
                 {programs && programs.map(option => <option key={option} value={option}>{option}</option>)}
             </Select>
-            <Label>שם חברה</Label>
-            <Input type="text" value={company} onChange={e => setCompany(e.target.value)}/>
+            <Label>שם החברה</Label>
+            <Select id="company" value={company} onChange={e => setCompany(e.target.value)}>
+                {companies && companies.map(option => <option key={option} value={option}>{option}</option>)}
+            </Select>
+            <Label>שם המנטור</Label>
+            <Select id="mentor" value={mentor} onChange={e => setMentor(e.target.value)}>
+                {mentors && mentors.map(option => <option key={option.username} value={option.username}>{option.name}</option>)}
+            </Select>
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
             <Label>תיאור ההתמחות</Label>
