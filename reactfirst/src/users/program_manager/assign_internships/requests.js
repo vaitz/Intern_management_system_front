@@ -31,7 +31,7 @@ const data = [
         requirements: "requirements"
     }
     ]
-fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
+// fetchMock.mock(SERVER_ADDRESS+'/internships/123', data);
 
 export const getCompanyData = (setCompanyData, companyName, internshipName, program, setRow) => {
     fetch(SERVER_ADDRESS+`/programManager/${program}/${companyName}/${internshipName}/nominees`,
@@ -66,7 +66,7 @@ const studentsNames2 = [
 ];
 
 fetchMock.mock(SERVER_ADDRESS+'/programManager/123/google/one/nominees', studentsNames1);
-fetchMock.mock(SERVER_ADDRESS+'/programManager/123/apple/two/nominees', studentsNames2);
+// fetchMock.mock(SERVER_ADDRESS+'/programManager/123/apple/two/nominees', studentsNames2);
 
 export const assignIntern = (company, student) => {
     const data = {
