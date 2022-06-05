@@ -9,6 +9,7 @@ export const createInternship = (setPopup,setError, company,internshipName,inter
         "about": internshipDescription,
         "requirements": demands
     }
+    console.log(data);
     const response = fetch(SERVER_ADDRESS+'/programManager/createInternship',
         {
             method: 'POST',
@@ -21,7 +22,7 @@ export const createInternship = (setPopup,setError, company,internshipName,inter
         })
         .then(response => {
             console.log(response);
-            if (response.status === 200) setPopup(true);
+            if (response.status === 201) setPopup(true);
             else if (response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
             else if (response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
             else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
