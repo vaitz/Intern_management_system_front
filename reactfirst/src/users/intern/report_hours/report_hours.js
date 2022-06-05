@@ -191,7 +191,7 @@ const ReportHours =({username}) =>  {
                 </Row>
             </Container>
             <Center>
-                <Button onClick={() => onAddHour(date,start,end)}>הוסף שעות</Button>
+                <Button onClick={() => onAddHour(date,start,end)} disabled={start >= end}>הוסף שעות</Button>
             </Center>
         </div>
     );

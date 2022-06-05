@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {createInternship, getPrograms} from "./requests";
+import {createInternship, getMentors, getPrograms} from "./requests";
 import PopUp from "../../../components/popup";
 import {Select} from "../../guest/register/register";
 import {useHistory} from "react-router-dom";
@@ -30,21 +30,24 @@ const Button = styled.button`
 `
 
 const CreateInternshipCom = ({username}) => {
+    const [mentor, setMentor] = useState("");
     const [program, setProgram] = useState("");
     const [internshipName, setInternshipName] = useState("");
     const [internshipDescription, setInternshipDescription] = useState("");
     const [demands, setDemands] = useState("");
     const [popup, setPopup] = useState(false);
     const [programs, setPrograms] = useState([]);
+    const [mentors, setMentors] = useState([]);
     const [error, setError] = useState(null);
     let history = useHistory();
 
     useEffect(() => {
         getPrograms(setPrograms);
+        getMentors(setMentors,username);
     }, []);
 
     const onSubmit = () => {
-        createInternship(setPopup,setError,program,internshipName,internshipDescription,demands,username)
+        createInternship(setPopup,setError,program,internshipName,internshipDescription,demands,username,mentor);
     }
 
     return (
@@ -55,6 +58,10 @@ const CreateInternshipCom = ({username}) => {
             <Label>שם התוכנית</Label>
             <Select id="program" value={program} onChange={e => setProgram(e.target.value)}>
                 {programs && programs.map(option => <option key={option} value={option}>{option}</option>)}
+            </Select>
+            <Label>שם המנטור\ית</Label>
+            <Select id="mentor" value={mentor} onChange={e => setMentor(e.target.value)}>
+                {mentors && mentors.map(option => <option key={option.key} value={option.key}>{option.value}</option>)}
             </Select>
             <Label>שם ההתמחות</Label>
             <Input type="text" value={internshipName} onChange={e => setInternshipName(e.target.value)}/>
