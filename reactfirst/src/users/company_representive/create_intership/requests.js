@@ -21,7 +21,7 @@ export const createInternship = (setPopup,setError,program,internshipName,intern
             body: JSON.stringify(data)
         })
         .then(response => {
-            if (response.status === 200) setPopup(true);
+            if (response.status === 201) setPopup(true);
             else if (response.status === 400) setError("שם ההתמחות קיים כבר במערכת, יש לבחור שם אחר");
             else if (response.status === 404) setError("החברה או התוכנית לא קיימים במערכת, נסו שוב");
             else setError("משהו השתבש, אנא נסה שנית מאוחר יותר");
