@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from "react";
 import InternshipsPriorities from "./users/candidate/internships_priorities/internships_priorities";
 import Internships from "./users/candidate/internships/internships";
@@ -29,18 +28,6 @@ import ApproveMentorCandidates from "./users/mentor/approve_candidates";
 import ApproveCompanyRepCandidates from "./users/company_representive/approve_candidates";
 import UploadReportMentor from "./users/mentor/upload_report/upload_report";
 
-
-const Container = styled.div`
-  background: #F7F8FC;
-  display: flex;
-  min-height: 1160px;
-`
-
-const ContentWrapper = styled.div`
-  padding: 30px 50px;
-  width: auto;
-`
-
 const App = () => {
 
     const [userType, setUserType] = useState(GUEST);
@@ -58,9 +45,8 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <Container>
+            <div className="main-page-wrapper p0">
                 <SidePanel userType={userType} firstName={firstName} setUserType={setUserType} setFirstName={setFirstName}/>
-                <ContentWrapper>
                     <Switch>
                         <Route path="/njsw36/uploadReportMentor">
                             <UploadReportMentor username={username}/>
@@ -114,8 +100,7 @@ const App = () => {
                         </Route>
                         <PublicRoute path="/njsw36/" component={Home}/>
                     </Switch>
-                </ContentWrapper>
-            </Container>
+            </div>
         </BrowserRouter>
     )
 
